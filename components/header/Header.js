@@ -1,32 +1,26 @@
-import Link from "next/link";
+import Link from 'next/link';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-
-import styles from "../../styles/Header.module.scss";
+import styles from '../../styles/Header.module.scss';
+import { HeaderContent } from './HederContent';
 
 export function Header() {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <header className={styles.header}>
-      <ul>
-        <li>
-          <Link href="/about-us">
-            <a>About us</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/shop/shop-list">
-            <a>Shop</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/contact">
-            <a>Contacts</a>
-          </Link>
-        </li>
-      </ul>
-
-      <FontAwesomeIcon icon={faBars} color={"white"} />
+      <HeaderContent headerClassName="headerDesktop" />
+      {showMenu && (
+        <HeaderContent
+          headerClassName="headerMobile"
+          setShowMenu={setShowMenu}
+          showMenu={showMenu}
+        />
+      )}
+      <div onClick={() => setShowMenu(!showMenu)}>
+        <FontAwesomeIcon icon={faBars} color={'white'} />
+      </div>
     </header>
   );
 }
