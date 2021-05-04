@@ -1,17 +1,14 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import { Layout } from '../components/layout/Layout';
-import styles from '../styles/About.module.scss';
+import { Layout } from "../components/layout/Layout";
+
+import styles from "../styles/About.module.scss";
+
 export default function AboutUs() {
   return (
     <>
       <Head>
-        <title>Create Next App !!!</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
+        <title>About us</title>
       </Head>
 
       <Layout>
