@@ -1,4 +1,11 @@
 .layoutSection {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.layoutChildrenSection {
+  height: 100%;
   width: 70%;
   margin: auto;
 }

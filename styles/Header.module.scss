@@ -1,10 +1,10 @@
+@import "variables";
 .header {
-  //  max-width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: aqua;
+  background-color: $primary;
   height: 3rem;
 
   ul {
@@ -18,10 +18,8 @@
     height: 100%;
 
     li {
-      // flex-grow: 1;
       flex: 1;
       width: 30%;
-      margin: 1rem;
       text-align: center;
       margin: 0;
       align-self: center;
@@ -30,11 +28,22 @@
       a {
         text-decoration: none;
         height: 100%;
-        line-height: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $textWhite;
       }
       &:hover {
-        background-color: aquamarine;
+        background-color: $secondary;
       }
+    }
+  }
+  svg {
+    width: 1rem;
+    height: 1rem;
+
+    @media (min-width: 450px) {
+      display: none;
     }
   }
 }
