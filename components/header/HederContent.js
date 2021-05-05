@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../../styles/HeaderContent.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCross } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
   return (
@@ -12,7 +12,7 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
         </Link>
 
         <div onClick={() => setShowMenu(!showMenu)}>
-          <FontAwesomeIcon icon={faCross} color={'white'} />
+          <FontAwesomeIcon icon={faTimes} color={'white'} />
         </div>
       </li>
       <li>
