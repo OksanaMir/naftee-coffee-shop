@@ -8,6 +8,8 @@ import {
 
 import { Layout } from '../components/layout/Layout';
 import { FaqItem } from '../components/faq/FaqItem';
+import { faqData } from '../mocks/faqContent';
+
 export default function Faq() {
   return (
     <>
@@ -17,18 +19,14 @@ export default function Faq() {
       <Layout>
         <h1>Frequently asked questions</h1>
         <ul>
-          <li>
-            <FaqItem />
-          </li>
-          <li>
-            <FaqItem />
-          </li>
-          <li>
-            <FaqItem />
-          </li>
-          <li>
-            <FaqItem />
-          </li>
+          {faqData.map((faq) => {
+            return (
+              <li key={faq.id}>
+                {/* props */}
+                <FaqItem question={faq.question} answer={faq.answer} />
+              </li>
+            );
+          })}
         </ul>
       </Layout>
     </>

@@ -32,7 +32,7 @@ export function Footer() {
           <a href="/">Terms and Conditions</a>
         </li>
         <li>
-          <a href="/">FAQ</a>
+          <a href="/faq">FAQ</a>
         </li>
       </ul>
     </footer>
