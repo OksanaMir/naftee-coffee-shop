@@ -15,6 +15,21 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
         </Link>
       </li>
       <li>
+        <Link href="/">
+          <a>Quiz</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/">
+          <a>Basket</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/">
+          <a>Naftee Bar</a>
+        </Link>
+      </li>
+      <li>
         <Link href="/contact">
           <a>Contacts</a>
         </Link>
@@ -22,3 +37,4 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
     </ul>
   );
 }
+//<i class="fas fa-shopping-basket"></i>

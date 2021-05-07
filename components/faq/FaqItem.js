@@ -17,7 +17,15 @@ export function FaqItem() {
       </div>
       {showAnswer && (
         <p>
-          /dgfhfjjkvfdovkjvdnkdnkvncsbdkqbwdkb dsjdbjsbjbsmk dkfnsf sjfnsjcjsb
+          We are a small, family-owned business that select the best sorts of
+          coffee, directly buy coffee on the best farms, roasting coffee the
+          old-fashioned way and packaging coffee with love. Our mission has
+          always been to produce the best-tasting, highest quality coffee and
+          deliver it to our customers with an unsurpassed level of customer
+          service. To accomplish that, we use only specialty arabica and combine
+          that with our fresh roasting technology - and you get perfect coffee
+          flavor with special taste. As you can see, our passion is quality. To
+          make you are satisfied - we do our best and always with love!
         </p>
       )}
     </article>
