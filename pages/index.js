@@ -1,6 +1,6 @@
-import Head from "next/head";
-
-import { Layout } from "../components/layout/Layout";
+import Head from 'next/head';
+import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
+import { Layout } from '../components/layout/Layout';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
 
       <Layout>
         <main>
-          <h1>Naftee</h1>
+          <LandingPageAboutUs />
         </main>
       </Layout>
     </div>
