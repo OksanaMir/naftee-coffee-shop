@@ -1,0 +1,42 @@
+@import 'variables';
+.footer {
+  justify-content: space-around;
+  align-items: center;
+  background-color: $primary;
+  padding: 0.5rem 0;
+  @media (min-width: 450px) {
+    display: flex;
+  }
+  ul {
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $textWhite;
+  }
+  &:hover {
+    background-color: $secondary;
+  }
+
+  li {
+    color: $textWhite;
+    list-style: none;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .social {
+    display: flex;
+    justify-content: center;
+    a {
+      margin: 0 0.5rem;
+    }
+  }
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
