@@ -1,12 +1,17 @@
-import { Form } from 'antd';
 import Image from 'next/image';
 import 'antd/dist/antd.css';
 import styles from '../../styles/ProductOverView.module.scss';
 
+import { Form } from 'antd';
+import styles from '../../styles/ProductOverView.module.scss';
+import 'antd/dist/antd.css';
+
 import { useRef } from 'react';
+
 import { SelectComponent } from '../form/select/SelectComponent';
 
 export function ProductOverView(props) {
+  const { Option } = SelectComponent;
   const formRef = useRef(null);
   const { data } = props;
   function handleChange(value) {
@@ -56,5 +61,5 @@ export function ProductOverView(props) {
         </article>
       )}{' '}
     </>
-  )}
-
+  );
+}

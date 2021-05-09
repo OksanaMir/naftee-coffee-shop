@@ -37,7 +37,6 @@ export default function Home() {
                 return <ProductOverView key={product.id} data={product} />;
               })}
           </section>
-          <ProductOverView />
         </main>
       </Layout>
     </div>
@@ -61,5 +60,6 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
   }
   price
   cuppingScoreRatingSca
+  
   }
 }`;
