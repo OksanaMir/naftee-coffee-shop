@@ -37,7 +37,6 @@ export default function Home() {
                 return <ProductOverView key={product.id} data={product} />;
               })}
           </section>
-          <ProductOverView />
         </main>
       </Layout>
     </div>
