@@ -9,10 +9,9 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
   const changeLanguage = (event) => {
     console.log('button', event.currentTarget.value);
     i18n
-      .changeLanguage(event.currentTarget.value?.toLowerCase() ?? 'cz')
+      .changeLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
       .catch(console.error);
   };
-
   return (
     <ul className={styles[headerClassName]}>
       <li>
