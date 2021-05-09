@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faTimes,
+  faShoppingCart,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { HeaderContent } from './HeaderContent';
 
@@ -13,6 +17,16 @@ export function Header() {
     <>
       <header className={styles.header}>
         <HeaderContent headerClassName="headerDesktop" />
+        <div className={styles.langSwitcher}>
+          <Link href="/">
+            <a>CZ</a>
+          </Link>
+
+          <Link href="/">
+            <a>EN</a>
+          </Link>
+        </div>
+
         {!showMenu ? (
           <div onClick={() => setShowMenu(!showMenu)}>
             <FontAwesomeIcon icon={faBars} color={'white'} />

@@ -1,40 +1,51 @@
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
+import { LangButton } from '../translations/LangButton';
 import styles from '../../styles/HeaderContent.module.scss';
 
 export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (event) => {
+    console.log('button', event.currentTarget.value);
+    i18n
+      .changeLanguage(event.currentTarget.value?.toLowerCase() ?? 'cz')
+      .catch(console.error);
+  };
+
   return (
     <ul className={styles[headerClassName]}>
       <li>
         <Link href="/about-us">
-          <a>About us</a>
+          <a>{t('header.aboutUs')}</a>
         </Link>
       </li>
       <li>
         <Link href="/shop/shop-list">
-          <a>Shop</a>
+          <a>{t('header.shop')}</a>
         </Link>
       </li>
       <li>
         <Link href="/">
-          <a>Quiz</a>
+          <a>{t('header.quiz')}</a>
         </Link>
       </li>
       <li>
         <Link href="/">
-          <a>Basket</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/">
-          <a>Naftee Bar</a>
+          <a>{t('header.nafteeBar')}</a>
         </Link>
       </li>
       <li>
         <Link href="/contact">
-          <a>Contacts</a>
+          <a>{t('header.contacts')}</a>
         </Link>
+      </li>
+      <li className={styles.langSwitcher}>
+        <div>
+          <LangButton changeLanguage={changeLanguage} language={'CZ'} />/
+          <LangButton changeLanguage={changeLanguage} language={'EN'} />
+        </div>
       </li>
     </ul>
   );
 }
-//<i class="fas fa-shopping-basket"></i>

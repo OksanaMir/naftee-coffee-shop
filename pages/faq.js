@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Link from 'next/link';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -7,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Layout } from '../components/layout/Layout';
-import { FaqItem } from '../components/faq/FaqItem';
+import { ExpandableText } from '../components/expandableText/ExpandableText';
 import { faqData } from '../mocks/faqContent';
 
 export default function Faq() {
@@ -23,7 +25,20 @@ export default function Faq() {
             return (
               <li key={faq.id}>
                 {/* props */}
-                <FaqItem question={faq.question} answer={faq.answer} />
+                <ExpandableText
+                  title={faq.question}
+                  children={
+                    <>
+                      <Link href="https://www.instagram.com/nafteecoffee/">
+                        <a className="fa fa-instagram" />
+                      </Link>
+                      <Link href="https://www.facebook.com/search/top?q=Naftee">
+                        <a className="fa fa-facebook" />
+                      </Link>
+                    </>
+                  }
+                  paragraph={faq.answer}
+                />
               </li>
             );
           })}
