@@ -1,10 +1,8 @@
-import Link from 'next/link';
 import { Form, Input, Button } from 'antd';
-import styles from '../../styles/ProductOverView.module.scss';
 import 'antd/dist/antd.css';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
-import { request } from '../../lib/datoCMS';
+import styles from '../../styles/ProductOverView.module.scss';
+
+import { useRef } from 'react';
 import { SelectComponent } from '../form/select/SelectComponent';
 
 export function ProductOverView(props) {
@@ -28,21 +26,22 @@ export function ProductOverView(props) {
           </div>
           <div>
             <Form ref={formRef} name="control-ref" onFinish={onFinish}>
-              <Form.Item
-                name="method"
-                label="Method"
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                {' '}
-                <SelectComponent
-                  options={data?.select?.selectMethod ?? []}
-                  handleChange={handleChange}
-                />
-              </Form.Item>
+              {data?.select?.selectMethod && (
+                <Form.Item
+                  name="method"
+                  label="Method"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <SelectComponent
+                    options={data?.select?.selectMethod ?? []}
+                    handleChange={handleChange}
+                  />
+                </Form.Item>
+              )}
             </Form>
           </div>
         </article>

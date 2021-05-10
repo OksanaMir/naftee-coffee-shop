@@ -21,7 +21,7 @@ export function Header() {
   const changeLanguage = (event) => {
     console.log('button', event.currentTarget.value);
     i18n
-      .changeLanguage(event.currentTarget.value?.toLowerCase() ?? 'cz')
+      .changeLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
       .catch(console.error);
   };
 

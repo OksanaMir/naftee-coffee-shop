@@ -10,12 +10,10 @@
   }
   .langSwitcher {
     display: flex;
-    a {
-      text-decoration: none;
-      width: 3rem;
-      height: 3 rem;
-      background-color: $primary;
-      color: $textWhite;
+    align-items: center;
+    .btnContainer {
+      display: flex;
+      justify-content: center;
     }
     @media (min-width: 760px) {
       display: none;
