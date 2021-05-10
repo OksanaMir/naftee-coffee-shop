@@ -1,8 +1,14 @@
 import React, { SyntheticEvent } from 'react';
 
+import styles from '../../styles/LangButton.module.scss';
+
 export const LangButton = ({ changeLanguage, language }) => {
   return (
-    <button onClick={changeLanguage} value={language}>
+    <button
+      className={styles.langBtn}
+      onClick={changeLanguage}
+      value={language}
+    >
       {language}
     </button>
   );
