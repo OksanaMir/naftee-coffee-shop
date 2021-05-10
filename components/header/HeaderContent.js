@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { useTranslation } from 'react-i18next';
 import { LangButton } from '../translations/LangButton';
 import styles from '../../styles/HeaderContent.module.scss';
@@ -40,7 +41,7 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
         </Link>
       </li>
       <li className={styles.langSwitcher}>
-        <div>
+        <div className={styles.btnContainer}>
           <LangButton changeLanguage={changeLanguage} language={'CZ'} />/
           <LangButton changeLanguage={changeLanguage} language={'EN'} />
         </div>
