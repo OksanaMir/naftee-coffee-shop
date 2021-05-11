@@ -1,4 +1,5 @@
 import { Form, Input, Button } from 'antd';
+import Image from 'next/image';
 import 'antd/dist/antd.css';
 import styles from '../../styles/ProductOverView.module.scss';
 
@@ -22,8 +23,15 @@ export function ProductOverView(props) {
         <article className={styles.productOverView}>
           <div>
             <p>{data.productName}</p>
-            <img src="/assets/teamPicFinal.png"></img>
+            <Image
+              width={data.productPhoto.width / 5}
+              height={data.productPhoto.height / 5}
+              src={data.productPhoto.url}
+              alt={data.productPhoto.alt}
+              title={data.productPhoto.title}
+            />
           </div>
+          <p>{data.taste}</p>
           <div>
             <Form ref={formRef} name="control-ref" onFinish={onFinish}>
               {data?.select?.selectMethod && (
@@ -44,6 +52,8 @@ export function ProductOverView(props) {
               )}
             </Form>
           </div>
+          <p>{data.cuppingScoreRatingSca}</p>
+          <p>{data.price}</p>
         </article>
       )}{' '}
     </>

@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { request } from '../lib/datoCMS';
 
 import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
 import { Layout } from '../components/layout/Layout';
 import { ProductOverView } from '../components/product/ProductOverView';
+import styles from '../styles/Home.module.scss';
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -29,11 +30,13 @@ export default function Home() {
       <Layout>
         <main>
           <LandingPageAboutUs />
-          {data &&
-            data.allProducts &&
-            data.allProducts.map((product) => {
-              return <ProductOverView data={product} />;
-            })}
+          <section className={styles.main}>
+            {data &&
+              data.allProducts &&
+              data.allProducts.map((product) => {
+                return <ProductOverView key={product.id} data={product} />;
+              })}
+          </section>
         </main>
       </Layout>
     </div>
@@ -46,6 +49,16 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     productName
     method
   select
-  
+  id
+  productPhoto{
+    alt
+    id
+    url
+    title
+    width
+    height
+  }
+  price
+  cuppingScoreRatingSca
   }
 }`;

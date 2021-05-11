@@ -1,6 +1,9 @@
 .landingAboutUsContainer {
   display: flex;
   flex-direction: column;
+  @media (min-width: 460px) {
+    flex-direction: row;
+  }
   img {
     width: auto;
     height: 10rem;

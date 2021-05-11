@@ -10,4 +10,7 @@ module.exports = {
   env: {
     datoCmsToken: process.env.DATOCMS_TOKEN,
   },
+  images: {
+    domains: ['www.datocms-assets.com'],
+  },
 };
