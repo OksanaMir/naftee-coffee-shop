@@ -1,18 +1,25 @@
 import Head from 'next/head';
 import Link from 'next/link';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBars,
-  faTimes,
-  faArrowDown,
-} from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 import { Layout } from '../components/layout/Layout';
 import { ExpandableText } from '../components/expandableText/ExpandableText';
-import { faqData } from '../mocks/faqContent';
+import { request } from '../lib/datoCMS';
 
 export default function Faq() {
+  const { i18n } = useTranslation();
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    request({
+      query: FAQ_QUERY,
+      variables: { locale: i18n.language },
+    }).then((response) => {
+      setData(response);
+    });
+  }, [i18n.language]);
+
   return (
     <>
       <Head>
@@ -21,7 +28,7 @@ export default function Faq() {
       <Layout>
         <h1>Frequently asked questions</h1>
         <ul>
-          {faqData.map((faq) => {
+          {data?.allFaqs?.map((faq) => {
             return (
               <li key={faq.id}>
                 {/* props */}
@@ -47,3 +54,9 @@ export default function Faq() {
     </>
   );
 }
+const FAQ_QUERY = `query FaqQuery($locale: SiteLocale){
+  allFaqs(locale: $locale){
+    question
+    id
+    answer
+  }}`;
