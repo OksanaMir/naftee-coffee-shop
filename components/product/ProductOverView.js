@@ -20,13 +20,17 @@ export function ProductOverView(props) {
       setSelectsData(response);
     });
   }, []);
+
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
+
   const onFinish = (values) => {
     console.log(values);
   };
+
   console.log(selectsData, 'data');
+
   return (
     <>
       {data && (

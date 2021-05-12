@@ -1,6 +1,7 @@
-import { Form, Input, Button, Select } from 'antd';
+import {Select} from 'antd';
 import 'antd/dist/antd.css';
 import styles from '../../../styles/SelectComponent.module.scss';
+
 export const SelectComponent = (props) => {
   const { options, handleChange } = props;
   const { Option } = Select;
@@ -9,7 +10,7 @@ export const SelectComponent = (props) => {
     <div id={'area'} className={styles.selectContainer}>
       <Select
         placeholder="Select"
-        style={{ width: 120 }}
+        style={{ width: 220 }}
         getPopupContainer={() => document.getElementById('area')}
         onChange={handleChange}
       >

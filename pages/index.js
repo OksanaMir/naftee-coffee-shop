@@ -1,17 +1,16 @@
 import Head from 'next/head';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import { request } from '../lib/datoCMS';
+import {useTranslation} from 'react-i18next';
+import {useEffect, useState} from 'react';
+import {request} from '../lib/datoCMS';
 
-import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
-import { Layout } from '../components/layout/Layout';
-import { ProductOverView } from '../components/product/ProductOverView';
+import {LandingPageAboutUs} from '../components/landingPage/LandingPageAboutUs';
+import {Layout} from '../components/layout/Layout';
+import {ProductOverView} from '../components/product/ProductOverView';
 import styles from '../styles/Home.module.scss';
-import { SwiperWrapper } from '../components/swiper/SwiperWrapper';
-import { SwiperSlideComponent } from '../components/swiper/SwiperSlideComponent';
+import {Swiper, SwiperSlide} from "swiper/react";
 
 export default function Home() {
-  const { t, i18n } = useTranslation();
+  const {i18n } = useTranslation();
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -34,17 +33,26 @@ export default function Home() {
         <main>
           <LandingPageAboutUs />
           <section className={styles.main}>
-            <SwiperWrapper>
-              {data &&
-                data.allProducts &&
-                data.allProducts.map((product) => {
+            <Swiper
+                spaceBetween={50}
+                slidesPerView={1}
+                navigation
+                scrollbar={{ draggable: true }}
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log('slide change')}
+            >
+              {
+                data && data.allProducts && data.allProducts.map(product => {
                   return (
-                    <SwiperSlideComponent>
-                      <ProductOverView key={product.id} data={product} />{' '}
-                    </SwiperSlideComponent>
-                  );
-                })}
-            </SwiperWrapper>
+                      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <SwiperSlide>
+                          <ProductOverView key={product.id} data={product} />
+                        </SwiperSlide>
+                      </div>
+                  )
+                })
+              }
+            </Swiper>
           </section>
         </main>
       </Layout>
