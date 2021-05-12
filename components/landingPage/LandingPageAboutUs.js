@@ -13,7 +13,7 @@ export function LandingPageAboutUs() {
         </p>
       </div>
       <div>
-        <img src="/assets/teamPicFinal.png"></img>
+        <img src="/assets/aboutUs.jpg"></img>
       </div>
     </article>
   );
