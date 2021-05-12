@@ -34,6 +34,7 @@ export function ProductOverView(props) {
               alt={data.productPhoto.alt}
               title={data.productPhoto.title}
             />
+            <img src="/assets/teamPicFinal.jpg"></img>
           </div>
           <p>{data.taste}</p>
           <div>
