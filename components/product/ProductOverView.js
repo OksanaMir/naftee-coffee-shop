@@ -3,24 +3,30 @@ import 'antd/dist/antd.css';
 import styles from '../../styles/ProductOverView.module.scss';
 
 import { Form } from 'antd';
-import styles from '../../styles/ProductOverView.module.scss';
-import 'antd/dist/antd.css';
-
-import { useRef } from 'react';
-
+import { useRef, useState, useEffect } from 'react';
+import { request } from '../../lib/datoCMS';
 import { SelectComponent } from '../form/select/SelectComponent';
 
 export function ProductOverView(props) {
-  const { Option } = SelectComponent;
   const formRef = useRef(null);
   const { data } = props;
+  const [selectsData, setSelectsData] = useState({});
+
+  useEffect(() => {
+    request({
+      query: SELECTORS_QUERY,
+      variables: {},
+    }).then((response) => {
+      setSelectsData(response);
+    });
+  }, []);
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
   const onFinish = (values) => {
     console.log(values);
   };
-  console.log(data, 'data');
+  console.log(selectsData, 'data');
   return (
     <>
       {data && (
@@ -34,12 +40,11 @@ export function ProductOverView(props) {
               alt={data.productPhoto.alt}
               title={data.productPhoto.title}
             />
-            <img src="/assets/teamPicFinal.jpg"></img>
           </div>
           <p>{data.taste}</p>
           <div>
             <Form ref={formRef} name="control-ref" onFinish={onFinish}>
-              {data?.select?.selectMethod && (
+              {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
                 <Form.Item
                   name="method"
                   label="Method"
@@ -50,7 +55,27 @@ export function ProductOverView(props) {
                   ]}
                 >
                   <SelectComponent
-                    options={data?.select?.selectMethod ?? []}
+                    options={
+                      selectsData?.allSelectors?.[0]?.select?.selectMethod ?? []
+                    }
+                    handleChange={handleChange}
+                  />
+                </Form.Item>
+              )}
+              {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
+                <Form.Item
+                  name="weight"
+                  label="Weight"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <SelectComponent
+                    options={
+                      selectsData?.allSelectors?.[1]?.select?.selectWeight ?? []
+                    }
                     handleChange={handleChange}
                   />
                 </Form.Item>
@@ -64,3 +89,11 @@ export function ProductOverView(props) {
     </>
   );
 }
+const SELECTORS_QUERY = `query SelectorsQuery{
+
+    allSelectors {
+     id
+      select
+    
+    }
+  }`;

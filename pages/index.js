@@ -7,6 +7,8 @@ import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs
 import { Layout } from '../components/layout/Layout';
 import { ProductOverView } from '../components/product/ProductOverView';
 import styles from '../styles/Home.module.scss';
+import { SwiperWrapper } from '../components/swiper/SwiperWrapper';
+import { SwiperSlideComponent } from '../components/swiper/SwiperSlideComponent';
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -21,6 +23,7 @@ export default function Home() {
     });
   }, [i18n.language]);
   console.log(data, 'dataIndex');
+
   return (
     <div className="container">
       <Head>
@@ -31,11 +34,17 @@ export default function Home() {
         <main>
           <LandingPageAboutUs />
           <section className={styles.main}>
-            {data &&
-              data.allProducts &&
-              data.allProducts.map((product) => {
-                return <ProductOverView key={product.id} data={product} />;
-              })}
+            <SwiperWrapper>
+              {data &&
+                data.allProducts &&
+                data.allProducts.map((product) => {
+                  return (
+                    <SwiperSlideComponent>
+                      <ProductOverView key={product.id} data={product} />{' '}
+                    </SwiperSlideComponent>
+                  );
+                })}
+            </SwiperWrapper>
           </section>
         </main>
       </Layout>

@@ -19,7 +19,8 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-i18next": "^11.8.15",
-    "sass": "^1.32.12"
+    "sass": "^1.32.12",
+    "swiper": "^6.6.1"
   },
   "devDependencies": {
     "prettier": "2.2.1"
