@@ -1,18 +1,16 @@
-import { Form, Input, Button, Select } from 'antd';
+import {Select} from 'antd';
 import 'antd/dist/antd.css';
-<<<<<<< HEAD
 import styles from '../../../styles/SelectComponent.module.scss';
-=======
->>>>>>> DatoCMS connected and landing page continued
+
 export const SelectComponent = (props) => {
   const { options, handleChange } = props;
   const { Option } = Select;
+  console.log(options, 'options');
   return (
-<<<<<<< HEAD
     <div id={'area'} className={styles.selectContainer}>
       <Select
-        defaultValue={options[0]}
-        style={{ width: 120 }}
+        placeholder="Select"
+        style={{ width: 220 }}
         getPopupContainer={() => document.getElementById('area')}
         onChange={handleChange}
       >
@@ -22,17 +20,5 @@ export const SelectComponent = (props) => {
           })}
       </Select>
     </div>
-=======
-    <Select
-      defaultValue={options[0]}
-      style={{ width: 120 }}
-      onChange={handleChange}
-    >
-      {options &&
-        options.map((option) => {
-          return <Option value={option}>{option}</Option>;
-        })}
-    </Select>
->>>>>>> DatoCMS connected and landing page continued
   );
 };

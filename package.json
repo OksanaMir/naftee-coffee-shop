@@ -11,19 +11,16 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-
     "antd": "^4.15.4",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
-
-
-
     "i18next": "^20.2.2",
     "next": "^10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-i18next": "^11.8.15",
-    "sass": "^1.32.12"
+    "sass": "^1.32.12",
+    "swiper": "^6.6.1"
   },
   "devDependencies": {
     "prettier": "2.2.1"
