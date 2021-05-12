@@ -60,5 +60,6 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
   }
   price
   cuppingScoreRatingSca
+  
   }
 }`;

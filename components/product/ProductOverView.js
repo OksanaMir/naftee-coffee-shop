@@ -1,9 +1,13 @@
-import { Form, Input, Button } from 'antd';
 import Image from 'next/image';
 import 'antd/dist/antd.css';
 import styles from '../../styles/ProductOverView.module.scss';
 
+import { Form } from 'antd';
+import styles from '../../styles/ProductOverView.module.scss';
+import 'antd/dist/antd.css';
+
 import { useRef } from 'react';
+
 import { SelectComponent } from '../form/select/SelectComponent';
 
 export function ProductOverView(props) {
@@ -30,6 +34,7 @@ export function ProductOverView(props) {
               alt={data.productPhoto.alt}
               title={data.productPhoto.title}
             />
+            <img src="/assets/teamPicFinal.jpg"></img>
           </div>
           <p>{data.taste}</p>
           <div>
