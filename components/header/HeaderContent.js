@@ -46,6 +46,7 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
           <LangButton changeLanguage={changeLanguage} language={'EN'} />
         </div>
       </li>
+      <li></li>
     </ul>
   );
 }

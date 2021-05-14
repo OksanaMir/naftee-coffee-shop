@@ -1,19 +1,12 @@
 import Head from 'next/head';
 import '../components/translations/translations';
 import '../styles/globals.scss';
-import 'swiper/swiper.scss';
-
-import 'swiper/components/navigation/navigation.scss';
-import 'swiper/components/pagination/pagination.scss';
-import 'swiper/components/scrollbar/scrollbar.scss';
-import SwiperCore, {A11y, Navigation, Pagination, Scrollbar} from "swiper";
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-
+import 'antd/dist/antd.css';
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-          <title>Naftee</title>
+        <title>Naftee</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="stylesheet"

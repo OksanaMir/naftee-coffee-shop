@@ -36,8 +36,10 @@ export function Header() {
           </div>
         </div>
         <div className={styles.shoppingBasket}>
-          <Link href="/">
-            <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
+          <Link href="/shoppingCart">
+            <a>
+              <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
+            </a>
           </Link>
         </div>
 

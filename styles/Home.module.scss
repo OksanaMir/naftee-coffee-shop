@@ -3,4 +3,8 @@
   @media (min-width: 760px) {
     display: flex;
   }
+  > div {
+    height: 100%;
+    width: 100%;
+  }
 }

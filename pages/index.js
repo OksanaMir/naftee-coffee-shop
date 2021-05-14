@@ -1,16 +1,16 @@
 import Head from 'next/head';
-import {useTranslation} from 'react-i18next';
-import {useEffect, useState} from 'react';
-import {request} from '../lib/datoCMS';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { request } from '../lib/datoCMS';
 
-import {LandingPageAboutUs} from '../components/landingPage/LandingPageAboutUs';
-import {Layout} from '../components/layout/Layout';
-import {ProductOverView} from '../components/product/ProductOverView';
+import { Carousel } from 'antd';
+import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
+import { Layout } from '../components/layout/Layout';
+import { ProductOverView } from '../components/product/ProductOverView';
 import styles from '../styles/Home.module.scss';
-import {Swiper, SwiperSlide} from "swiper/react";
 
 export default function Home() {
-  const {i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -23,6 +23,10 @@ export default function Home() {
   }, [i18n.language]);
   console.log(data, 'dataIndex');
 
+  function onChange(a, b, c) {
+    console.log(a, b, c);
+  }
+
   return (
     <div className="container">
       <Head>
@@ -33,26 +37,24 @@ export default function Home() {
         <main>
           <LandingPageAboutUs />
           <section className={styles.main}>
-            <Swiper
-                spaceBetween={50}
-                slidesPerView={1}
-                navigation
-                scrollbar={{ draggable: true }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
-            >
-              {
-                data && data.allProducts && data.allProducts.map(product => {
+            <Carousel accessibility={true} arrows={true} afterChange={onChange}>
+              {data &&
+                data.allProducts &&
+                data.allProducts.map((product) => {
                   return (
-                      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                        <SwiperSlide>
-                          <ProductOverView key={product.id} data={product} />
-                        </SwiperSlide>
-                      </div>
-                  )
-                })
-              }
-            </Swiper>
+                    <div
+                      style={{
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <ProductOverView key={product.id} data={product} />
+                    </div>
+                  );
+                })}
+            </Carousel>
           </section>
         </main>
       </Layout>
