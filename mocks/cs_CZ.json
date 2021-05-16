@@ -1,4 +1,7 @@
 {
+  "order": {
+    "first_name": "Kresni jmeno"
+  },
   "header": {
     "aboutUs": "O nás",
     "shop": "Obchod",
