@@ -1,16 +1,115 @@
-import Head from "next/head";
+import Head from 'next/head';
+import Image from 'next/image';
+import { Layout } from '../../components/layout/Layout';
+import 'antd/dist/antd.css';
 
-import { Layout } from "../../components/layout/Layout";
+import styles from '../../../styles/SelectComponent.module.scss';
+import { SelectComponent } from '../../components/form/select/SelectComponent';
+import { Form } from 'antd';
+import { useRef, useState, useEffect } from 'react';
+import { request } from '../../lib/datoCMS';
 
-export default function ShopList() {
+export default function ShopList(props) {
+  const formRef = useRef(null);
+  const { data } = props;
+  const [selectsData, setSelectsData] = useState({});
+
+  useEffect(() => {
+    request({
+      query: SELECTORS_QUERY,
+      variables: {},
+    }).then((response) => {
+      setSelectsData(response);
+    });
+  }, []);
+
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
+
+  console.log(selectsData, 'data');
+
   return (
     <>
       <Head>
         <title>Shop list</title>
       </Head>
       <Layout>
-        <h1>Mexica</h1>
+        {data && (
+          <article className={styles.ShopList}>
+            <div>
+              <p>{data.productName}</p>
+              <Image
+                width={data.productPhoto.width / 5}
+                height={data.productPhoto.height / 5}
+                src={data.productPhoto.url}
+                alt={data.productPhoto.alt}
+                title={data.productPhoto.title}
+              />
+            </div>
+            <p>{data.taste}</p>
+            <div>
+              <Form ref={formRef} name="control-ref" onFinish={onFinish}>
+                {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
+                  <Form.Item
+                    name="method"
+                    label="Method"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <SelectComponent
+                      options={
+                        selectsData?.allSelectors?.[0]?.select?.selectMethod ??
+                        []
+                      }
+                      handleChange={handleChange}
+                    />
+                  </Form.Item>
+                )}
+                {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
+                  <Form.Item
+                    name="weight"
+                    label="Weight"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <SelectComponent
+                      options={
+                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
+                        []
+                      }
+                      handleChange={handleChange}
+                    />
+                  </Form.Item>
+                )}
+              </Form>
+            </div>
+            <p>{data.cuppingScoreRatingSca}</p>
+            <p>{data.price}</p>
+            <p>{data.description}</p>
+            <p>{data.characteristic}</p>
+          </article>
+        )}{' '}
       </Layout>
     </>
   );
 }
+
+const SELECTORS_QUERY = `query SelectorsQuery{
+
+  allSelectors {
+   id
+    select
+  
+  }
+}`;
