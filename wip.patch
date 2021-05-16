@@ -1,0 +1,199 @@
+diff --git a/components/form/contactForm/ContactForm.js b/components/form/contactForm/ContactForm.js
+new file mode 100644
+index 0000000..4bf7f6d
+--- /dev/null
++++ b/components/form/contactForm/ContactForm.js
+@@ -0,0 +1,49 @@
++import { Form, Input, Button } from 'antd';
++import 'antd/dist/antd.css';
++import styles from '../../styles/ContactForm.module.scss';
++const validateMessages = {
++  required: '${label} is required!',
++  types: {
++    email: '${label} is not a valid email!',
++  },
++};
++
++export const ContactForm = (props) => {
++  const onFinish = () => {
++    console.log(values);
++  };
++  return (
++    <Form
++      id={'area'}
++      Classname={styles.form}
++      onFinish={onFinish}
++      validateMessages={validateMessages}
++    >
++      <Form.Item
++        name={['user', 'name']}
++        placeholder={t('contacts.userName')}
++        rules={[{ required: true }]}
++      >
++        <Input />
++      </Form.Item>
++      <Form.Item
++        name={['user', 'email']}
++        placeholder={t('contacts.email')}
++        rules={[{ type: 'email' }]}
++      >
++        <Input />
++      </Form.Item>
++      <Form.Item name={['user', 'website']} label="Website">
++        <Input />
++      </Form.Item>
++      <Form.Item name={['user', 'introduction']} label="Introduction">
++        <Input.TextArea />
++      </Form.Item>
++      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
++        <Button type="primary" htmlType="submit">
++          {t('contacts.button')}
++        </Button>
++      </Form.Item>
++    </Form>
++  );
++};
+diff --git a/mocks/cs_CZ.json b/mocks/cs_CZ.json
+index 42cc85d..cee6f4f 100644
+--- a/mocks/cs_CZ.json
++++ b/mocks/cs_CZ.json
+@@ -8,5 +8,22 @@
+   },
+   "aboutUs": {
+     "paragraph": "Jsme tu pro vaše potěšení z mnohostranné chuti nejlepších odrůd speciální kávy. Sdílíme tyto pocity s okolním světem. Přidej se k nám teď. Všechny dobré věci přicházejí s láskou. Vycházeli jsme z přímého obchodu se zemědělci a pokračovali v práci se specializací na lehké pražení kávových zrn. Proto máme během přípravy nápoje bohatou chuť a aroma. Nyní budeme nadále podporovat kulturu konzumace kávy. Kvalita a chuť jsou základem kávy Third Wave. Každý nový doušek nás přibližuje k cíli. Je důležité, aby káva byla středem událostí, které spojují lidi."
++  },
++
++  "contacts": {
++    "contact": "Kontakt.",
++    "paragraph1": "Výběrová káva Naftee",
++    "paragraph2": "Česká republika, České Budějovice",
++    "text": "Najdete nás v rodné chaloupce keramičky Alexandry Kaňovské, hned vedle hotelu Alexandria. Příjemné posezení venku i uvnitř u čaje, sklenky vína nebo čerstvé kávy v samém srdci Luhačovic. Pobyt v Jizbě vám zpříjemní nejen keramika pod značkou Moravská keramika, vyrobena v naší dílně, ale i další výrobky přímo od tvůrců.",
++    "adress1": "Masarykova 198",
++    "adress2": "763 26 Luhačovice",
++    "phone": "tel: 577 102 164",
++    "mobile": "mob: 725 558 788",
++    "instruction": "Máte nějaké otázky? Zodpovíme je. Prosíme o pečlivé vyplnění kontaktních údajů.",
++    "userName": "Jmeno a Přijmení",
++    "email": "Email",
++    "subject": "Subject",
++    "message": "Váš vzkaz",
++    "button": "Odeslat"
+   }
+ }
+diff --git a/mocks/en.json b/mocks/en.json
+index 0586bb9..32cc71b 100644
+--- a/mocks/en.json
++++ b/mocks/en.json
+@@ -6,7 +6,25 @@
+     "nafteeBar": "Naftee Bar",
+     "contacts": "Contacts"
+   },
++
+   "aboutUs": {
+     "paragraph": "We are here for your enjoyment from the multifaceted taste of the best varieties of specialty coffee. We share this feelings with the world around. Join us now. All good things come with love. We started from direct trade with farmers and continued work with specialization on the light roasting of the coffee beans. That's why we have the rich taste and aroma during drink preparation. Now we will continue to promote the culture of coffee consumption. Quality and taste are the basis of the Third Wave Coffee. Every new sip brings us closer to the goal. It is important that coffee is at the center of events that bring people together."
++  },
++
++  "contacts": {
++    "contact": "Contact.",
++    "paragraph1": "naftee specialty coffee",
++    "paragraph2": "Czech Republic, Czech Budweis",
++    "text": "You will find us in Alexandra Kaňovská's home of pottery, right next to the Alexandria Hotel. Pleasant sitting outside and inside with tea, a glass of wine or fresh coffee in the heart of Luhačovice. Your stay in Jizba will be made more pleasant not only by ceramics under the Moravian Ceramics brand, made in our workshop, but also by other products directly from the creators.",
++    "adress1": "Masarykova 198",
++    "adress2": "763 26 Luhačovice",
++    "phone": "tel: 577 102 164",
++    "mobile": "mob: 725 558 788",
++    "instruction": "Do you have any questions? We will answer them. Please fill in the contact details carefully.",
++    "userName": "Name and Surname",
++    "email": "Email",
++    "subject": "Subject",
++    "message": "Message",
++    "button": "Send"
+   }
+ }
+diff --git a/pages/_app.js b/pages/_app.js
+index 7cbce67..be53b11 100644
+--- a/pages/_app.js
++++ b/pages/_app.js
+@@ -6,14 +6,15 @@ import 'swiper/swiper.scss';
+ import 'swiper/components/navigation/navigation.scss';
+ import 'swiper/components/pagination/pagination.scss';
+ import 'swiper/components/scrollbar/scrollbar.scss';
+-import SwiperCore, {A11y, Navigation, Pagination, Scrollbar} from "swiper";
++import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
++
+ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+ 
+ export default function App({ Component, pageProps }) {
+   return (
+     <>
+       <Head>
+-          <title>Naftee</title>
++        <title>Naftee</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1" />
+         <link
+           rel="stylesheet"
+diff --git a/pages/contact.js b/pages/contact.js
+index 93665e6..391edb8 100644
+--- a/pages/contact.js
++++ b/pages/contact.js
+@@ -1,15 +1,47 @@
+-import Head from "next/head";
++import Head from 'next/head';
++import { useTranslation } from 'react-i18next';
+ 
+-import { Layout } from "../components/layout/Layout";
++import { Layout } from '../components/layout/Layout';
+ 
+ export default function Contacts() {
++  const { t, i18n } = useTranslation();
++
+   return (
+     <>
+       <Head>
+-        <title>Contacts</title>
++        <title>Contacts</title>contact
+       </Head>
++
+       <Layout>
+-        <h1>HI</h1>
++        <h1>{t('contacts.contact')}</h1>
++        <p>{t('contacts.paragraph1')}</p>
++        <p>{t('contacts.paragraph2')}</p>
++        <p>{t('contacts.text')}</p>
++        <p>{t('contacts.adress1')}</p>
++        <p>{t('contacts.adress2')}</p>
++        <p>{t('contacts.phone')}</p>
++        <p>{t('contacts.mobile')}</p>
++        <p>{t('contacts.instruction')}</p>
++
++        <form>
++          <div>
++            <input type="text" placeholder={t('contacts.userName')} />
++          </div>
++
++          <div>
++            <input type="email" placeholder={t('contacts.email')} />
++          </div>
++
++          <div>
++            <input type="text" placeholder={t('contacts.subject')} />
++          </div>
++
++          <div>
++            <input type="text" placeholder={t('contacts.message')} />
++          </div>
++
++          <button type="submit">{t('contacts.button')}</button>
++        </form>
+       </Layout>
+     </>
+   );
+diff --git a/styles/ContactForm.module.scss b/styles/ContactForm.module.scss
+new file mode 100644
+index 0000000..88455f5
+--- /dev/null
++++ b/styles/ContactForm.module.scss
+@@ -0,0 +1,3 @@
++.form {
++  width: 30%;
++}
