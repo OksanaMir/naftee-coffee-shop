@@ -8,5 +8,22 @@
   },
   "aboutUs": {
     "paragraph": "Jsme tu pro vaše potěšení z mnohostranné chuti nejlepších odrůd speciální kávy. Sdílíme tyto pocity s okolním světem. Přidej se k nám teď. Všechny dobré věci přicházejí s láskou. Vycházeli jsme z přímého obchodu se zemědělci a pokračovali v práci se specializací na lehké pražení kávových zrn. Proto máme během přípravy nápoje bohatou chuť a aroma. Nyní budeme nadále podporovat kulturu konzumace kávy. Kvalita a chuť jsou základem kávy Third Wave. Každý nový doušek nás přibližuje k cíli. Je důležité, aby káva byla středem událostí, které spojují lidi."
+  },
+
+  "contacts": {
+    "contact": "Kontakt.",
+    "paragraph1": "Výběrová káva Naftee",
+    "paragraph2": "Česká republika, České Budějovice",
+    "text": "Najdete nás v rodné chaloupce keramičky Alexandry Kaňovské, hned vedle hotelu Alexandria. Příjemné posezení venku i uvnitř u čaje, sklenky vína nebo čerstvé kávy v samém srdci Luhačovic. Pobyt v Jizbě vám zpříjemní nejen keramika pod značkou Moravská keramika, vyrobena v naší dílně, ale i další výrobky přímo od tvůrců.",
+    "adress1": "Masarykova 198",
+    "adress2": "763 26 Luhačovice",
+    "phone": "tel: 577 102 164",
+    "mobile": "mob: 725 558 788",
+    "instruction": "Máte nějaké otázky? Zodpovíme je. Prosíme o pečlivé vyplnění kontaktních údajů.",
+    "userName": "Jmeno a Přijmení",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Váš vzkaz",
+    "button": "Odeslat"
   }
 }

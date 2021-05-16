@@ -29,12 +29,6 @@ export function OrderForm() {
     });
     console.log(record);
   }
-  const onFill = () => {
-    form.setFieldsValue({
-      note: 'Hello world!',
-      gender: 'male',
-    });
-  };
   useEffect(() => {
     console.log(form.getFieldsValue(), 'hdskds');
   }, [form]);

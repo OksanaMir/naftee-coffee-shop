@@ -6,7 +6,25 @@
     "nafteeBar": "Naftee Bar",
     "contacts": "Contacts"
   },
+
   "aboutUs": {
     "paragraph": "We are here for your enjoyment from the multifaceted taste of the best varieties of specialty coffee. We share this feelings with the world around. Join us now. All good things come with love. We started from direct trade with farmers and continued work with specialization on the light roasting of the coffee beans. That's why we have the rich taste and aroma during drink preparation. Now we will continue to promote the culture of coffee consumption. Quality and taste are the basis of the Third Wave Coffee. Every new sip brings us closer to the goal. It is important that coffee is at the center of events that bring people together."
+  },
+
+  "contacts": {
+    "contact": "Contact.",
+    "paragraph1": "naftee specialty coffee",
+    "paragraph2": "Czech Republic, Czech Budweis",
+    "text": "You will find us in Alexandra Kaňovská's home of pottery, right next to the Alexandria Hotel. Pleasant sitting outside and inside with tea, a glass of wine or fresh coffee in the heart of Luhačovice. Your stay in Jizba will be made more pleasant not only by ceramics under the Moravian Ceramics brand, made in our workshop, but also by other products directly from the creators.",
+    "adress1": "Masarykova 198",
+    "adress2": "763 26 Luhačovice",
+    "phone": "tel: 577 102 164",
+    "mobile": "mob: 725 558 788",
+    "instruction": "Do you have any questions? We will answer them. Please fill in the contact details carefully.",
+    "userName": "Name and Surname",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "button": "Send"
   }
 }

@@ -2,6 +2,15 @@ import Head from 'next/head';
 import '../components/translations/translations';
 import '../styles/globals.scss';
 import 'antd/dist/antd.css';
+import 'swiper/swiper.scss';
+
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
+import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 export default function App({ Component, pageProps }) {
   return (
     <>
