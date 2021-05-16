@@ -28,36 +28,50 @@ export function Header() {
   return (
     <>
       <header className={styles.header}>
-        <HeaderContent headerClassName="headerDesktop" />
-        <div className={styles.langSwitcher}>
-          <div className={styles.btnContainer}>
-            <LangButton changeLanguage={changeLanguage} language={'CZ'} />/
-            <LangButton changeLanguage={changeLanguage} language={'EN'} />
-          </div>
-        </div>
-        <div className={styles.shoppingBasket}>
-          <Link href="/shoppingCart">
+        <div>
+          <Link href="/">
             <a>
-              <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
+              <img
+                className={styles.logo}
+                src="/assets/naftee_specialty_logo.png"
+              />
             </a>
           </Link>
         </div>
 
-        {!showMenu ? (
-          <div
-            className={styles.burgerMenu}
-            onClick={() => setShowMenu(!showMenu)}
-          >
-            <FontAwesomeIcon icon={faBars} color={'white'} />
+        <div className={styles.navigation}>
+          <div className={styles.navigationContent}>
+            <HeaderContent headerClassName="headerDesktop" />
+            <div className={styles.langSwitcher}>
+              <div className={styles.btnContainer}>
+                <LangButton changeLanguage={changeLanguage} language={'CZ'} />/
+                <LangButton changeLanguage={changeLanguage} language={'EN'} />
+              </div>
+            </div>
+            <div className={styles.shoppingBasket}>
+              <Link href="/shoppingCart">
+                <a>
+                  <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
+                </a>
+              </Link>
+            </div>
           </div>
-        ) : (
-          <div
-            className={styles.burgerMenu}
-            onClick={() => setShowMenu(!showMenu)}
-          >
-            <FontAwesomeIcon icon={faTimes} color={'white'} />
-          </div>
-        )}
+          {!showMenu ? (
+            <div
+              className={styles.burgerMenu}
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              <FontAwesomeIcon icon={faBars} color={'white'} />
+            </div>
+          ) : (
+            <div
+              className={styles.burgerMenu}
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              <FontAwesomeIcon icon={faTimes} color={'white'} />
+            </div>
+          )}
+        </div>
       </header>
       {showMenu && (
         <HeaderContent

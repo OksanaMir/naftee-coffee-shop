@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-
 import styles from '../../styles/Footer.module.scss';
 
 export function Footer() {
@@ -8,13 +7,13 @@ export function Footer() {
     <footer className={styles.footer}>
       <ul className={styles.contacts}>
         <li>
-          <a href="tel:+4733378X01">+47 333 78 X01</a>
+          <a href="tel:+420776245218">+420 776 245 218</a>
         </li>
         <li>
-          <a href="mailto:webmaster@example.com">Naftee@naftee.com</a>
+          <a href="mailto:nafteecoffee@gmail.com">nafteecoffee@gmail.com</a>
         </li>
         <li>
-          <address>Box 564, Disneyland, USA</address>
+          <address>Czech Budweis, Czech Republic</address>
         </li>
       </ul>
       <ul>
@@ -29,6 +28,9 @@ export function Footer() {
 
         <li>
           <a href="/terms">Terms and Conditions</a>
+        </li>
+        <li>
+          <a href="/privacy">Privacy policy</a>
         </li>
         <li>
           <a href="/faq">FAQ</a>

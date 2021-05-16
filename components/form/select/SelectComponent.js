@@ -1,8 +1,8 @@
-import {Select} from 'antd';
+import { Select } from 'antd';
 import 'antd/dist/antd.css';
 import styles from '../../../styles/SelectComponent.module.scss';
 
-export const SelectComponent = (props) => {
+export function SelectComponent(props) {
   const { options, handleChange } = props;
   const { Option } = Select;
   console.log(options, 'options');
@@ -21,4 +21,4 @@ export const SelectComponent = (props) => {
       </Select>
     </div>
   );
-};
+}

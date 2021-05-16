@@ -1,4 +1,8 @@
 {
+  "order": {
+    "first_name": "first name"
+  },
+
   "header": {
     "aboutUs": "About us",
     "shop": "Shop",
