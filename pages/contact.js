@@ -1,4 +1,4 @@
-import { ContactForm } from '../components/form/contactForm/ContactForm';
+import { ContactForm } from '../components/form/forms/ContactForm';
 import { useTranslation } from 'react-i18next';
 
 import { Layout } from '../components/layout/Layout';
