@@ -1,6 +1,5 @@
 import { ContactForm } from '../components/form/forms/ContactForm';
 import { useTranslation } from 'react-i18next';
-
 import { Layout } from '../components/layout/Layout';
 
 export default function ContactFormPage() {
