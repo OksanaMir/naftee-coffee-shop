@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import { useRef } from 'react';
-import styles from '../../styles/ProductDetail.module.scss';
+import { InputNumber, Form } from 'antd';
+import { useTranslation } from 'react-i18next';
+
 import { SelectComponent } from '../form/select/SelectComponent';
 
-import { Form } from 'antd';
+import styles from '../../styles/ProductDetail.module.scss';
 
 export function ProductDetail({ product, selectMethod, selectWeight }) {
+  const { t } = useTranslation();
+
   const formRef = useRef(null);
   const {
     productName,
@@ -29,6 +33,10 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
     console.log(values);
   };
 
+  function onChange(value) {
+    console.log('changed', value);
+  }
+
   return (
     <article key={id} className={styles.productDetail}>
       <div>
@@ -49,7 +57,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           {selectMethod && (
             <Form.Item
               name="method"
-              label="Method"
+              label={t('select.method')}
               rules={[
                 {
                   required: true,
@@ -62,10 +70,21 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               />
             </Form.Item>
           )}
+          <Form.Item
+            name="amount"
+            label={t('select.amount')}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <InputNumber min={1} defaultValue={1} onChange={onChange} />
+          </Form.Item>
           {selectWeight && (
             <Form.Item
               name="weight"
-              label="Weight"
+              label={t('select.weight')}
               rules={[
                 {
                   required: true,

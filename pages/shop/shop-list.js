@@ -72,9 +72,7 @@ const SELECTORS_QUERY = `query SelectorsQuery{
 
   allSelectors {
    id
-    select {
-      
-    }
+    select
   
   }
 }`;

@@ -1,4 +1,10 @@
 {
+  "select": {
+    "method": "Method",
+    "amount": "Amount",
+    "weight": "Weight"
+  },
+
   "order": {
     "email_for_order_confirmation": "E-mail",
     "first_name": "First name",

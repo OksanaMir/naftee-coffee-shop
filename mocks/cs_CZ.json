@@ -1,4 +1,10 @@
 {
+  "select": {
+    "method": "Metoda",
+    "amount": "Mnozstvi",
+    "weight": "Vaha"
+  },
+
   "order": {
     "email_for_order_confirmation": "E-mail",
     "first_name": "Křestní jméno",
