@@ -193,7 +193,10 @@ export function QuizForm({ onFinished }) {
   };
 
   const sendAnswers = () => {
-    const results = [...answers, [chosenAnswerValue, quizItemIndex]];
+    const results = [
+      ...answers,
+      [chosenAnswerValue, quiz[quizItemIndex].question],
+    ];
     console.log('send', results);
     onFinished();
   };
@@ -208,10 +211,7 @@ export function QuizForm({ onFinished }) {
 
         <h1>{quiz[quizItemIndex].question}</h1>
         <p>{quiz[quizItemIndex].instruction}</p>
-        <Radio.Group
-          defaultValue={quiz[quizItemIndex].answers[0].value}
-          onChange={chooseOption}
-        >
+        <Radio.Group value={chosenAnswerValue} onChange={chooseOption}>
           {quiz[quizItemIndex].answers.map((answer) => (
             <Radio key={answer.id} value={answer.value}>
               {answer.value}
