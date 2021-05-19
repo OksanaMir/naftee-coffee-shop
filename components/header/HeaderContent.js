@@ -16,6 +16,12 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
   return (
     <ul className={styles[headerClassName]}>
       <li>
+        <Link href="/">
+          <a>{t('header.home')}</a>
+        </Link>
+      </li>
+
+      <li>
         <Link href="/about-us">
           <a>{t('header.aboutUs')}</a>
         </Link>
@@ -26,7 +32,7 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
         </Link>
       </li>
       <li>
-        <Link href="/">
+        <Link href="/quiz">
           <a>{t('header.quiz')}</a>
         </Link>
       </li>

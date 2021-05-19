@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Layout } from '../../components/layout/Layout';
 import 'antd/dist/antd.css';
 
-import styles from '../../../styles/SelectComponent.module.scss';
+import styles from '../../styles/SelectComponent.module.scss';
 import { SelectComponent } from '../../components/form/select/SelectComponent';
 import { Form } from 'antd';
 import { useRef, useState, useEffect } from 'react';

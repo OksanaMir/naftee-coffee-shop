@@ -1,0 +1,10 @@
+@import 'variables';
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: mediumslateblue;
+  button {
+    background-color: mediumslateblue;
+  }
+}
