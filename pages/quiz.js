@@ -25,13 +25,15 @@ export default function QuizPage() {
         {!isFinished ? (
           <>
             <h1 className={styles.question}>How to choose coffee?</h1>
-            <p>Answer the questions below to make your choice easier</p>
+            <h3>Answer the questions below to make your choice easier</h3>
             <QuizForm onFinished={onFinished} />
           </>
         ) : (
           <>
-            <h1>Thank you for answering question</h1>
-            <p>Your best coffee choice is '' </p>
+            <h1 className={styles.question}>
+              Thank you for answering question
+            </h1>
+            <h3>Your best coffee choice is '' </h3>
           </>
         )}
       </Layout>

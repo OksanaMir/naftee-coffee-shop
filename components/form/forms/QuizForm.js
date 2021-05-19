@@ -1,8 +1,9 @@
 import { Form, Button, Radio } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { QuizNavBar } from '../bar/QuizNavBar';
 import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
+import styles from '../../../styles/QuizForm.module.scss';
 
 const layout = {
   labelCol: {
@@ -162,61 +163,71 @@ export function QuizForm({ onFinished }) {
   const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
 
-  const [answerChosenIndex, setAnswerChosenIndex] = useState(0);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
+  const [chosenAnswerValue, setChosenAnswerValue] = useState(
+    quiz[quizItemIndex].answers[0].value,
+  );
   const [answers, setAnswers] = useState([]);
 
+  useEffect(() => {
+    setChosenAnswerValue(quiz[quizItemIndex].answers[0].value);
+  }, [quizItemIndex]);
+
   const chooseOption = (e) => {
-    setAnswerChosenIndex(e.target.value);
+    setChosenAnswerValue(e.target.value);
   };
 
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
 
   const onContinue = () => {
-    console.log('ans', answers, answerChosenIndex, quizItemIndex);
-    setAnswers([...answers, [answerChosenIndex, quizItemIndex]]);
+    console.log('ans', answers, chosenAnswerValue, quizItemIndex);
+    setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
 
-    if (quizItemIndex === quiz.length - 1) {
+    if (isLastQuizItem) {
       return;
     }
 
     console.log('ans', answers);
-
-    setAnswerChosenIndex(0);
+    // setChosenAnswerValue(quiz[quizItemIndex].answers[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
 
   const sendAnswers = () => {
-    const results = [...answers, [answerChosenIndex, quizItemIndex]];
+    const results = [...answers, [chosenAnswerValue, quizItemIndex]];
     console.log('send', results);
     onFinished();
   };
   return (
-    <Form {...layout}>
-      <QuizNavBar
-        onContinue={onContinue}
-        quizItemIndex={quizItemIndex + 1}
-        length={quiz.length}
-      />
+    <div className={styles.form}>
+      <Form {...layout}>
+        <QuizNavBar
+          onContinue={onContinue}
+          quizItemIndex={quizItemIndex + 1}
+          length={quiz.length}
+        />
 
-      <h1>{quiz[quizItemIndex].question}</h1>
-      <p>{quiz[quizItemIndex].instruction}</p>
-      <Radio.Group value={answerChosenIndex} onChange={chooseOption}>
-        {quiz[quizItemIndex].answers.map((answer, index) => (
-          <Radio key={answer.id} value={index}>
-            {answer.value}
-          </Radio>
-        ))}
-      </Radio.Group>
-      {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
+        <h1>{quiz[quizItemIndex].question}</h1>
+        <p>{quiz[quizItemIndex].instruction}</p>
+        <Radio.Group
+          defaultValue={quiz[quizItemIndex].answers[0].value}
+          onChange={chooseOption}
+        >
+          {quiz[quizItemIndex].answers.map((answer) => (
+            <Radio key={answer.id} value={answer.value}>
+              {answer.value}
+            </Radio>
+          ))}
+        </Radio.Group>
+        {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
 
-      {isLastQuizItem && (
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" onClick={sendAnswers}>
-            Find my coffee
-          </Button>
-        </Form.Item>
-      )}
-    </Form>
+        {isLastQuizItem && (
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit" onClick={sendAnswers}>
+              Find my coffee
+            </Button>
+          </Form.Item>
+        )}
+      </Form>
+    </div>
   );
 }
