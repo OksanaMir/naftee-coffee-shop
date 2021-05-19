@@ -1,18 +1,29 @@
 import Head from 'next/head';
-import Image from 'next/image';
+
 import { Layout } from '../../components/layout/Layout';
-import 'antd/dist/antd.css';
 
-import styles from '../../styles/SelectComponent.module.scss';
-import { SelectComponent } from '../../components/form/select/SelectComponent';
-import { Form } from 'antd';
-import { useRef, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import styles from '../../styles/ShopList.module.scss';
+
+import { useState, useEffect } from 'react';
 import { request } from '../../lib/datoCMS';
+import { ProductDetail } from '../../components/product/ProductDetail';
 
-export default function ShopList(props) {
-  const formRef = useRef(null);
-  const { data } = props;
+export default function ShopList() {
   const [selectsData, setSelectsData] = useState({});
+  const [productsData, setProductsData] = useState({});
+
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    request({
+      query: PRODUCT_QUERY,
+      variables: { locale: i18n.language },
+    }).then((response) => {
+      setProductsData(response);
+    });
+  }, [i18n.language]);
+  console.log(productsData, 'dataIndex');
 
   useEffect(() => {
     request({
@@ -21,7 +32,7 @@ export default function ShopList(props) {
     }).then((response) => {
       setSelectsData(response);
     });
-  }, []);
+  }, [i18n.language]);
 
   function handleChange(value) {
     console.log(`selected ${value}`);
@@ -30,8 +41,8 @@ export default function ShopList(props) {
   const onFinish = (values) => {
     console.log(values);
   };
-
-  console.log(selectsData, 'data');
+  const { allProducts } = productsData || {};
+  console.log(selectsData, 'hjsflaaks');
 
   return (
     <>
@@ -39,67 +50,19 @@ export default function ShopList(props) {
         <title>Shop list</title>
       </Head>
       <Layout>
-        {data && (
-          <article className={styles.ShopList}>
-            <div>
-              <p>{data.productName}</p>
-              <Image
-                width={data.productPhoto.width / 5}
-                height={data.productPhoto.height / 5}
-                src={data.productPhoto.url}
-                alt={data.productPhoto.alt}
-                title={data.productPhoto.title}
-              />
-            </div>
-            <p>{data.taste}</p>
-            <div>
-              <Form ref={formRef} name="control-ref" onFinish={onFinish}>
-                {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
-                  <Form.Item
-                    name="method"
-                    label="Method"
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
-                    <SelectComponent
-                      options={
-                        selectsData?.allSelectors?.[0]?.select?.selectMethod ??
-                        []
-                      }
-                      handleChange={handleChange}
-                    />
-                  </Form.Item>
-                )}
-                {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
-                  <Form.Item
-                    name="weight"
-                    label="Weight"
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
-                    <SelectComponent
-                      options={
-                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
-                        []
-                      }
-                      handleChange={handleChange}
-                    />
-                  </Form.Item>
-                )}
-              </Form>
-            </div>
-            <p>{data.cuppingScoreRatingSca}</p>
-            <p>{data.price}</p>
-            <p>{data.description}</p>
-            <p>{data.characteristic}</p>
-          </article>
-        )}{' '}
+        {productsData?.allProducts?.map((product) => {
+          return (
+            <ProductDetail
+              product={product}
+              selectWeight={
+                selectsData?.allSelectors?.[1]?.select?.selectWeight
+              }
+              selectMethod={
+                selectsData?.allSelectors?.[0]?.select?.selectMethod
+              }
+            />
+          );
+        })}
       </Layout>
     </>
   );
@@ -109,7 +72,32 @@ const SELECTORS_QUERY = `query SelectorsQuery{
 
   allSelectors {
    id
-    select
+    select {
+      
+    }
   
+  }
+}`;
+
+const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
+  allProducts(locale: $locale) {
+    amount
+    taste
+    productName
+    method
+    select
+    id
+    productPhoto{
+      alt
+      id
+      url
+      title
+      width
+      height
+    }
+    price
+    cuppingScoreRatingSca
+    description
+    characteristic
   }
 }`;
