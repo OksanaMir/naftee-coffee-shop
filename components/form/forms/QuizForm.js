@@ -1,6 +1,7 @@
 import { Form, Button, Radio } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { QuizNavBar } from '../bar/QuizNavBar';
 import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
 
 const layout = {
@@ -24,14 +25,13 @@ const quiz = [
     question: 'Which brewing methods do you prefer at home?',
     instruction: 'Select one option',
     answers: [
-      'French press',
-      'Pour over',
-      'Espresso',
-      'Cold brew',
-      'Coffee maker',
-      'AeroPress',
-      'Chemex',
-      'Other',
+      { value: 'French press', id: 0 },
+      { value: 'Espresso', id: 1 },
+      { value: 'Cold brew', id: 2 },
+      { value: 'Coffee maker', id: 3 },
+      { value: 'AeroPress', id: 4 },
+      { value: 'Chemex', id: 5 },
+      { value: 'Other', id: 6 },
     ],
   },
 
@@ -39,26 +39,52 @@ const quiz = [
     id: 1,
     question: 'How do you take your coffee?',
     instruction: 'Select one option',
-    answers: ['Black', 'Cream', 'Sugar', 'Decaf', `I don't know`],
+    answers: [
+      { value: 'Black', id: 0 },
+      { value: 'Cream', id: 1 },
+      { value: 'Sugar', id: 2 },
+      { value: 'Decaf', id: 3 },
+      { value: `I don't know`, id: 4 },
+    ],
   },
   {
     id: 2,
     question: 'How many cups of coffee (8 oz) do you make at home each week?',
     instruction: 'Select one option',
-    answers: [1, 5, 10, 15, 20, 'Much more'],
+    answers: [
+      { value: 1, id: 0 },
+      { value: 5, id: 1 },
+      { value: 10, id: 2 },
+      { value: 15, id: 3 },
+      { value: 20, id: 4 },
+      { value: 'Much more', id: 5 },
+    ],
   },
   {
     id: 3,
     question: 'How light or dark do you like your coffee? ',
     instruction:
       'Select one option. 1 is the ligtest option. 2 is the darkest one',
-    answers: [1, 2, 3, 4, 5, `I don't know`],
+    answers: [
+      { value: 1, id: 0 },
+      { value: 2, id: 1 },
+      { value: 3, id: 2 },
+      { value: 4, id: 3 },
+      { value: 5, id: 4 },
+      { value: `I don't know`, id: 5 },
+    ],
   },
   {
     id: 4,
     question: 'Which of these best describes your favorite coffee?',
     instruction: 'Select one option',
-    answers: ['Delicate', 'Juicy', 'Syrupy', 'Heavy', , `I don't know`],
+    answers: [
+      { value: 'Delicate', id: 0 },
+      { value: 'Juicy', id: 1 },
+      { value: 'Syrupy', id: 2 },
+      { value: 'Heavy', id: 3 },
+      { value: `I don't know`, id: 4 },
+    ],
   },
 
   {
@@ -66,20 +92,27 @@ const quiz = [
     question: 'How bright do you like your coffee? ',
     instruction:
       'Select only one. 1 is the less bright option. 2 is the very bright one',
-    answers: [1, 2, 3, 4, 5, , , `I don't know`],
+    answers: [
+      { value: 1, id: 0 },
+      { value: 2, id: 1 },
+      { value: 3, id: 2 },
+      { value: 4, id: 3 },
+      { value: 5, id: 4 },
+      { value: `I don't know`, id: 5 },
+    ],
   },
   {
     id: 6,
     question: 'Which flavors do you most enjoy in your coffee?',
     instruction: 'Select all that apply',
     answers: [
-      'Floral',
-      'Fruity',
-      'Brown sugar',
-      'Toasted nut',
-      'Chocolatey',
-      'Earthy',
-      `I don't know`,
+      { value: 'Floral', id: 0 },
+      { value: 'Fruity', id: 1 },
+      { value: 'Brown sugar', id: 2 },
+      { value: 'Toasted nut', id: 3 },
+      { value: 'Chocolatey', id: 4 },
+      { value: 'Earthy', id: 5 },
+      { value: `I don't know`, id: 6 },
     ],
   },
   {
@@ -87,35 +120,40 @@ const quiz = [
     question: 'Which herbs and spices are you most drawn to?',
     instruction: 'Select all that apply',
     answers: [
-      'Cinnamon',
-      'Cardamon',
-      'Chili',
-      'Black pepper',
-      'Basil',
-      'Ginger',
-      'Parsley',
-      'Rosemary',
-      `I don't know`,
+      { value: 'Cinnamon', id: 0 },
+      { value: 'Cardamon', id: 1 },
+      { value: 'Chili', id: 2 },
+      { value: 'Black pepper', id: 3 },
+      { value: 'Basil', id: 4 },
+      { value: 'Ginger', id: 5 },
+      { value: 'Parsley', id: 6 },
+      { value: 'Rosemary', id: 7 },
+      { value: `I don't know`, id: 8 },
     ],
   },
   {
     id: 8,
     question: 'Which kind of chocolate do you prefer?',
     instruction: 'Select only one',
-    answers: ['Dark', 'Milk', 'White', `I don't like chocolate`],
+    answers: [
+      { value: 'Dark', id: 0 },
+      { value: 'Milk', id: 1 },
+      { value: 'White', id: 2 },
+      { value: `I don't like chocolate`, id: 3 },
+    ],
   },
   {
     id: 9,
     question: 'Which salad dressing is your favorite?',
     instruction: 'Select only one',
     answers: [
-      'Balsamic vinaigrette',
-      'Ranch',
-      'Olive oil and lemon',
-      'Dijon vinaigrette',
-      'Caesar',
-      'Olive oil and vinegar',
-      `I don't know`,
+      { value: 'Balsamic vinaigrette', id: 0 },
+      { value: 'Ranch', id: 1 },
+      { value: 'Olive oil and lemon', id: 2 },
+      { value: 'Dijon vinaigrette', id: 3 },
+      { value: 'Caesar', id: 4 },
+      { value: 'Olive oil and vinegar', id: 5 },
+      { value: `I don't know`, id: 6 },
     ],
   },
 ];
@@ -124,19 +162,19 @@ export function QuizForm({ onFinished }) {
   const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
 
-  const [answerChosenId, setAnswerChosenId] = useState(1);
+  const [answerChosenIndex, setAnswerChosenIndex] = useState(0);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
 
   const chooseOption = (e) => {
-    setAnswerChosenId(e.target.value);
+    setAnswerChosenIndex(e.target.value);
   };
 
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
 
   const onContinue = () => {
-    console.log('ans', answers, answerChosenId, quizItemIndex);
-    setAnswers([...answers, [answerChosenId, quizItemIndex]]);
+    console.log('ans', answers, answerChosenIndex, quizItemIndex);
+    setAnswers([...answers, [answerChosenIndex, quizItemIndex]]);
 
     if (quizItemIndex === quiz.length - 1) {
       return;
@@ -144,23 +182,29 @@ export function QuizForm({ onFinished }) {
 
     console.log('ans', answers);
 
-    setAnswerChosenId(1);
+    setAnswerChosenIndex(0);
     setQuizItemIndex(quizItemIndex + 1);
   };
 
   const sendAnswers = () => {
-    const results = [...answers, [answerChosenId, quizItemIndex]];
+    const results = [...answers, [answerChosenIndex, quizItemIndex]];
     console.log('send', results);
     onFinished();
   };
   return (
     <Form {...layout}>
+      <QuizNavBar
+        onContinue={onContinue}
+        quizItemIndex={quizItemIndex + 1}
+        length={quiz.length}
+      />
+
       <h1>{quiz[quizItemIndex].question}</h1>
       <p>{quiz[quizItemIndex].instruction}</p>
-      <Radio.Group value={answerChosenId} onChange={chooseOption}>
+      <Radio.Group value={answerChosenIndex} onChange={chooseOption}>
         {quiz[quizItemIndex].answers.map((answer, index) => (
-          <Radio key={index} value={index + 1}>
-            {answer}
+          <Radio key={answer.id} value={index}>
+            {answer.value}
           </Radio>
         ))}
       </Radio.Group>
