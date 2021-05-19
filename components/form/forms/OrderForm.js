@@ -79,7 +79,7 @@ export function OrderForm() {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="Email"
+          label={t('order.email_for_order_confirmation')}
           name="email"
           rules={[
             {
@@ -107,7 +107,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="Last name"
+          label={t('order.last_name')}
           name="last_name"
           rules={[
             {
@@ -121,7 +121,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="Company name"
+          label={t('order.company_name')}
           name="company_name"
           rules={[
             {
@@ -135,7 +135,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="Country"
+          label={t('order.country')}
           name="country"
           rules={[
             {
@@ -149,7 +149,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="City"
+          label={t('order.city')}
           name="city"
           rules={[
             {
@@ -163,7 +163,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="Address"
+          label={t('order.address')}
           name="address"
           rules={[
             {
@@ -177,7 +177,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="Postal code"
+          label={t('order.postal_code')}
           name="postal_code"
           rules={[
             {
@@ -191,7 +191,7 @@ export function OrderForm() {
         </Form.Item>
 
         <Form.Item
-          label="Phone"
+          label={t('order.phone')}
           name="phone"
           rules={[
             {
@@ -214,7 +214,7 @@ export function OrderForm() {
         <p>Free</p>
 
         <Radio.Group
-          name="post_method"
+          name={t('order.post_method')}
           defaultValue={'česká pošta'}
           onChange={choosePostMethod}
         >
@@ -224,7 +224,7 @@ export function OrderForm() {
         <h1>Payment</h1>
 
         <Radio.Group
-          name="payment_method"
+          name={t('order.payment_method')}
           defaultValue={'Credit/Debit Cards'}
           onChange={choosePaymentMethod}
         >
