@@ -38,9 +38,9 @@ export default function Terms() {
                   <ExpandableText
                     title={term.headline}
                     paragraph={
-                      <div
+                      <li
                         dangerouslySetInnerHTML={createMarkup(term.paragraph)}
-                      ></div>
+                      ></li>
                     }
                   />
                 </li>
