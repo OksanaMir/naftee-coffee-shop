@@ -63,7 +63,7 @@ export function ContactForm() {
       <Form.Item
         label={t('contacts.userName')}
         name={'user_name'}
-        rules={[{ required: true }]}
+        rules={[{ type: 'string', required: true }]}
       >
         <Input placeholder={t('contacts.userName')} />
       </Form.Item>
