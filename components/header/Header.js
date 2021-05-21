@@ -49,11 +49,11 @@ export function Header() {
               </div>
             </div>
             <div className={styles.shoppingBasket}>
-              <Link href="/shoppingCart">
-                <a>
-                  <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
-                </a>
-              </Link>
+              <div className="snipcart-checkout">
+                <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
+              </div>
+
+              <span className="snipcart-items-count"></span>
             </div>
           </div>
           {!showMenu ? (

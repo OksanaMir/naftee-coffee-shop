@@ -50,17 +50,19 @@ export default function ShopList() {
         <title>Shop list</title>
       </Head>
       <Layout>
-        {productsData?.allProducts?.map((product) => {
+        {allProducts?.map((product) => {
           return (
-            <ProductDetail
-              product={product}
-              selectWeight={
-                selectsData?.allSelectors?.[1]?.select?.selectWeight
-              }
-              selectMethod={
-                selectsData?.allSelectors?.[0]?.select?.selectMethod
-              }
-            />
+            <div key={product.id}>
+              <ProductDetail
+                product={product}
+                selectWeight={
+                  selectsData?.allSelectors?.[1]?.select?.selectWeight
+                }
+                selectMethod={
+                  selectsData?.allSelectors?.[0]?.select?.selectMethod
+                }
+              />
+            </div>
           );
         })}
       </Layout>
