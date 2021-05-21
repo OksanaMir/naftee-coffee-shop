@@ -67,18 +67,18 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     taste
     productName
     method
-  select
-  id
-  productPhoto{
-    alt
+    select
     id
-    url
-    title
-    width
-    height
-  }
-  price
-  cuppingScoreRatingSca
+    productPhoto{
+      alt
+      id
+      url
+      title
+      width
+      height
+    }
+    price
+    cuppingScoreRatingSca
   
   }
 }`;
