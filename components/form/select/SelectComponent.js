@@ -16,7 +16,11 @@ export function SelectComponent(props) {
       >
         {options &&
           options.map((option) => {
-            return <Option value={option}>{option}</Option>;
+            return (
+              <Option key={option} value={option}>
+                {option}
+              </Option>
+            );
           })}
       </Select>
     </div>

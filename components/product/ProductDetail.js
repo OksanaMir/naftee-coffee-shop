@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { InputNumber, Form } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 
 import { SelectComponent } from '../form/select/SelectComponent';
 
@@ -9,7 +10,7 @@ import styles from '../../styles/ProductDetail.module.scss';
 
 export function ProductDetail({ product, selectMethod, selectWeight }) {
   const { t } = useTranslation();
-
+  const router = useRouter();
   const formRef = useRef(null);
   const {
     productName,
@@ -53,7 +54,12 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
       </div>
       <p>{taste}</p>
       <div>
-        <Form ref={formRef} name="productsSelect" onFinish={onFinish}>
+        <Form
+          initialValues={{ amount: 1 }}
+          ref={formRef}
+          name="productsSelect"
+          onFinish={onFinish}
+        >
           {selectMethod && (
             <Form.Item
               name="method"
@@ -79,7 +85,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               },
             ]}
           >
-            <InputNumber min={1} defaultValue={1} onChange={onChange} />
+            <InputNumber min={1} onChange={onChange} />
           </Form.Item>
           {selectWeight && (
             <Form.Item
@@ -103,6 +109,17 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
       <p>{price}</p>
       <p>{description}</p>
       <p>{characteristic}</p>
+      <button
+        className="snipcart-add-item"
+        data-item-id={id}
+        data-item-price={price}
+        data-item-url={router?.pathname || ''}
+        data-item-description={description}
+        data-item-image={productPhoto.url}
+        data-item-name={productName}
+      >
+        Add to cart
+      </button>
     </article>
   );
 }
