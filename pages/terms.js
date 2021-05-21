@@ -19,6 +19,9 @@ export default function Terms() {
       setData(response);
     });
   }, [i18n.language]);
+  function createMarkup(paragraph) {
+    return { __html: `${paragraph}` };
+  }
 
   return (
     <>
@@ -30,15 +33,14 @@ export default function Terms() {
           <h1>Terms and Conditions</h1>
           <ul>
             {data?.allTermAndConditions?.map((term) => {
-              function createMarkup() {
-                return { __html: `${term.paragraph}` };
-              }
               return (
                 <li key={term.id}>
                   <ExpandableText
                     title={term.headline}
                     paragraph={
-                      <div dangerouslySetInnerHTML={createMarkup()}></div>
+                      <div
+                        dangerouslySetInnerHTML={createMarkup(term.paragraph)}
+                      ></div>
                     }
                   />
                 </li>
