@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../../styles/ExpandableText.module.scss';
 
@@ -15,14 +15,17 @@ export function ExpandableText(props) {
       <div>
         <h3>{props.title}</h3>
         <div onClick={() => setShowParagraph(!showParagraph)}>
-          <FontAwesomeIcon icon={faArrowDown} color={'black'} />
+          <FontAwesomeIcon
+            icon={showParagraph ? faMinus : faPlus}
+            color={'black'}
+          />
         </div>
       </div>
 
       {showParagraph && (
         <>
-          <p>{props.paragraph}</p>
-          <div>{props.children} </div>
+          <p className={styles.text}>{props.paragraph}</p>
+          {/* <div>{props.children} </div> */}
         </>
       )}
     </article>

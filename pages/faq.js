@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { ExpandableText } from '../components/expandableText/ExpandableText';
 import { request } from '../lib/datoCMS';
+import styles from '../styles/Faq.module.scss';
 
 export default function Faq() {
   const { i18n } = useTranslation();
@@ -19,6 +20,9 @@ export default function Faq() {
       setData(response);
     });
   }, [i18n.language]);
+  function createMarkup(answer) {
+    return { __html: `${answer}` };
+  }
 
   return (
     <>
@@ -27,24 +31,30 @@ export default function Faq() {
       </Head>
       <Layout>
         <h1>Frequently asked questions</h1>
-        <ul>
+        <ul className={styles.list}>
           {data?.allFaqs?.map((faq) => {
             return (
               <li key={faq.id}>
                 {/* props */}
                 <ExpandableText
                   title={faq.question}
-                  children={
-                    <>
-                      <Link href="https://www.instagram.com/nafteecoffee/">
-                        <a className="fa fa-instagram" />
-                      </Link>
-                      <Link href="https://www.facebook.com/search/top?q=Naftee">
-                        <a className="fa fa-facebook" />
-                      </Link>
-                    </>
+                  // children={
+                  //   <div className={styles.social}>
+                  //     <Link href="https://www.instagram.com/nafteecoffee/">
+                  //       <a className="fa fa-instagram" />
+                  //     </Link>
+                  //     <Link href="https://www.facebook.com/search/top?q=Naftee">
+                  //       <a className="fa fa-facebook" />
+                  //     </Link>
+                  //   </div>
+                  // }
+                  paragraph={
+                    <span
+                      dangerouslySetInnerHTML={createMarkup(faq.answer)}
+                    ></span>
                   }
-                  paragraph={faq.answer}
+
+                  // paragraph={faq.answer}
                 />
               </li>
             );
@@ -58,5 +68,5 @@ const FAQ_QUERY = `query FaqQuery($locale: SiteLocale){
   allFaqs(locale: $locale){
     question
     id
-    answer
+    answer(markdown: true)
   }}`;

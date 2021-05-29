@@ -1,27 +1,30 @@
 @import 'variables';
 .footer {
-  justify-content: space-around;
-  align-items: center;
   background-color: $primary;
   padding: 0.5rem 0;
   position: relative;
-  @media (min-width: 450px) {
-    display: flex;
-  }
+  .wrapper {
+    @media (min-width: 450px) {
+      justify-content: space-around;
+      align-items: center;
 
+      display: flex;
+    }
+  }
   :global(.ant-modal-root) {
     height: 100%;
   }
 
   :global(.ant-modal-wrap) {
     top: unset;
-    bottom: 1rem;
+    bottom: 0;
     position: absolute;
     overflow: hidden;
   }
 
   :global(.ant-modal) {
     top: unset;
+    padding: 0;
     margin-right: 0;
     margin-left: 0;
   }

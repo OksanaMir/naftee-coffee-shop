@@ -30,7 +30,7 @@ export default function Privacy() {
         <title>Privacy policy</title>
       </Head>
       <Layout>
-        <ul>
+        <ul className={styles.list}>
           {data?.allPersonalDataProtections?.map((policy) => {
             return (
               <li key={policy.id}>
