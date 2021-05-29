@@ -1,12 +1,32 @@
+@import 'variables';
+
 .expandableText {
   div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: aqua;
+    transition: transform 0.7s;
+    padding: 0.5rem;
+    border-top: 0.01px solid $borderLight;
+    border-bottom: 0.01px solid $borderLight;
+    .iconBox {
+      border: none;
+    }
     svg {
-      width: 1rem;
-      height: 1rem;
+      width: 0.7rem;
+      height: 0.7rem;
+    }
+  }
+  div:hover {
+    background-color: $secondary;
+    opacity: 70%;
+    h3 {
+      color: $textWhite;
+    }
+    div {
+      svg {
+        color: $textWhite;
+      }
     }
   }
   p {
@@ -19,6 +39,20 @@
           li {
             list-style: circle;
           }
+        }
+      }
+    }
+  }
+  @media (min-width: 760px) {
+    .list:hover {
+      background-color: $secondary;
+      opacity: 70%;
+      h3 {
+        color: $textWhite;
+      }
+      div {
+        svg {
+          color: $textWhite;
         }
       }
     }

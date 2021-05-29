@@ -35,7 +35,7 @@ export function ProductOverView(props) {
     <>
       {data && (
         <article className={styles.productOverView}>
-          <div>
+          <div className={styles.productImg}>
             <p>{data.productName}</p>
             <Image
               width={data.productPhoto.width / 5}

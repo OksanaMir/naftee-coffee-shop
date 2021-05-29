@@ -10,11 +10,22 @@ export function ExpandableText(props) {
   //const {question, answer} = props;
 
   const [showParagraph, setShowParagraph] = useState(false);
+  const onClick = () => {
+    setShowParagraph(!showParagraph);
+    const elm = document.getElementById(`iconWrapper${props.index}`);
+    showParagraph
+      ? elm.setAttribute('style', 'transform: rotate(90deg)')
+      : elm.setAttribute('style', 'transform: rotate(180deg)');
+  };
   return (
     <article className={styles.expandableText}>
-      <div>
+      <div className={styles.list}>
         <h3>{props.title}</h3>
-        <div onClick={() => setShowParagraph(!showParagraph)}>
+        <div
+          className={styles.iconBox}
+          id={`iconWrapper${props.index}`}
+          onClick={onClick}
+        >
           <FontAwesomeIcon
             icon={showParagraph ? faMinus : faPlus}
             color={'black'}

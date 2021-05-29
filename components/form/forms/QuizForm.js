@@ -103,30 +103,40 @@ export function QuizForm({ onFinished }) {
         <Form.Item shouldUpdate name="options" noStyle>
           <Radio.Group onChange={chooseOption}>
             {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-              <div ref={ref} id={`popoverArea${index}`}>
-                <Popover
-                  placement="right"
-                  title={undefined}
-                  content={
-                    <p>
-                      {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex]}
-                    </p>
-                  }
-                  trigger={['click', 'hover']}
-                  getPopupContainer={() =>
-                    document.getElementById(`popoverArea${index}`)
-                  }
-                  align={{ offset: [ref?.current?.clientWidth, 0] }}
-                >
-                  <Radio
-                    onMouseEnter={chooseInstruction}
-                    key={option.id}
-                    value={option}
-                    index={index}
+              <div
+                className={styles.radioWrapper}
+                ref={ref}
+                id={`popoverArea${index}`}
+              >
+                {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex] ? (
+                  <Popover
+                    placement="right"
+                    title={undefined}
+                    content={
+                      <p>
+                        {
+                          quiz?.[quizItemIndex]?.instruction?.[
+                            chosenAnswerIndex
+                          ]
+                        }
+                      </p>
+                    }
+                    trigger={['click']}
+                    // visible={true}
+                    getPopupContainer={() =>
+                      document.getElementById(`popoverArea${index}`)
+                    }
+                    align={{ offset: [ref?.current?.clientWidth, 0] }}
                   >
+                    <Radio key={option.id} value={option} index={index}>
+                      {option}
+                    </Radio>
+                  </Popover>
+                ) : (
+                  <Radio key={option.id} value={option} index={index}>
                     {option}
                   </Radio>
-                </Popover>
+                )}
               </div>
             ))}
           </Radio.Group>

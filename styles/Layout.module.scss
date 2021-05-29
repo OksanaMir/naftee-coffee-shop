@@ -1,9 +1,15 @@
+@import 'variables';
 .layoutSection {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
+  background-color: $backgroundColor;
+
+  p {
+    font-family: $fontText;
+  }
   @media (min-width: 450px) {
   }
   :global(.snipcart-cart__content) {
@@ -14,14 +20,18 @@
 .layoutChildrenSection {
   min-height: calc(100vh - 14rem);
   width: 100%;
-  padding: 1rem;
-
   display: flex;
   flex-direction: column;
-
   margin: 0;
+  h1,
+  h3 {
+    font-family: $fontHeader;
+    padding: 0.5rem;
+  }
+
   @media (min-width: 450px) {
     min-height: calc(100vh - 10rem);
     width: 70%;
+    margin: auto;
   }
 }
