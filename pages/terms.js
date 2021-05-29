@@ -31,7 +31,7 @@ export default function Terms() {
       <Layout>
         <div className={styles.main}>
           <h1>Terms and Conditions</h1>
-          <ul>
+          <ul className={styles.list}>
             {data?.allTermAndConditions?.map((term) => {
               return (
                 <li key={term.id}>
