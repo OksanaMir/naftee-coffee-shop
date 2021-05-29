@@ -1,0 +1,42 @@
+@import 'variables';
+
+.main {
+  position: relative;
+
+  @media (min-width: 760px) {
+    display: flex;
+  }
+  > div {
+    height: 100%;
+    width: 100%;
+  }
+  :global(.slick-arrow) {
+    cursor: pointer;
+
+    &:global(.slick-prev) {
+      &::before {
+        color: black;
+        font-size: 50px;
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        bottom: 70px;
+        width: 80px;
+        position: absolute;
+      }
+      @media (min-width: 760px) {
+        width: 60px;
+      }
+    }
+    &:global(.slick-next) {
+      &::before {
+        color: black;
+        font-size: 50px;
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        bottom: 70px;
+        width: 80px;
+        position: absolute;
+      }
+    }
+  }
+}

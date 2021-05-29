@@ -7,9 +7,9 @@ import { Carousel } from 'antd';
 import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
 import { Layout } from '../components/layout/Layout';
 import { ProductOverView } from '../components/product/ProductOverView';
-import styles from '../styles/Home.module.scss';
+import styles from '../styles/Index.module.scss';
 
-export default function Home() {
+export default function Index() {
   const { i18n } = useTranslation();
   const [data, setData] = useState({});
 
@@ -35,7 +35,9 @@ export default function Home() {
 
       <Layout>
         <main>
-          <LandingPageAboutUs />
+          <div className={styles.mainPhoto}>
+            <LandingPageAboutUs />
+          </div>
           <section className={styles.main}>
             <Carousel accessibility={true} arrows={true} afterChange={onChange}>
               {data &&

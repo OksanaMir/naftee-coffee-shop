@@ -1,6 +1,13 @@
+@import 'variables';
+
 .productOverView {
+  padding: 0.5rem;
   img {
-    width: auto;
-    height: 10rem;
+    width: 20%;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+    font-family: $fontHeader;
   }
 }

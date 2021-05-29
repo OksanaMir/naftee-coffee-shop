@@ -6,18 +6,20 @@
   overflow-x: hidden;
   @media (min-width: 450px) {
   }
+  :global(.snipcart-cart__content) {
+    background-color: violet;
+  }
 }
 
 .layoutChildrenSection {
   min-height: calc(100vh - 14rem);
   width: 100%;
   padding: 1rem;
-  margin: auto;
+
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // text-align: center;
 
+  margin: 0;
   @media (min-width: 450px) {
     min-height: calc(100vh - 10rem);
     width: 70%;

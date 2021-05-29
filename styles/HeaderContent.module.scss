@@ -1,7 +1,7 @@
 @import 'variables';
 .headerDesktop {
   width: 70%;
-
+  font-family: $fontHeader;
   display: none;
   list-style: none;
   align-self: flex-end;
@@ -57,7 +57,7 @@
   margin: 0;
   height: 100%;
   z-index: 100;
-
+  font-family: $fontHeader;
   @media (min-width: 760px) {
     display: none;
   }
