@@ -32,10 +32,11 @@ export default function Terms() {
         <div className={styles.main}>
           <h1>Terms and Conditions</h1>
           <ul className={styles.list}>
-            {data?.allTermAndConditions?.map((term) => {
+            {data?.allTermAndConditions?.map((term, index) => {
               return (
                 <li key={term.id}>
                   <ExpandableText
+                    index={index}
                     title={term.headline}
                     paragraph={
                       <li

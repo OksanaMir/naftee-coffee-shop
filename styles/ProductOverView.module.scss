@@ -2,6 +2,12 @@
 
 .productOverView {
   padding: 0.5rem;
+  .productImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   img {
     width: 10rem;
     height: auto;

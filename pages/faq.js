@@ -32,11 +32,12 @@ export default function Faq() {
       <Layout>
         <h1>Frequently asked questions</h1>
         <ul className={styles.list}>
-          {data?.allFaqs?.map((faq) => {
+          {data?.allFaqs?.map((faq, index) => {
             return (
               <li key={faq.id}>
                 {/* props */}
                 <ExpandableText
+                  index={index}
                   title={faq.question}
                   // children={
                   //   <div className={styles.social}>

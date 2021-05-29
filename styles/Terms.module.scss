@@ -1,5 +1,8 @@
+@import 'variables';
 .list {
   padding-left: 0;
+  border-top: 0.01px solid $borderLight;
+  border-bottom: 0.01px solid $borderLight;
 
   li {
     list-style: none;
