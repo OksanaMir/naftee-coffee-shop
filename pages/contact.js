@@ -12,13 +12,12 @@ export default function ContactFormPage() {
       <Layout>
         <>
           <h1>{t('contacts.contact')}</h1>
-          <p>{t('contacts.paragraph1')}</p>
-          <p>{t('contacts.paragraph2')}</p>
-          <p>{t('contacts.text')}</p>
+          <p>{t('contacts.text1')}</p>
           <p>{t('contacts.adress1')}</p>
           <p>{t('contacts.adress2')}</p>
+          <p>{t('contacts.adress3')}</p>
           <p>{t('contacts.phone')}</p>
-          <p>{t('contacts.mobile')}</p>
+          <p>{t('contacts.text2')}</p>
           <p>{t('contacts.instruction')}</p>
 
           <ContactForm />

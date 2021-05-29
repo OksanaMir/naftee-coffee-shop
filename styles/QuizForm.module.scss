@@ -1,4 +1,19 @@
 @import 'variables';
+.quest {
+  text-align: center;
+}
 .form {
   background-color: aquamarine;
+
+  padding: 5px;
+  height: 100%;
+  flex-grow: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  :global(.ant-tooltip, .ant-tooltip-placement-bottom) {
+    left: unset;
+
+    right: -5rem;
+  }
 }
