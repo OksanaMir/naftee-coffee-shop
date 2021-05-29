@@ -13,6 +13,8 @@
   width: 100%;
   padding: 1rem;
   margin: auto;
+  display: flex;
+  flex-direction: column;
   @media (min-width: 450px) {
     min-height: calc(100vh - 10rem);
     width: 70%;

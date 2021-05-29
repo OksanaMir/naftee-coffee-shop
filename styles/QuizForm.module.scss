@@ -1,4 +1,18 @@
 @import 'variables';
+
 .form {
   background-color: aquamarine;
+  padding: 5px;
+  height: 100%;
+  flex-grow: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  .radioGroup {
+    flex-grow: 1;
+    .radioWrapper {
+      display: flex;
+      width: 100%;
+    }
+  }
 }
