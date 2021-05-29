@@ -9,9 +9,9 @@ import styles from '../../styles/Layout.module.scss';
 export function Layout({ children }) {
   const { t, i18n } = useTranslation();
   return (
-    <div className={styles.layoutSection}>
+    <div classNameName={styles.layoutSection}>
       <Header />
-      <section className={styles.layoutChildrenSection}>{children}</section>
+      <section classNameName={styles.layoutChildrenSection}>{children}</section>
       <Footer />
       <div
         hidden
@@ -20,13 +20,28 @@ export function Layout({ children }) {
         data-api-key="YmM2YzIwOTEtMDZjZi00NTk2LTg4OWItZGUxMjU4ZWVkM2ExNjM3NTY5NTIzNTU2Mzc2ODgz"
       >
         <billing section="bottom">
-          <fieldset className="snipcart-form__set">
-            <div className={'snipcart-form__field'}>
+          {/* <div classNameName="root">
+            <form id="snipcart-billing-address-form" className="snipcart-form">
+              <div className="snipcart__box">
+                <div className="snipcart__box--header">
+                  <div className="snipcart__box--title">
+                    <div className="snipcart__box--badge snipcart__box--badge snipcart__box--badge-highlight snipcart__font--bold snipcart__font--secondary">
+                      2
+                    </div>
+                    <h1 className="snipcart__font--subtitle snipcart-shipping-address__title">
+                      Shipping
+                    </h1>
+                  </div> 
+                </div>*/}
+          {/* <div className="snipcart-shipping-address--readonly">
+                  <div className="snipcart-shipping-address__header--readonly"> */}
+          <fieldset classNameName="snipcart-form__set">
+            <div classNameName={'snipcart-form__field'}>
               <snipcart-label for="phone">Phone number</snipcart-label>
               <snipcart-input name="phone"></snipcart-input>
             </div>
 
-            <div class="snipcart-form__field">
+            {/* <div classNameName="snipcart-form__field">
               <snipcart-label for="country">Country</snipcart-label>
               <snipcart-typeahead
                 type="dropdown"
@@ -36,14 +51,17 @@ export function Layout({ children }) {
               <snipcart-error-message name="country"></snipcart-error-message>
             </div>
 
-            <div className="snipcart-form__field">
+            <div classNameName="snipcart-form__field">
               <snipcart-label for="city">City</snipcart-label>
               <snipcart-input name="city"></snipcart-input>
               <snipcart-error-message name="city"></snipcart-error-message>
             </div>
 
-            <div className="snipcart-form__field snipcart-form__cell--large">
-              <snipcart-label className="snipcart__font--tiny" for="province">
+            <div classNameName="snipcart-form__field snipcart-form__cell--large">
+              <snipcart-label
+                classNameName="snipcart__font--tiny"
+                for="province"
+              >
                 Province
               </snipcart-label>
               <snipcart-typeahead
@@ -53,93 +71,22 @@ export function Layout({ children }) {
               ></snipcart-typeahead>
             </div>
 
-            <div className="snipcart-form__field snipcart-form__cell--tidy">
-              <snipcart-label className="snipcart__font--tiny" for="postalCode">
+            <div classNameName="snipcart-form__field snipcart-form__cell--tidy">
+              <snipcart-label
+                classNameName="snipcart__font--tiny"
+                for="postalCode"
+              >
                 Postal code
               </snipcart-label>
               <snipcart-input name="postalCode"></snipcart-input>
               <snipcart-error-message name="postalCode"></snipcart-error-message>
-            </div>
+            </div> */}
           </fieldset>
-          {/* <address-fields>
-              <div>
-                <fieldset className="snipcart-form__set">
-                  <div className="snipcart-form__row">
-                    <div className="snipcart-form__field snipcart-form__cell--large">
-                      <snipcart-label
-                        className="snipcart__font--tiny"
-                        for="address1"
-                      >
-                        {t('header.aboutUs')}
-                      </snipcart-label>
-                      <snipcart-input name="address1"></snipcart-input>
-                      <snipcart-error-message name="address1"></snipcart-error-message>
-                    </div>
-
-                    <div className="snipcart-form__field snipcart-form__cell--tidy">
-                      <snipcart-label
-                        className="snipcart__font--tiny"
-                        for="address2"
-                      >
-                        {''}
-                      </snipcart-label>
-                      <snipcart-input name="address2"></snipcart-input>
-                      <snipcart-error-message name="address2"></snipcart-error-message>
-                    </div>
-                  </div>
-
-                  <div <snipcart-typeahead
-                      type="dropdown"
-                      name="city"
-                      autocomplete="country"
-                    ></snipcart-typeahead>
-                  </div>
- 
-                  <div className="snipcart-form__field">
-                    <snipcart-label
-                      className="snipcart__font--tiny"
-                      for="country"
-                    >
-                      {''}
-                    </snipcart-label>
-                    <snipcart-typeahead
-                      type="dropdown"
-                      name="country"
-                      autocomplete="country"
-                    ></snipcart-typeahead>
-                  </div>
-
-                  <div className="snipcart-form__row">
-                    <div className="snipcart-form__field snipcart-form__cell--large">
-                      <snipcart-label
-                        className="snipcart__font--tiny"
-                        for="province"
-                      >
-                        {''}
-                      </snipcart-label>
-                      <snipcart-typeahead
-                        type="dropdown"
-                        name="province"
-                        autocomplete="province state"
-                      ></snipcart-typeahead>
-                    </div>
-
-                    <div className="snipcart-form__field snipcart-form__cell--tidy">
-                      <snipcart-label
-                        className="snipcart__font--tiny"
-                        for="postalCode"
-                      >
-                        {''}
-                      </snipcart-label>
-                      <snipcart-input name="postalCode"></snipcart-input>
-                      <snipcart-error-message name="postalCode"></snipcart-error-message>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            </address-fields> */}
-
-          {/* </address-fields> */}
+          {/* </div>
+                </div> */}
+          {/* </div>
+            </form>
+          </div> */}
         </billing>
       </div>
     </div>
