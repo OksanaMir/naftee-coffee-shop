@@ -31,17 +31,22 @@ export function QuizForm({ onFinished }) {
 
   const [answers, setAnswers] = useState([]);
   useEffect(() => {
-    if (quizItemIndex >= 0)
-      setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
+    setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
+    form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
   }, [quizItemIndex]);
+
   useEffect(() => {
     request({
       query: QUIZ_QUERY,
       variables: { locale: i18n.language },
     }).then((response) => {
-      console.log('got', response.allCoffeeQuizzes);
       setQuizItemIndex(0);
       setQuiz(response?.allCoffeeQuizzes);
+      setChosenAnswerValue(response?.allCoffeeQuizzes?.[0]?.option[0]);
+
+      form.setFieldsValue({
+        options: response?.allCoffeeQuizzes?.[0]?.option[0],
+      });
     });
   }, [i18n.language]);
   const chooseOption = (e) => {
@@ -72,19 +77,14 @@ export function QuizForm({ onFinished }) {
   };
   return (
     <div className={styles.form}>
-      <Form
-        initialValues={{
-          options: quiz?.[quizItemIndex]?.option?.[0],
-        }}
-        {...layout}
-      >
+      <Form form={form} {...layout}>
         <QuizNavBar
           onContinue={onContinue}
           quizItemIndex={quizItemIndex + 1}
           length={quiz.length}
         />
         <FormQuestion />
-        <Form.Item name="options">
+        <Form.Item shouldUpdate name="options" noStyle>
           <Radio.Group onChange={chooseOption}>
             {quiz?.[quizItemIndex]?.option?.map((option, index) => (
               <div id={'area'}>
