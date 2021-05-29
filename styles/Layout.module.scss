@@ -15,6 +15,9 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  // justify-content: center;
+  // text-align: center;
+
   @media (min-width: 450px) {
     min-height: calc(100vh - 10rem);
     width: 70%;

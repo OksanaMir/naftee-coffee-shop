@@ -26,19 +26,19 @@ export default function QuizPage() {
 
       <Layout>
         {!isFinished ? (
-          <>
+          <div className={styles.quest}>
             <h1 className={styles.question}>How to choose coffee?</h1>
             <h3 className={styles.invitation}>
               Answer the questions below to make your choice easier
             </h3>
             <QuizForm onFinished={onFinished} />
-          </>
+          </div>
         ) : (
           <>
             <div className={styles.result}>
-              <script>
+              {/* <script>
                 var mountNode = document.getElementById('container');
-              </script>
+              </script> */}
               <Result
                 icon={<CoffeeOutlined />}
                 title="Thank you for answering question!"
