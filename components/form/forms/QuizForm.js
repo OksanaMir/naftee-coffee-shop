@@ -1,5 +1,5 @@
-import { Form, Button, Radio, Tooltip } from 'antd';
-import { useState, useEffect } from 'react';
+import { Form, Button, Radio, Popover } from 'antd';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation, i18n } from 'react-i18next';
 import { QuizNavBar } from '../bar/QuizNavBar';
 import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
@@ -28,7 +28,7 @@ export function QuizForm({ onFinished }) {
     quiz?.[quizItemIndex]?.option[0],
   );
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
-
+  const ref = useRef(null);
   const [answers, setAnswers] = useState([]);
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
@@ -64,6 +64,10 @@ export function QuizForm({ onFinished }) {
     // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
+  const chooseInstruction = (e) => {
+    setChosenAnswerIndex(e.target.index);
+  };
+
   const sendAnswers = () => {
     const results = [
       ...answers,
@@ -75,6 +79,18 @@ export function QuizForm({ onFinished }) {
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
+  const text = <span>Title</span>;
+  const content = (
+    <div>
+      <p></p>
+      <p></p>
+    </div>
+  );
+  console.log(
+    quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
+    'popover',
+  );
+  console.log(chosenAnswerIndex, 'answer');
   return (
     <div className={styles.form}>
       <Form form={form} {...layout}>
@@ -87,19 +103,30 @@ export function QuizForm({ onFinished }) {
         <Form.Item shouldUpdate name="options" noStyle>
           <Radio.Group onChange={chooseOption}>
             {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-              <div id={'area'}>
-                <Tooltip
-                  getPopupContainer={() => document.getElementById('area')}
-                  trigger={['hover', 'click']}
-                  placement="bottom"
-                  title={
-                    quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex]
+              <div ref={ref} id={`popoverArea${index}`}>
+                <Popover
+                  placement="right"
+                  title={undefined}
+                  content={
+                    <p>
+                      {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex]}
+                    </p>
                   }
+                  trigger={['click', 'hover']}
+                  getPopupContainer={() =>
+                    document.getElementById(`popoverArea${index}`)
+                  }
+                  align={{ offset: [ref?.current?.clientWidth, 0] }}
                 >
-                  <Radio key={option.id} value={option} index={index}>
+                  <Radio
+                    onMouseEnter={chooseInstruction}
+                    key={option.id}
+                    value={option}
+                    index={index}
+                  >
                     {option}
                   </Radio>
-                </Tooltip>
+                </Popover>
               </div>
             ))}
           </Radio.Group>

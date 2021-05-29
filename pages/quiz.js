@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Button, Result } from 'antd';
 
-import { SmileOutlined, CoffeeOutlined } from '@ant-design/icons';
+import { CoffeeOutlined } from '@ant-design/icons';
 
 import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Quiz.module.scss';
