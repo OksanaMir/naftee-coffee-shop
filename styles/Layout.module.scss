@@ -22,7 +22,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0;
   h1,
   h3 {
     font-family: $fontHeader;
@@ -32,5 +32,6 @@
   @media (min-width: 450px) {
     min-height: calc(100vh - 10rem);
     width: 70%;
+    margin: 0 auto;
   }
 }
