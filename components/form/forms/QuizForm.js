@@ -70,9 +70,6 @@ export function QuizForm({ onFinished }) {
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
-  // const FormInstruction = () => {
-  //   return <p>{quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex]}</p>;
-  // };
   return (
     <div className={styles.form}>
       <Form
@@ -87,29 +84,25 @@ export function QuizForm({ onFinished }) {
           length={quiz.length}
         />
         <FormQuestion />
-        {/* <FormInstruction /> */}
         <Form.Item name="options">
-          <div className={styles.radioGroup}>
-            <Radio.Group onChange={chooseOption}>
-              {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-                <div className={styles.radioWrapper} id={'area'}>
-                  <Tooltip
-                    getPopupContainer={() => document.getElementById('area')}
-                    trigger={['hover', 'click']}
-                    placement="leftTop"
-                    arrowPointAtCenter
-                    title={
-                      quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex]
-                    }
-                  >
-                    <Radio key={option.id} value={option} index={index}>
-                      {option}
-                    </Radio>
-                  </Tooltip>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
+          <Radio.Group onChange={chooseOption}>
+            {quiz?.[quizItemIndex]?.option?.map((option, index) => (
+              <div id={'area'}>
+                <Tooltip
+                  getPopupContainer={() => document.getElementById('area')}
+                  trigger={['hover', 'click']}
+                  placement="bottom"
+                  title={
+                    quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex]
+                  }
+                >
+                  <Radio key={option.id} value={option} index={index}>
+                    {option}
+                  </Radio>
+                </Tooltip>
+              </div>
+            ))}
+          </Radio.Group>
         </Form.Item>
         {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
         {isLastQuizItem && (

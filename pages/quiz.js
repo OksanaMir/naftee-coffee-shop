@@ -36,12 +36,9 @@ export default function QuizPage() {
         ) : (
           <>
             <div className={styles.result}>
-              {/* <script>
-                var mountNode = document.getElementById('container');
-              </script> */}
               <Result
                 icon={<CoffeeOutlined />}
-                title="Thank you for answering question!"
+                title="Thank you for answering questions!"
                 subTitle="Your best coffee choice is ''."
                 extra={[
                   <Button type="primary" key="home">
@@ -51,11 +48,6 @@ export default function QuizPage() {
                 ]}
               />
             </div>
-            {/* <CoffeeOutlined />
-            <h1 className={styles.question}>
-              Thank you for answering question
-            </h1>
-            <h3>Your best coffee choice is '' </h3> */}
           </>
         )}
       </Layout>

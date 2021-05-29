@@ -11,11 +11,9 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  .radioGroup {
-    flex-grow: 1;
-    .radioWrapper {
-      display: flex;
-      width: 100%;
-    }
+  :global(.ant-tooltip, .ant-tooltip-placement-bottom) {
+    left: unset;
+
+    right: -5rem;
   }
 }
