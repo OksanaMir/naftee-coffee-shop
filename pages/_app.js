@@ -22,6 +22,16 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
           href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css"
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik:wght@300&display=swap"
+          rel="stylesheet"
+        ></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+          rel="stylesheet"
+        ></link>
         <script
           async
           src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"

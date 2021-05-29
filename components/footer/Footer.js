@@ -1,10 +1,48 @@
 import Link from 'next/link';
-
+import { useTranslation } from 'react-i18next';
+import { request } from '../../lib/datoCMS';
+import { useState, useEffect } from 'react';
+import { Modal } from 'antd';
+import { useLocalStorageState } from 'ahooks';
 import styles from '../../styles/Footer.module.scss';
 
 export function Footer() {
+  const { i18n } = useTranslation();
+  const [data, setData] = useState('');
+  const [visible, setVisible] = useState(true);
+  const [accepted, setAccepted] = useLocalStorageState(
+    'cookies-accepted',
+    false,
+  );
+  const onAcceptCookies = () => {
+    setVisible(false);
+    setAccepted(true);
+  };
+
+  useEffect(() => {
+    request({
+      query: COOKIE_QUERY,
+      variables: { locale: i18n.language },
+    }).then((response) => {
+      setData(response);
+    });
+  }, [i18n.language]);
+
   return (
     <footer className={styles.footer}>
+      <Modal
+        title={undefined}
+        visible={visible && !accepted}
+        getContainer={false}
+        bodyStyle={{ margin: 0 }}
+        onOk={onAcceptCookies}
+        onCancel={() => setVisible(false)}
+        width={'100%'}
+        mask={null}
+      >
+        <p>{data?.cookie?.text}</p>
+      </Modal>
+
       <ul className={styles.contacts}>
         <li>
           <a href="tel:+420776245218">+420 776 245 218</a>
@@ -39,3 +77,11 @@ export function Footer() {
     </footer>
   );
 }
+
+const COOKIE_QUERY = `query CookieQuery($locale: SiteLocale){
+ 
+  cookie(locale: $locale) {
+    text
+    id
+  }
+}`;
