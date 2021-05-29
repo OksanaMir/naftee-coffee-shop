@@ -3,17 +3,18 @@
 .landingAboutUsContainer {
   display: flex;
   flex-direction: column;
-  background-size: contain;
+  background-size: cover;
   background-image: url(../public/assets/naftee_holder-01.png);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top
+;
   padding: 0;
   margin: 0;
   width: 100%;
   height: 25vh;
 
   @media (min-width: 460px) {
-    flex-direction: row;
+    //flex-direction: row;
   }
 
   p {

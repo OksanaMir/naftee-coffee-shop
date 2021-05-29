@@ -15,6 +15,11 @@
   :global(.ant-popover) {
     width: 50%;
   }
+
+  :global(.ant-radio-checked .ant-radio-inner) {
+    border-color: $borderLight;
+
+  }
   :global(.ant-radio-inner, .ant-radio:hover) {
     border-color: $borderLight;
   }

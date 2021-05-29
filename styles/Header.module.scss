@@ -3,18 +3,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
   background-color: $primary;
   @media (min-width: 760px) {
     height: 3rem;
   }
   .logo {
+    margin: 0.5rem;
+
     width: 2rem;
     height: 2rem;
   }
   .navigation {
     display: flex;
     width: 100%;
+    height: 100%;
 
     justify-content: flex-end;
     .navigationContent {
@@ -22,11 +24,15 @@
       display: flex;
       align-items: center;
       width: 100%;
+      height: 100%;
+
     }
   }
   .langSwitcher {
     display: flex;
     align-items: center;
+    height: 100%;
+color: $textWhite;
     .btnContainer {
       display: flex;
       justify-content: center;
@@ -40,6 +46,8 @@
     display: flex;
     align-items: center;
     color: white;
+    height: 100%;
+
     div {
       display: flex;
       align-items: center;

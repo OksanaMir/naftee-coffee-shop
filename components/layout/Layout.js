@@ -1,17 +1,15 @@
-import Link from 'next/link';
-import locale from '../../components/translations/locales/en';
-import { Header } from '../header/Header';
-import { Footer } from '../footer/Footer';
-import { useTranslation } from 'react-i18next';
+import {Header} from '../header/Header';
+import {Footer} from '../footer/Footer';
+import {useTranslation} from 'react-i18next';
 
 import styles from '../../styles/Layout.module.scss';
 
 export function Layout({ children }) {
   const { t, i18n } = useTranslation();
   return (
-    <div classNameName={styles.layoutSection}>
+    <div className={styles.layoutSection}>
       <Header />
-      <section classNameName={styles.layoutChildrenSection}>{children}</section>
+      <section className={styles.layoutChildrenSection}>{children}</section>
       <Footer />
       <div
         hidden
@@ -20,7 +18,7 @@ export function Layout({ children }) {
         data-api-key="YmM2YzIwOTEtMDZjZi00NTk2LTg4OWItZGUxMjU4ZWVkM2ExNjM3NTY5NTIzNTU2Mzc2ODgz"
       >
         <billing section="bottom">
-          {/* <div classNameName="root">
+          {/* <div className="root">
             <form id="snipcart-billing-address-form" className="snipcart-form">
               <div className="snipcart__box">
                 <div className="snipcart__box--header">
@@ -35,13 +33,13 @@ export function Layout({ children }) {
                 </div>*/}
           {/* <div className="snipcart-shipping-address--readonly">
                   <div className="snipcart-shipping-address__header--readonly"> */}
-          <fieldset classNameName="snipcart-form__set">
-            <div classNameName={'snipcart-form__field'}>
+          <fieldset className="snipcart-form__set">
+            <div className={'snipcart-form__field'}>
               <snipcart-label for="phone">Phone number</snipcart-label>
               <snipcart-input name="phone"></snipcart-input>
             </div>
 
-            {/* <div classNameName="snipcart-form__field">
+            {/* <div className="snipcart-form__field">
               <snipcart-label for="country">Country</snipcart-label>
               <snipcart-typeahead
                 type="dropdown"
@@ -51,15 +49,15 @@ export function Layout({ children }) {
               <snipcart-error-message name="country"></snipcart-error-message>
             </div>
 
-            <div classNameName="snipcart-form__field">
+            <div className="snipcart-form__field">
               <snipcart-label for="city">City</snipcart-label>
               <snipcart-input name="city"></snipcart-input>
               <snipcart-error-message name="city"></snipcart-error-message>
             </div>
 
-            <div classNameName="snipcart-form__field snipcart-form__cell--large">
+            <div className="snipcart-form__field snipcart-form__cell--large">
               <snipcart-label
-                classNameName="snipcart__font--tiny"
+                className="snipcart__font--tiny"
                 for="province"
               >
                 Province
@@ -71,9 +69,9 @@ export function Layout({ children }) {
               ></snipcart-typeahead>
             </div>
 
-            <div classNameName="snipcart-form__field snipcart-form__cell--tidy">
+            <div className="snipcart-form__field snipcart-form__cell--tidy">
               <snipcart-label
-                classNameName="snipcart__font--tiny"
+                className="snipcart__font--tiny"
                 for="postalCode"
               >
                 Postal code
