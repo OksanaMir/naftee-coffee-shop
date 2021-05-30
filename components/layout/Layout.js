@@ -1,11 +1,34 @@
-import { Header } from '../header/Header';
-import { Footer } from '../footer/Footer';
-import { useTranslation } from 'react-i18next';
+import { Header } from "../header/Header";
+import { Footer } from "../footer/Footer";
+import { useTranslation } from "react-i18next";
 
-import styles from '../../styles/Layout.module.scss';
+import styles from "../../styles/Layout.module.scss";
+import { useContext, useEffect } from "react";
 
 export function Layout({ children }) {
   const { t, i18n } = useTranslation();
+
+    function languageChangeListener() {
+        console.log('Language change', i18n.language)
+        Snipcart.api.session.setLanguage(i18n.language === "cs_CZ" ? i18n.language.replace("_CZ", "") : i18n.language);
+    }
+
+    useEffect(() => {
+    // const htmlTag = document.getElementsByTagName("html");
+    // htmlTag[0].setAttribute(
+    //   "lang",
+    //   language === "cs_CZ" ? language.replace("_CZ", "") : language
+    // );
+    // console.log(htmlTag, "html");
+    // i18n
+    //   .changeLanguage(language === "cs" ? language.concat("_CZ") : language)
+    //   .catch(console.error);
+        i18n.on('languageChanged', languageChangeListener)
+      return () => {
+          i18n.off('languageChanged', languageChangeListener)
+      }
+  }, [i18n.language]);
+
   return (
     <div className={styles.layoutSection}>
       <Header />
@@ -34,7 +57,7 @@ export function Layout({ children }) {
           {/* <div className="snipcart-shipping-address--readonly">
                   <div className="snipcart-shipping-address__header--readonly"> */}
           <fieldset className="snipcart-form__set">
-            <div className={'snipcart-form__field'}>
+            <div className={"snipcart-form__field"}>
               <snipcart-label for="phone">Phone number</snipcart-label>
               <snipcart-input name="phone"></snipcart-input>
             </div>

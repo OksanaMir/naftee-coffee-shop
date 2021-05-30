@@ -5,7 +5,6 @@ import styles from '../../../styles/SelectComponent.module.scss';
 export function SelectComponent(props) {
   const { options, handleChange } = props;
   const { Option } = Select;
-  console.log(options, 'options');
   return (
     <div id={'area'} className={styles.selectContainer}>
       <Select

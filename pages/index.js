@@ -21,7 +21,6 @@ export default function Index() {
       setData(response);
     });
   }, [i18n.language]);
-  console.log(data, 'dataIndex');
 
   function onChange(a, b, c) {
     console.log(a, b, c);
@@ -51,6 +50,7 @@ export default function Index() {
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
+                      key={product.id}
                     >
                       <ProductOverView key={product.id} data={product} />
                     </div>

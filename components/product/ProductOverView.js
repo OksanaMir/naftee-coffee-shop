@@ -29,7 +29,6 @@ export function ProductOverView(props) {
     console.log(values);
   };
 
-  console.log(selectsData, 'data');
 
   return (
     <>

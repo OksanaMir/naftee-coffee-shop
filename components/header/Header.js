@@ -1,16 +1,12 @@
 import Link from 'next/link';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useContext, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBars,
-  faShoppingBasket,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBars, faShoppingBasket, faTimes,} from '@fortawesome/free-solid-svg-icons';
 
-import { HeaderContent } from './HeaderContent';
-import { LangButton } from '../translations/LangButton';
+import {HeaderContent} from './HeaderContent';
+import {LangButton} from '../translations/LangButton';
 
 import styles from '../../styles/Header.module.scss';
 
@@ -18,8 +14,11 @@ export function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const { t, i18n } = useTranslation();
 
+
   const changeLanguage = (event) => {
+    // setLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
     console.log('button', event.currentTarget.value);
+    // console.log(language, "lang")
     i18n
       .changeLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
       .catch(console.error);

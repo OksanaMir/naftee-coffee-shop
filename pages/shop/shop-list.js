@@ -1,13 +1,12 @@
 import Head from 'next/head';
 
-import { Layout } from '../../components/layout/Layout';
+import {Layout} from '../../components/layout/Layout';
 
-import { useTranslation } from 'react-i18next';
-import styles from '../../styles/ShopList.module.scss';
+import {useTranslation} from 'react-i18next';
 
-import { useState, useEffect } from 'react';
-import { request } from '../../lib/datoCMS';
-import { ProductDetail } from '../../components/product/ProductDetail';
+import {useEffect, useState} from 'react';
+import {request} from '../../lib/datoCMS';
+import {ProductDetail} from '../../components/product/ProductDetail';
 
 export default function ShopList() {
   const [selectsData, setSelectsData] = useState({});
@@ -23,7 +22,6 @@ export default function ShopList() {
       setProductsData(response);
     });
   }, [i18n.language]);
-  console.log(productsData, 'dataIndex');
 
   useEffect(() => {
     request({

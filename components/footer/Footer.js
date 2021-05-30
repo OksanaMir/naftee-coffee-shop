@@ -30,7 +30,7 @@ export function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.wrapper}>
+      <section className={styles.wrapper}>
         <ul className={styles.contacts}>
           <li>
             <a href="tel:+420776245218">+420 776 245 218</a>
@@ -62,20 +62,20 @@ export function Footer() {
             <a href="/faq">FAQ</a>
           </li>
         </ul>
-      </div>
-      <Modal
-        title={undefined}
-        visible={visible && !accepted}
-        getContainer={false}
-        bodyStyle={{ margin: 0 }}
-        onOk={onAcceptCookies}
-        onCancel={() => setVisible(false)}
-        width={'100%'}
-        mask={null}
-        maskClosable={false}
+      </section>
+      {visible && !accepted && <Modal
+          title={undefined}
+          visible={visible && !accepted}
+          getContainer={false}
+          bodyStyle={{margin: 0}}
+          onOk={onAcceptCookies}
+          onCancel={() => setVisible(false)}
+          width={'100%'}
+          mask={null}
+          maskClosable={false}
       >
         <p>{data?.cookie?.text}</p>
-      </Modal>
+      </Modal>}
     </footer>
   );
 }

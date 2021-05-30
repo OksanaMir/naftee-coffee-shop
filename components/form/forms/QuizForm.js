@@ -103,7 +103,7 @@ export function QuizForm({ onFinished }) {
         <Form.Item shouldUpdate name="options" noStyle>
           <Radio.Group onChange={chooseOption}>
             {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-              <div
+              <div key={option}
                 className={styles.radioWrapper}
                 ref={ref}
                 id={`popoverArea${index}`}
