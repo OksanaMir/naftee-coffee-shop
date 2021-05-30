@@ -10,10 +10,12 @@
 .question {
   text-align: center;
   color: $textBlack;
+  font-size: xx-large;
 }
 .invitation {
   text-align: center;
   padding: 0 5px 0 5px;
+  font-size: x-large;
 }
 .result {
   :global(.ant-result-subtitle) {

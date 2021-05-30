@@ -54,7 +54,27 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           />
         )}
       </div>
-      <p>{taste}</p>
+      <p>Taste:{taste}</p>
+      <span className={styles.bottomSection}>
+        <ExpandableText
+          title={'Description'}
+          paragraph={
+            <span
+              dangerouslySetInnerHTML={createMarkup(product.description)}
+            ></span>
+          }
+        />
+
+        <ExpandableText
+          title={'Characteristic'}
+          paragraph={
+            <span
+              dangerouslySetInnerHTML={createMarkup(product.characteristic)}
+            ></span>
+          }
+        />
+      </span>
+
       <div>
         <Form
           initialValues={{ amount: 1 }}
@@ -121,8 +141,6 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         </Form>
       </div>
       <p>{cuppingScoreRatingSca}</p>
-      <p>{description}</p>
-      <p>{characteristic}</p>
       <h1 className={styles.price}>
         {weightSelect === 50
           ? prices?.prices[0]
@@ -130,27 +148,9 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           ? prices?.prices[1]
           : prices?.prices[2]}
       </h1>
-      <span className={styles.bottomSection}>
-        <ExpandableText
-          title={'Description'}
-          paragraph={
-            <span
-              dangerouslySetInnerHTML={createMarkup(product.description)}
-            ></span>
-          }
-        />
-
-        <ExpandableText
-          title={'Characteristic'}
-          paragraph={
-            <span
-              dangerouslySetInnerHTML={createMarkup(product.characteristic)}
-            ></span>
-          }
-        />
-      </span>
       <div className={styles.snipcartAddItem}>
         <button
+          className={'snipcart-add-item'}
           data-item-id={id}
           data-item-price={
             weightSelect === 50

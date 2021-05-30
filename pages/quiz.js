@@ -30,7 +30,7 @@ export default function QuizPage() {
             <div className={styles.quest}>
               <h1 className={styles.question}>How to choose coffee?</h1>
               <h3 className={styles.invitation}>
-                Answer the questions below to make your choice easier
+                Answer the questions below to make your choice easier.
               </h3>
               <QuizForm onFinished={onFinished} />
             </div>
