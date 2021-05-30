@@ -1,6 +1,6 @@
-import {Header} from '../header/Header';
-import {Footer} from '../footer/Footer';
-import {useTranslation} from 'react-i18next';
+import { Header } from '../header/Header';
+import { Footer } from '../footer/Footer';
+import { useTranslation } from 'react-i18next';
 
 import styles from '../../styles/Layout.module.scss';
 

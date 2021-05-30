@@ -3,6 +3,12 @@
   background-color: $primary;
   padding: 0.5rem 0;
   position: relative;
+  :global(.ant-modal) {
+    top: unset;
+    padding: 0;
+    max-width: unset;
+  }
+
   .wrapper {
     @media (min-width: 450px) {
       justify-content: space-around;

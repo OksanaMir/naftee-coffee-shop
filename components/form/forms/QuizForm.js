@@ -137,6 +137,7 @@ export function QuizForm({ onFinished }) {
                     {option}
                   </Radio>
                 )}
+                g{' '}
               </div>
             ))}
           </Radio.Group>
