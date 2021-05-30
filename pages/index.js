@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { request } from '../lib/datoCMS';
-
+import { Loader } from '../components/loader/Loader';
 import { Carousel } from 'antd';
 import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
 import { Layout } from '../components/layout/Layout';
@@ -12,14 +12,18 @@ import styles from '../styles/Index.module.scss';
 export default function Index() {
   const { i18n } = useTranslation();
   const [data, setData] = useState({});
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: PRODUCT_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setData(response);
-    });
+    })
+      .then((response) => {
+        setData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
   function onChange(a, b, c) {
@@ -37,27 +41,35 @@ export default function Index() {
           <div className={styles.mainPhoto}>
             <LandingPageAboutUs />
           </div>
-          <section className={styles.main}>
-            <Carousel accessibility={true} arrows={true} afterChange={onChange}>
-              {data &&
-                data.allProducts &&
-                data.allProducts.map((product) => {
-                  return (
-                    <div
-                      style={{
-                        width: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                      key={product.id}
-                    >
-                      <ProductOverView key={product.id} data={product} />
-                    </div>
-                  );
-                })}
-            </Carousel>
-          </section>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <section className={styles.main}>
+              <Carousel
+                accessibility={true}
+                arrows={true}
+                afterChange={onChange}
+              >
+                {data &&
+                  data.allProducts &&
+                  data.allProducts.map((product) => {
+                    return (
+                      <div
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                        key={product.id}
+                      >
+                        <ProductOverView key={product.id} data={product} />
+                      </div>
+                    );
+                  })}
+              </Carousel>
+            </section>
+          )}
         </main>
       </Layout>
     </div>

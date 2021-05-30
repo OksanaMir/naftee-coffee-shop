@@ -15,12 +15,15 @@
   :global(.snipcart-cart__content) {
     background-color: white;
   }
+  :global(.snipcart-modal__container) {
+    margin-top: 3rem;
+  }
 }
 
 .layoutChildrenSection {
   min-height: calc(100vh - 14rem);
   width: 100%;
-  margin: 0;
+  margin: 3rem 0 0 0;
   h1,
   h3 {
     font-family: $fontHeader;
@@ -29,6 +32,6 @@
 
   @media (min-width: 450px) {
     min-height: calc(100vh - 10rem);
-    margin: 0 auto;
+    margin: 3rem auto 0 auto;
   }
 }
