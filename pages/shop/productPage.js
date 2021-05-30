@@ -4,10 +4,9 @@ import { Layout } from '../../components/layout/Layout';
 
 import { useTranslation } from 'react-i18next';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { request } from '../../lib/datoCMS';
 import { ProductDetail } from '../../components/product/ProductDetail';
-import styles from '../../styles/ShopList.module.scss';
 
 export default function ShopList() {
   const [selectsData, setSelectsData] = useState({});
@@ -23,6 +22,7 @@ export default function ShopList() {
       setProductsData(response);
     });
   }, [i18n.language]);
+  console.log(productsData, 'dataIndex');
 
   useEffect(() => {
     request({
@@ -49,43 +49,27 @@ export default function ShopList() {
     setShowItem(showItem);
   };
 
-  // const images = [
-  //   '../assets/naftee_zastavka-01.png',
-  //   '../assets/naftee_zastavka-02.png',
-  //   '../assets/naftee_zastavka-03.png',
-  //   '../assets/naftee_zastavka-04.png',
-  // ];
   return (
     <>
       <Head>
         <title>Shop list</title>
       </Head>
       <Layout>
-        <section className={styles.shopListContainer}>
-          {/* {images.map((image, index) => {
-            return (
-              <div className={styles.imageContainer}>
-                <img width={'50%'} alt={'product' + (index + 1)} src={image} />
-              </div>
-            );
-          })} */}
-
-          {allProducts?.map((product) => {
-            return (
-              <div className={styles.container} key={product.id}>
-                <ProductDetail
-                  product={product}
-                  selectWeight={
-                    selectsData?.allSelectors?.[1]?.select?.selectWeight
-                  }
-                  selectMethod={
-                    selectsData?.allSelectors?.[0]?.select?.selectMethod
-                  }
-                />
-              </div>
-            );
-          })}
-        </section>
+        {allProducts?.map((product) => {
+          return (
+            <div className={styles.container} key={product.id}>
+              <ProductDetail
+                product={product}
+                selectWeight={
+                  selectsData?.allSelectors?.[1]?.select?.selectWeight
+                }
+                selectMethod={
+                  selectsData?.allSelectors?.[0]?.select?.selectMethod
+                }
+              />
+            </div>
+          );
+        })}
       </Layout>
     </>
   );
@@ -108,24 +92,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     method
     select
     id
-    prices
     productPhoto{
-      alt
-      id
-      url
-      title
-      width
-      height
-    }
-    productBanner {
-      alt
-      id
-      url
-      title
-      width
-      height
-    }
-    horizontalProductView {
       alt
       id
       url
