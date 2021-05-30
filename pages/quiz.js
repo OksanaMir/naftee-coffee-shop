@@ -25,31 +25,33 @@ export default function QuizPage() {
       </Head>
 
       <Layout>
-        {!isFinished ? (
-          <div className={styles.quest}>
-            <h1 className={styles.question}>How to choose coffee?</h1>
-            <h3 className={styles.invitation}>
-              Answer the questions below to make your choice easier
-            </h3>
-            <QuizForm onFinished={onFinished} />
-          </div>
-        ) : (
-          <>
-            <div className={styles.result}>
-              <Result
-                icon={<CoffeeOutlined />}
-                title="Thank you for answering questions!"
-                subTitle="Your best coffee choice is ''."
-                extra={[
-                  <Button type="primary" key="home">
-                    Back
-                  </Button>,
-                  <Button key="buy">Buy now</Button>,
-                ]}
-              />
+        <section className={styles.quizContainer}>
+          {!isFinished ? (
+            <div className={styles.quest}>
+              <h1 className={styles.question}>How to choose coffee?</h1>
+              <h3 className={styles.invitation}>
+                Answer the questions below to make your choice easier
+              </h3>
+              <QuizForm onFinished={onFinished} />
             </div>
-          </>
-        )}
+          ) : (
+            <>
+              <div className={styles.result}>
+                <Result
+                  icon={<CoffeeOutlined />}
+                  title="Thank you for answering questions!"
+                  subTitle="Your best coffee choice is ''."
+                  extra={[
+                    <Button type="primary" key="home">
+                      Back
+                    </Button>,
+                    <Button key="buy">Buy now</Button>,
+                  ]}
+                />
+              </div>
+            </>
+          )}
+        </section>
       </Layout>
     </>
   );
