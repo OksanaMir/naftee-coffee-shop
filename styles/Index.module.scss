@@ -18,13 +18,23 @@
 
     &:global(.slick-prev) {
       &::before {
-        color: black;
-        font-size: 50px;
-        transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        bottom: 70px;
-        width: 80px;
-        position: absolute;
+        display: block;
+        position: relative;
+        bottom: 20px;
+        right: -50px;
+        font-size: 25px;
+        color: gray;
+        background-color: white;
+        border: 2px solid gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        border-radius: 50%;
+        width: 33px;
+        height: 33px;
+        z-index: 100;
+        top: -80px;
       }
       @media (min-width: 760px) {
         width: 60px;
@@ -32,21 +42,21 @@
     }
     &:global(.slick-next) {
       &::before {
-        color: black;
-        font-size: 50px;
-
-        -webkit-transform: rotate(0deg);
-        width: 80px;
-        position: absolute;
-        right: 10px;
-        top: 20px;
-        right: 0;
-        bottom: 0;
-        width: 100px;
-        cursor: pointer;
+        display: block;
+        position: relative;
+        right: 20px;
+        bottom: 80px;
+        font-size: 25px;
+        color: gray;
+        background-color: white;
+        border: 2px solid gray;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        transform: translate3d(-50%, -50%, 0px);
-        line-height: 1;
+        padding: 5px;
+        border-radius: 50%;
+        width: 33px;
+        height: 33px;
       }
       @media (min-width: 760px) {
         width: 60px;
