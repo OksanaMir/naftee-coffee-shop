@@ -1,12 +1,36 @@
 .aboutUsContainer {
-  @media (min-width: 450px) {
+  margin-bottom: 15px;
+  h1 {
+    font-size: xx-large;
+  }
+  img {
+    width: 100%;
+    margin: auto;
+  }
+  .aboutSection {
+    p {
+      line-height: 2;
+      margin: 15px;
+    }
+  }
+  @media (min-width: 760px) {
+    margin: 15px;
+    .aboutSection {
+      display: flex;
+      align-items: center;
+      img {
+        width: 80%;
+        margin-right: 15px;
+      }
+    }
+  }
+  @media (min-width: 1500px) {
     width: 70%;
     margin: 0 auto;
-  }
-}
-
-.aboutSection {
-  p {
-    line-height: 2;
+    .aboutSection {
+      p {
+        padding: 0 100px;
+      }
+    }
   }
 }
