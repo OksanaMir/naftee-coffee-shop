@@ -109,6 +109,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     select
     id
     prices
+    quantityWeight
     productPhoto{
       alt
       id
