@@ -149,28 +149,28 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           }
         />
       </span>
-
-      <button
-        className={styles.snipcartAddItem}
-        data-item-id={id}
-        data-item-price={
-          weightSelect === 50
-            ? prices?.prices[0]
-            : weightSelect === 250
-            ? prices?.prices[1]
-            : prices?.prices[2]
-        }
-        data-item-url={router?.pathname || ''}
-        data-item-description={description}
-        data-item-image={horizontalProductView.url}
-        data-item-name={productName}
-        data-item-custom1-name="Weight"
-        data-item-custom1-value={weightSelect}
-        data-item-custom2-name="Method"
-        data-item-custom2-value={methodSelect}
-      >
-        Add to cart
-      </button>
+      <div className={styles.snipcartAddItem}>
+        <button
+          data-item-id={id}
+          data-item-price={
+            weightSelect === 50
+              ? prices?.prices[0]
+              : weightSelect === 250
+              ? prices?.prices[1]
+              : prices?.prices[2]
+          }
+          data-item-url={router?.pathname || ''}
+          data-item-description={description}
+          data-item-image={horizontalProductView.url}
+          data-item-name={productName}
+          data-item-custom1-name="Weight"
+          data-item-custom1-value={weightSelect}
+          data-item-custom2-name="Method"
+          data-item-custom2-value={methodSelect}
+        >
+          Add to cart
+        </button>
+      </div>
     </article>
   );
 }

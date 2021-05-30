@@ -19,11 +19,13 @@
     font-size: xx-large;
   }
   .snipcartAddItem {
-    margin-top: 15px;
-    border: 1px solid $secondary;
-  }
-  .snipcartAddItem:hover {
-    background-color: $secondary;
-    color: $textWhite;
+    button {
+      margin-top: 15px;
+      border: 1px solid $secondary;
+      &:hover {
+        background-color: $secondary;
+        color: $textWhite;
+      }
+    }
   }
 }
