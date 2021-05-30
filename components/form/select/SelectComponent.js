@@ -1,17 +1,14 @@
-import { Select } from 'antd';
+import {Select} from 'antd';
 import 'antd/dist/antd.css';
-import styles from '../../../styles/SelectComponent.module.scss';
 
-export function SelectComponent(props) {
-  const { options, handleChange } = props;
+export function SelectComponent({ options, handleChange, id }) {
   const { Option } = Select;
   return (
-    <div id={'area'} className={styles.selectContainer}>
       <Select
-        placeholder="Select"
         style={{ width: 220 }}
-        getPopupContainer={() => document.getElementById('area')}
+        getPopupContainer={() => document.getElementById(id)}
         onChange={handleChange && handleChange}
+        defaultValue={options[0]}
       >
         {options &&
           options.map((option) => {
@@ -22,6 +19,5 @@ export function SelectComponent(props) {
             );
           })}
       </Select>
-    </div>
   );
 }

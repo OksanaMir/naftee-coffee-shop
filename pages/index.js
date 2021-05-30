@@ -80,6 +80,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
       height
     }
     price
+    prices
     cuppingScoreRatingSca
   
   }

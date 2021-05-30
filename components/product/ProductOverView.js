@@ -2,12 +2,11 @@ import Image from 'next/image';
 
 import 'antd/dist/antd.css';
 import styles from '../../styles/ProductOverView.module.scss';
-import { Select } from 'antd';
-import { useRouter } from 'next/router';
-import { Form } from 'antd';
-import { useRef, useState, useEffect } from 'react';
-import { request } from '../../lib/datoCMS';
-import { SelectComponent } from '../form/select/SelectComponent';
+import {Form} from 'antd';
+import {useRouter} from 'next/router';
+import {useEffect, useRef, useState} from 'react';
+import {request} from '../../lib/datoCMS';
+import {SelectComponent} from '../form/select/SelectComponent';
 
 export function ProductOverView({ data }) {
   const formRef = useRef(null);
@@ -16,16 +15,12 @@ export function ProductOverView({ data }) {
   const [selectsData, setSelectsData] = useState({});
   const [weightSelect, setWeightSelect] = useState(50);
   const [methodSelect, setMethodSelect] = useState('espresso');
-  const { Option } = Select;
   const {
     productName,
     productPhoto,
     id,
-    amount,
+      prices,
     taste,
-    method,
-    select,
-    price,
     cuppingScoreRatingSca,
   } = data;
   useEffect(() => {
@@ -37,14 +32,10 @@ export function ProductOverView({ data }) {
     });
   }, []);
 
-  const handleMethodChange = (event) => {
-    form.setFieldsValue({ method: event.target.value });
-  };
-  const handleWeightChange = (value) => {
-    form.setFieldsValue({ weight: value });
-    console.log(value, 'value');
-    console.log(form.getFieldsValue('weight'), 'form');
-  };
+  const handleMethodChange =
+    (value) => setMethodSelect(value)
+  const handleWeightChange =
+    (value) => setWeightSelect(value)
 
   const onFinish = (values) => {
     console.log(values);
@@ -73,6 +64,8 @@ export function ProductOverView({ data }) {
               name="control-ref"
               onFinish={onFinish}
             >
+              <div id={`method-select-${id}-overview`} className={styles.selectWrapper}>
+
               {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
                 <Form.Item
                   name="method"
@@ -84,16 +77,18 @@ export function ProductOverView({ data }) {
                   ]}
                 >
                   <SelectComponent
+                      id={`method-select-${id}-overview`}
                     options={
                       selectsData?.allSelectors?.[0]?.select?.selectMethod ?? []
                     }
-                    handleChange={(value) => setMethodSelect(value)}
+                    handleChange={handleMethodChange}
                   />
                 </Form.Item>
-              )}
+              )}</div>
+              <div id={`weight-select-${id}-overview`} className={styles.selectWrapper}>
               {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
                 <Form.Item
-                  id={'area'}
+
                   name="weight"
                   label="Weight"
                   rules={[
@@ -102,43 +97,33 @@ export function ProductOverView({ data }) {
                     },
                   ]}
                 >
-                  {/* <SelectComponent
+                  <SelectComponent
+                      id={`weight-select-${id}-overview`}
                     options={
                       selectsData?.allSelectors?.[1]?.select?.selectWeight ?? []
                     }
-                    handleChange={(value) => setWeightSelect(value)}
-                  /> */}
-                  <Select
-                    placeholder="Select"
-                    style={{ width: 220 }}
-                    getPopupContainer={() => document.getElementById('area')}
-                    onChange={(value) => setWeightSelect(value)}
-                  >
-                    {selectsData?.allSelectors?.[1]?.select?.selectWeight.map(
-                      (option) => {
-                        return (
-                          <Option key={option} value={option}>
-                            {option}
-                          </Option>
-                        );
-                      },
-                    )}
-                  </Select>
+                    handleChange={handleWeightChange}
+                  />
+
                 </Form.Item>
-              )}
+              )}</div>
             </Form>
           </div>
           <p>{cuppingScoreRatingSca}</p>
-          <p>{parseInt(price, 10) * form.getFieldsValue('weight')}</p>
+          <p>{weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}</p>
           <button
             className="snipcart-add-item"
             data-item-id={id}
-            data-item-price={
-              parseInt(price, 10) * form.getFieldsValue('weight')
-            }
+            data-item-price={weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}
             data-item-url={router?.pathname || ''}
             data-item-image={productPhoto.url}
             data-item-name={productName}
+
+
+            data-item-custom1-name="Weight"
+            data-item-custom1-value={weightSelect}
+            data-item-custom2-name="Method"
+            data-item-custom2-value={methodSelect}
           >
             Add to cart
           </button>

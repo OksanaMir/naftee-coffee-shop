@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next';
 import {useEffect, useState} from 'react';
 import {request} from '../../lib/datoCMS';
 import {ProductDetail} from '../../components/product/ProductDetail';
+import styles from '../../styles/ShopList.module.scss';
 
 export default function ShopList() {
   const [selectsData, setSelectsData] = useState({});
@@ -87,6 +88,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     method
     select
     id
+    prices
     productPhoto{
       alt
       id
