@@ -1,24 +1,23 @@
-import Image from 'next/image';
-import { useRef, useState } from 'react';
-import { InputNumber, Form } from 'antd';
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
+import Image from "next/image";
+import { useRef, useState } from "react";
+import { Form, InputNumber } from "antd";
+import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
-import { SelectComponent } from '../form/select/SelectComponent';
-import { ExpandableText } from '../../components/expandableText/ExpandableText';
+import { SelectComponent } from "../form/select/SelectComponent";
+import { ExpandableText } from "../expandableText/ExpandableText";
 
-import styles from '../../styles/ProductDetail.module.scss';
+import styles from "../../styles/ProductDetail.module.scss";
 
 export function ProductDetail({ product, selectMethod, selectWeight }) {
   const { t } = useTranslation();
   const router = useRouter();
   const formRef = useRef(null);
   const [weightSelect, setWeightSelect] = useState(50);
-  const [methodSelect, setMethodSelect] = useState('espresso');
+  const [methodSelect, setMethodSelect] = useState("espresso");
   const {
     productName,
     horizontalProductView,
-
     id,
     taste,
     prices,
@@ -32,7 +31,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
   };
 
   function onChange(value) {
-    console.log('changed', value);
+    console.log("changed", value);
   }
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
@@ -46,11 +45,11 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         <h1>{productName}</h1>
         {horizontalProductView && (
           <Image
-            src={horizontalProductView?.url || ''}
+            src={horizontalProductView?.url || ""}
             width={(horizontalProductView?.width || 640) / 5}
             height={(horizontalProductView?.height || 900) / 5}
-            alt={horizontalProductView?.alt || ''}
-            title={horizontalProductView?.title || ''}
+            alt={horizontalProductView?.alt || ""}
+            title={horizontalProductView?.title || ""}
           />
         )}
       </div>
@@ -59,7 +58,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         <Form
           initialValues={{ amount: 1 }}
           ref={formRef}
-          name="productsSelect"
+          name={`productsSelect-${id}-detail`}
           onFinish={onFinish}
         >
           <div
@@ -69,7 +68,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
             {selectMethod && (
               <Form.Item
                 name="method"
-                label={t('select.method')}
+                label={t("select.method")}
                 rules={[
                   {
                     required: true,
@@ -87,7 +86,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
 
           <Form.Item
             name="amount"
-            label={t('select.amount')}
+            label={t("select.amount")}
             rules={[
               {
                 required: true,
@@ -103,7 +102,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
             {selectWeight && (
               <Form.Item
                 name="weight"
-                label={t('select.weight')}
+                label={t("select.weight")}
                 rules={[
                   {
                     required: true,
@@ -132,26 +131,25 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
       </h1>
       <span className={styles.bottomSection}>
         <ExpandableText
-          title={'Description'}
+          title={"Description"}
           paragraph={
-            <span
-              dangerouslySetInnerHTML={createMarkup(product.description)}
-            ></span>
+            <span dangerouslySetInnerHTML={createMarkup(product.description)} />
           }
         />
 
         <ExpandableText
-          title={'Characteristic'}
+          title={"Characteristic"}
           paragraph={
             <span
               dangerouslySetInnerHTML={createMarkup(product.characteristic)}
-            ></span>
+            />
           }
         />
       </span>
       <div className={styles.snipcartAddItem}>
         <button
-          data-item-id={id}
+          className="snipcart-add-item"
+          data-item-id={`detail-${id}`}
           data-item-price={
             weightSelect === 50
               ? prices?.prices[0]
@@ -159,7 +157,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               ? prices?.prices[1]
               : prices?.prices[2]
           }
-          data-item-url={router?.pathname || ''}
+          data-item-url={router?.pathname || ""}
           data-item-description={description}
           data-item-image={horizontalProductView.url}
           data-item-name={productName}

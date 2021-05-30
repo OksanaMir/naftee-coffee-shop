@@ -1,12 +1,12 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import 'antd/dist/antd.css';
-import styles from '../../styles/ProductOverView.module.scss';
-import {Form} from 'antd';
-import {useRouter} from 'next/router';
-import {useEffect, useRef, useState} from 'react';
-import {request} from '../../lib/datoCMS';
-import {SelectComponent} from '../form/select/SelectComponent';
+import "antd/dist/antd.css";
+import styles from "../../styles/ProductOverView.module.scss";
+import {Form} from "antd";
+import {useRouter} from "next/router";
+import {useEffect, useRef, useState} from "react";
+import {request} from "../../lib/datoCMS";
+import {SelectComponent} from "../form/select/SelectComponent";
 
 export function ProductOverView({ data }) {
   const formRef = useRef(null);
@@ -14,12 +14,12 @@ export function ProductOverView({ data }) {
   const [form] = Form.useForm();
   const [selectsData, setSelectsData] = useState({});
   const [weightSelect, setWeightSelect] = useState(50);
-  const [methodSelect, setMethodSelect] = useState('espresso');
+  const [methodSelect, setMethodSelect] = useState("espresso");
   const {
     productName,
-    productPhoto,
+    productPhoto,description,
     id,
-      prices,
+    prices,
     taste,
     cuppingScoreRatingSca,
   } = data;
@@ -32,15 +32,12 @@ export function ProductOverView({ data }) {
     });
   }, []);
 
-  const handleMethodChange =
-    (value) => setMethodSelect(value)
-  const handleWeightChange =
-    (value) => setWeightSelect(value)
+  const handleMethodChange = (value) => setMethodSelect(value);
+  const handleWeightChange = (value) => setWeightSelect(value);
 
   const onFinish = (values) => {
     console.log(values);
   };
-
 
   return (
     <>
@@ -61,59 +58,66 @@ export function ProductOverView({ data }) {
             <Form
               form={form}
               ref={formRef}
-              name="control-ref"
+              name={`productsSelect-${id}-overview`}
               onFinish={onFinish}
             >
-              <div id={`method-select-${id}-overview`} className={styles.selectWrapper}>
-
-              {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
-                <Form.Item
-                  name="method"
-                  label="Method"
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <SelectComponent
+              <div
+                id={`method-select-${id}-overview`}
+                className={styles.selectWrapper}
+              >
+                {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
+                  <Form.Item
+                    name="method"
+                    label="Method"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <SelectComponent
                       id={`method-select-${id}-overview`}
-                    options={
-                      selectsData?.allSelectors?.[0]?.select?.selectMethod ?? []
-                    }
-                    handleChange={handleMethodChange}
-                  />
-                </Form.Item>
-              )}</div>
-              <div id={`weight-select-${id}-overview`} className={styles.selectWrapper}>
-              {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
-                <Form.Item
-
-                  name="weight"
-                  label="Weight"
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <SelectComponent
+                      options={
+                        selectsData?.allSelectors?.[0]?.select?.selectMethod ??
+                        []
+                      }
+                      handleChange={handleMethodChange}
+                    />
+                  </Form.Item>
+                )}
+              </div>
+              <div
+                id={`weight-select-${id}-overview`}
+                className={styles.selectWrapper}
+              >
+                {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
+                  <Form.Item
+                    name="weight"
+                    label="Weight"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <SelectComponent
                       id={`weight-select-${id}-overview`}
-                    options={
-                      selectsData?.allSelectors?.[1]?.select?.selectWeight ?? []
-                    }
-                    handleChange={handleWeightChange}
-                  />
-
-                </Form.Item>
-              )}</div>
+                      options={
+                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
+                        []
+                      }
+                      handleChange={handleWeightChange}
+                    />
+                  </Form.Item>
+                )}
+              </div>
             </Form>
           </div>
           <p>{cuppingScoreRatingSca}</p>
           <p>{weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}</p>
           <button
             className="snipcart-add-item"
-            data-item-id={id}
+            data-item-id={`overview-${id}`}
             data-item-price={weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}
             data-item-url={router?.pathname || ''}
             data-item-image={productPhoto.url}
@@ -128,7 +132,7 @@ export function ProductOverView({ data }) {
             Add to cart
           </button>
         </article>
-      )}{' '}
+      )}{" "}
     </>
   );
 }
