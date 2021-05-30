@@ -1,7 +1,26 @@
 @import 'variables';
 
 .shopListContainer {
-  @media (min-width: 450px) {
+  .container {
+    padding: 15px;
+  }
+  @media (min-width: 1500px) {
     width: 70%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: baseline;
+    align-self: center;
+    .container {
+      padding: 15px;
+      min-width: 50%;
+      flex: 1;
+      margin: 0;
+    }
   }
 }
