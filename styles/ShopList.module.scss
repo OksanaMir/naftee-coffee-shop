@@ -1,0 +1,7 @@
+@import 'variables';
+
+.shopListContainer {
+  @media (min-width: 450px) {
+    width: 70%;
+  }
+}

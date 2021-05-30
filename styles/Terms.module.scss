@@ -1,4 +1,11 @@
 @import 'variables';
+
+.termsContainer {
+  @media (min-width: 450px) {
+    width: 70%;
+  }
+}
+
 .list {
   padding-left: 0;
   border-top: 0.01px solid $borderLight;

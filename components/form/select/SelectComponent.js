@@ -11,7 +11,7 @@ export function SelectComponent(props) {
         placeholder="Select"
         style={{ width: 220 }}
         getPopupContainer={() => document.getElementById('area')}
-        onChange={handleChange}
+        onChange={handleChange && handleChange}
       >
         {options &&
           options.map((option) => {

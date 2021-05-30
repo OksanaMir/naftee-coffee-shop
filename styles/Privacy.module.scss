@@ -1,3 +1,10 @@
+@import 'variables';
+.privacyContainer {
+  @media (min-width: 450px) {
+    width: 70%;
+  }
+}
+
 .list {
   padding-left: 0;
 
