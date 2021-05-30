@@ -163,9 +163,9 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           data-item-description={description}
           data-item-image={horizontalProductView.url}
           data-item-name={productName}
-          data-item-custom1-name="Weight"
+          data-item-custom1-name={t('select.weight')}
           data-item-custom1-value={weightSelect}
-          data-item-custom2-name="Method"
+          data-item-custom2-name={t('select.method')}
           data-item-custom2-value={methodSelect}
         >
           Add to cart

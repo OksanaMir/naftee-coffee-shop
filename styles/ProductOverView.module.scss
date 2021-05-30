@@ -2,6 +2,7 @@
 
 .productOverView {
   padding: 0.5rem;
+
   .productImg {
     display: flex;
     flex-direction: column;
@@ -9,7 +10,7 @@
     align-items: center;
   }
   img {
-    width: 10rem;
+    width: 50rem;
     height: auto;
   }
   p {
@@ -18,5 +19,8 @@
   }
   .selectWrapper {
     position: relative;
+  }
+  h1 {
+    font-size: 25px;
   }
 }

@@ -17,7 +17,7 @@ export function ProductOverView({ data }) {
   const [methodSelect, setMethodSelect] = useState('espresso');
   const {
     productName,
-    productPhoto,
+    horizontalProductView,
     id,
     prices,
     taste,
@@ -44,13 +44,13 @@ export function ProductOverView({ data }) {
       {data && (
         <article className={styles.productOverView}>
           <div className={styles.productImg}>
-            <p>{productName}</p>
+            <h1>{productName}</h1>
             <Image
-              width={productPhoto.width / 5}
-              height={productPhoto.height / 5}
-              src={productPhoto.url}
-              alt={productPhoto.alt}
-              title={productPhoto.title}
+              width={horizontalProductView.width / 5}
+              height={horizontalProductView.height / 5}
+              src={horizontalProductView.url}
+              alt={horizontalProductView.alt}
+              title={horizontalProductView.title}
             />
           </div>
           <p>{taste}</p>
@@ -122,14 +122,19 @@ export function ProductOverView({ data }) {
               : prices?.prices[2]}
           </p>
           {/* <button
+          
             className="snipcart-add-item"
             data-item-id={id}
-            data-item-price={weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}
+            data-item-price={
+              weightSelect === 50
+                ? prices?.prices[0]
+                : weightSelect === 250
+                ? prices?.prices[1]
+                : prices?.prices[2]
+            }
             data-item-url={router?.pathname || ''}
-            data-item-image={productPhoto.url}
+            data-item-image={horizontalProductView.url}
             data-item-name={productName}
-
-
             data-item-custom1-name="Weight"
             data-item-custom1-value={weightSelect}
             data-item-custom2-name="Method"
