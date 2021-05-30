@@ -30,37 +30,39 @@ export default function Faq() {
         <title>FAQ</title>
       </Head>
       <Layout>
-        <h1>Frequently asked questions</h1>
-        <ul className={styles.list}>
-          {data?.allFaqs?.map((faq, index) => {
-            return (
-              <li key={faq.id}>
-                {/* props */}
-                <ExpandableText
-                  index={index}
-                  title={faq.question}
-                  // children={
-                  //   <div className={styles.social}>
-                  //     <Link href="https://www.instagram.com/nafteecoffee/">
-                  //       <a className="fa fa-instagram" />
-                  //     </Link>
-                  //     <Link href="https://www.facebook.com/search/top?q=Naftee">
-                  //       <a className="fa fa-facebook" />
-                  //     </Link>
-                  //   </div>
-                  // }
-                  paragraph={
-                    <span
-                      dangerouslySetInnerHTML={createMarkup(faq.answer)}
-                    ></span>
-                  }
+        <section className={styles.faqContainer}>
+          <h1>Frequently asked questions</h1>
+          <ul className={styles.list}>
+            {data?.allFaqs?.map((faq, index) => {
+              return (
+                <li key={faq.id}>
+                  {/* props */}
+                  <ExpandableText
+                    index={index}
+                    title={faq.question}
+                    // children={
+                    //   <div className={styles.social}>
+                    //     <Link href="https://www.instagram.com/nafteecoffee/">
+                    //       <a className="fa fa-instagram" />
+                    //     </Link>
+                    //     <Link href="https://www.facebook.com/search/top?q=Naftee">
+                    //       <a className="fa fa-facebook" />
+                    //     </Link>
+                    //   </div>
+                    // }
+                    paragraph={
+                      <span
+                        dangerouslySetInnerHTML={createMarkup(faq.answer)}
+                      ></span>
+                    }
 
-                  // paragraph={faq.answer}
-                />
-              </li>
-            );
-          })}
-        </ul>
+                    // paragraph={faq.answer}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </Layout>
     </>
   );

@@ -29,26 +29,28 @@ export default function Terms() {
         <title>Terms and Conditions</title>
       </Head>
       <Layout>
-        <div className={styles.main}>
-          <h1>Terms and Conditions</h1>
-          <ul className={styles.list}>
-            {data?.allTermAndConditions?.map((term, index) => {
-              return (
-                <li key={term.id}>
-                  <ExpandableText
-                    index={index}
-                    title={term.headline}
-                    paragraph={
-                      <li
-                        dangerouslySetInnerHTML={createMarkup(term.paragraph)}
-                      ></li>
-                    }
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <section className={styles.termsContainer}>
+          <div className={styles.main}>
+            <h1>Terms and Conditions</h1>
+            <ul className={styles.list}>
+              {data?.allTermAndConditions?.map((term, index) => {
+                return (
+                  <li key={term.id}>
+                    <ExpandableText
+                      index={index}
+                      title={term.headline}
+                      paragraph={
+                        <li
+                          dangerouslySetInnerHTML={createMarkup(term.paragraph)}
+                        ></li>
+                      }
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
       </Layout>
     </>
   );

@@ -30,23 +30,27 @@ export default function Privacy() {
         <title>Privacy policy</title>
       </Head>
       <Layout>
-        <ul className={styles.list}>
-          {data?.allPersonalDataProtections?.map((policy, index) => {
-            return (
-              <li key={policy.id}>
-                <ExpandableText
-                  index={index}
-                  title={policy.headlinePdp}
-                  paragraph={
-                    <span
-                      dangerouslySetInnerHTML={createMarkup(policy.paragrapPdp)}
-                    ></span>
-                  }
-                />
-              </li>
-            );
-          })}
-        </ul>
+        <section className={styles.privacyContainer}>
+          <ul className={styles.list}>
+            {data?.allPersonalDataProtections?.map((policy, index) => {
+              return (
+                <li key={policy.id}>
+                  <ExpandableText
+                    index={index}
+                    title={policy.headlinePdp}
+                    paragraph={
+                      <span
+                        dangerouslySetInnerHTML={createMarkup(
+                          policy.paragrapPdp,
+                        )}
+                      ></span>
+                    }
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </Layout>
     </>
   );
