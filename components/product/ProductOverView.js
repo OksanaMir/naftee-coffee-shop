@@ -16,6 +16,7 @@ export function ProductOverView({ data }) {
   const [form] = Form.useForm();
   const [selectsData, setSelectsData] = useState({});
   const [weightSelect, setWeightSelect] = useState(250);
+
   const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
 
