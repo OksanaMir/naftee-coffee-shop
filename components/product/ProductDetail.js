@@ -166,16 +166,14 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
       </h1>
 
       <div className={styles.snipcartAddItem}>
-        <button
-          className="snipcart-add-item "
-          data-item-id={`detail-${id}`}
-          data-item-price={
-            weightSelect === 50
-              ? prices?.prices[0]
-              : weightSelect === 250
-              ? prices?.prices[1]
-              : prices?.prices[2]
-          }
+        <button>
+          className="snipcart-add-item " data-item-id={`detail-${id}`}
+          data-item-price=
+          {weightSelect === 50
+            ? prices?.prices[0]
+            : weightSelect === 250
+            ? prices?.prices[1]
+            : prices?.prices[2]}
           data-item-url={router?.pathname || ''}
           data-item-description={taste}
           data-item-image={horizontalProductView.url}
@@ -185,7 +183,6 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           data-item-custom2-name={t('select.method')}
           data-item-custom2-value={methodSelect}
           data-item-quantity={quantity}
-        >
           Add to cart
         </button>
       </div>
