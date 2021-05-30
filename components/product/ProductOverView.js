@@ -1,12 +1,12 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 import styles from '../../styles/ProductOverView.module.scss';
-import {Form, InputNumber} from 'antd';
+import { Form, InputNumber } from 'antd';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { request } from '../../lib/datoCMS';
 import { SelectComponent } from '../form/select/SelectComponent';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export function ProductOverView({ data }) {
   const formRef = useRef(null);
@@ -16,7 +16,7 @@ export function ProductOverView({ data }) {
   const [form] = Form.useForm();
   const [selectsData, setSelectsData] = useState({});
   const [weightSelect, setWeightSelect] = useState(50);
-  const [methodSelect, setMethodSelect] = useState("espresso");
+  const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
 
   const {
@@ -39,7 +39,7 @@ export function ProductOverView({ data }) {
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
   function handleQuantityChange(value) {
-    setQuantity(value)
+    setQuantity(value);
   }
   const onFinish = (values) => {
     console.log(values);
@@ -93,13 +93,13 @@ export function ProductOverView({ data }) {
                 )}
               </div>
               <Form.Item
-                  name="amount"
-                  label={t("select.amount")}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
+                name="amount"
+                label={t('select.amount')}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
               >
                 <InputNumber min={1} onChange={handleQuantityChange} />
               </Form.Item>
@@ -139,28 +139,25 @@ export function ProductOverView({ data }) {
               : prices?.prices[2]) * quantity}
           </p>
           <button
-
-            className="snipcart-add-item "
-            data-item-id={`overview-${id}`}
+            className="snipcart-add-item"
+            data-item-id={id}
             data-item-price={
-              (weightSelect === 50
-                  ? prices?.prices[0]
-                  : weightSelect === 250
-                      ? prices?.prices[1]
-                      : prices?.prices[2])
+              weightSelect === 50
+                ? prices?.prices[0]
+                : weightSelect === 250
+                ? prices?.prices[1]
+                : prices?.prices[2]
             }
             data-item-url={router?.pathname || ''}
             data-item-image={horizontalProductView.url}
             data-item-name={productName}
             data-item-description={taste}
-
             data-item-custom1-name={t('select.weight')}
             data-item-custom1-id={`weight-${id}`}
             data-item-custom1-value={weightSelect}
             data-item-custom2-name={t('select.method')}
             data-item-custom2-id={`method-${id}`}
             data-item-quantity={quantity}
-
             data-item-custom2-value={methodSelect}
           >
             Add to cart
