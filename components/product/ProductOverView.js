@@ -15,7 +15,7 @@ export function ProductOverView({ data }) {
   const router = useRouter();
   const [form] = Form.useForm();
   const [selectsData, setSelectsData] = useState({});
-  const [weightSelect, setWeightSelect] = useState(50);
+  const [weightSelect, setWeightSelect] = useState(250);
   const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
 
@@ -23,10 +23,12 @@ export function ProductOverView({ data }) {
     productName,
     horizontalProductView,
     id,
-    prices,
+    quantityWeight,
     taste,
     cuppingScoreRatingSca,
   } = data;
+
+  const { productData } = quantityWeight;
   useEffect(() => {
     request({
       query: SELECTORS_QUERY,
@@ -60,6 +62,7 @@ export function ProductOverView({ data }) {
             />
           </div>
           <p>{taste}</p>
+
           <div>
             <Form
               form={form}
@@ -119,10 +122,7 @@ export function ProductOverView({ data }) {
                   >
                     <SelectComponent
                       id={`weight-select-${id}-overview`}
-                      options={
-                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
-                        []
-                      }
+                      options={productData.map((data) => data.weight)}
                       handleChange={handleWeightChange}
                     />
                   </Form.Item>
@@ -132,11 +132,26 @@ export function ProductOverView({ data }) {
           </div>
           <p>{cuppingScoreRatingSca}</p>
           <p>
+            Quantity:
             {(weightSelect === 50
-              ? prices?.prices[0]
+              ? productData?.[0]?.quantity
               : weightSelect === 250
-              ? prices?.prices[1]
-              : prices?.prices[2]) * quantity}
+              ? productData?.[1]?.quantity
+              : productData?.[2]?.quantity) === 0
+              ? 'out of stock'
+              : weightSelect === 50
+              ? productData?.[0]?.quantity
+              : weightSelect === 250
+              ? productData?.[1]?.quantity
+              : productData?.[2]?.quantity}
+          </p>
+
+          <p>
+            {weightSelect === 50
+              ? productData?.[0]?.price
+              : weightSelect === 250
+              ? productData?.[1]?.price
+              : productData?.[2]?.price}
           </p>
           <button
             className="snipcart-add-item"

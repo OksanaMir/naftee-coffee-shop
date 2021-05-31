@@ -71,6 +71,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     method
     select
     id
+    quantityWeight 
     horizontalProductView {
       alt
       id

@@ -34,13 +34,13 @@
 
   "contacts": {
     "contact": "Contact.",
-    "text1": "You will find us in the Igy shopping centre",
+    "text1": "Find us at Iggy shopping centre",
     "adress1": "Pražská tř. 1247/24",
     "adress2": "370 04 Czech Budweis",
     "adress3": "Czech Republic",
-    "phone": "tel: 776 245 218",
-    "text2": "social networks: ",
-    "instruction": "Do you have any questions? We will answer them. Please fill in the contact details carefully.",
+    "phone": "+420 776 245 218",
+
+    "instruction": "At naftee we feel the power of the collaboration. Contact us for any question…",
     "userName": "Name and Surname",
     "email": "Email",
     "subject": "Subject",
