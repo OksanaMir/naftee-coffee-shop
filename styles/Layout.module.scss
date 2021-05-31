@@ -8,6 +8,7 @@
   background-color: $backgroundColor;
   p {
     font-family: $fontText;
+    color: $textWhite;
   }
   @media (min-width: 450px) {
   }
@@ -24,6 +25,7 @@
   h3 {
     font-family: $fontHeader;
     padding: 0.5rem;
+    color: $textWhite;
   }
 
   @media (min-width: 450px) {
