@@ -147,21 +147,21 @@ export function ProductOverView({ data }) {
           </p>
 
           <p>
-            {weightSelect === 50
+            {(weightSelect === 50
               ? productData?.[0]?.price
               : weightSelect === 250
               ? productData?.[1]?.price
-              : productData?.[2]?.price}
+              : productData?.[2]?.price) * quantity}
           </p>
           <button
             className="snipcart-add-item"
             data-item-id={id}
             data-item-price={
               weightSelect === 50
-                ? prices?.prices[0]
+                ? productData?.[0]?.price
                 : weightSelect === 250
-                ? prices?.prices[1]
-                : prices?.prices[2]
+                ? productData?.[1]?.price
+                : productData?.[2]?.price
             }
             data-item-url={router?.pathname || ''}
             data-item-image={horizontalProductView.url}

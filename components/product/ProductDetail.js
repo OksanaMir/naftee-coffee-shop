@@ -13,7 +13,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
   const { t } = useTranslation();
   const router = useRouter();
   const formRef = useRef(null);
-  const [weightSelect, setWeightSelect] = useState(50);
+  const [weightSelect, setWeightSelect] = useState(250);
   const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
   const {
@@ -133,7 +133,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               >
                 <SelectComponent
                   id={`weight-select-${id}-detail`}
-                  options={selectWeight}
+                  options={productData.map((data) => data.weight)}
                   handleChange={handleWeightChange}
                 />
               </Form.Item>
@@ -142,13 +142,29 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         </Form>
       </div>
       <p>{cuppingScoreRatingSca}</p>
+      <p>
+        Quantity:
+        {(weightSelect === 50
+          ? productData?.[0]?.quantity
+          : weightSelect === 250
+          ? productData?.[1]?.quantity
+          : productData?.[2]?.quantity) === 0
+          ? 'out of stock'
+          : weightSelect === 50
+          ? productData?.[0]?.quantity
+          : weightSelect === 250
+          ? productData?.[1]?.quantity
+          : productData?.[2]?.quantity}
+      </p>
+
       <h1 className={styles.price}>
         {(weightSelect === 50
-          ? prices?.prices[0]
+          ? productData?.[0]?.price
           : weightSelect === 250
-          ? prices?.prices[1]
-          : prices?.prices[2]) * quantity}
+          ? productData?.[1]?.price
+          : productData?.[2]?.price) * quantity}
       </h1>
+
       <div className={styles.snipcartAddItem}>
         <button
           className="snipcart-add-item "
@@ -168,6 +184,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           data-item-custom1-value={weightSelect}
           data-item-custom2-name={t('select.method')}
           data-item-custom2-value={methodSelect}
+          data-item-quantity={quantity}
         >
           Add to cart
         </button>
