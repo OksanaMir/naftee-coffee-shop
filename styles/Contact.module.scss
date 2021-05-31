@@ -1,4 +1,12 @@
 .contactContainer {
+  h1 {
+    text-align: center;
+    font-size: xx-large;
+  }
+  .instruction {
+    font-size: x-large;
+    width: 70%;
+  }
   @media (min-width: 450px) {
     width: 70%;
     margin: 0 auto;

@@ -1,9 +1,8 @@
 import Link from 'next/link';
 
-import { useTranslation } from 'react-i18next';
-import { LangButton } from '../translations/LangButton';
+import {useTranslation} from 'react-i18next';
+import {LangButton} from '../translations/LangButton';
 import styles from '../../styles/HeaderContent.module.scss';
-import {useContext} from "react";
 
 export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
   const { t, i18n } = useTranslation();
@@ -11,10 +10,6 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
 
 
     const changeLanguage = (event) => {
-        // setLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
-        console.log('button', event.currentTarget.value);
-        console.log('i18n', i18n.language);
-        // console.log(language, "lang")
         i18n
             .changeLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
             .catch(console.error);

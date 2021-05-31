@@ -15,6 +15,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
   const formRef = useRef(null);
   const [weightSelect, setWeightSelect] = useState(50);
   const [methodSelect, setMethodSelect] = useState("espresso");
+  const [quantity, setQuantity] = useState(1);
   const {
     productName,
     horizontalProductView,
@@ -22,16 +23,14 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
     taste,
     prices,
     cuppingScoreRatingSca,
-    characteristic,
-    description,
   } = product;
 
   const onFinish = (values) => {
     console.log(values);
   };
 
-  function onChange(value) {
-    console.log("changed", value);
+  function handleQuantityChange(value) {
+      setQuantity(value)
   }
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
@@ -53,7 +52,31 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           />
         )}
       </div>
-      <p>{taste}</p>
+      <p>Taste:{taste}</p>
+      <span className={styles.bottomSection}>
+        <ExpandableText
+            id={`descriptionIconWrapper${id}`}
+
+            title={'Description'}
+          paragraph={
+            <span
+              dangerouslySetInnerHTML={createMarkup(product.description)}
+            />
+          }
+        />
+
+        <ExpandableText
+          title={'Characteristic'}
+          id={`characteristicIconWrapper${id}`}
+
+          paragraph={
+            <span
+              dangerouslySetInnerHTML={createMarkup(product.characteristic)}
+            />
+          }
+        />
+      </span>
+
       <div>
         <Form
           initialValues={{ amount: 1 }}
@@ -93,7 +116,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               },
             ]}
           >
-            <InputNumber min={1} onChange={onChange} />
+            <InputNumber min={1} onChange={handleQuantityChange} />
           </Form.Item>
           <div
             id={`weight-select-${id}-detail`}
@@ -120,51 +143,38 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         </Form>
       </div>
       <p>{cuppingScoreRatingSca}</p>
-      <p>{description}</p>
-      <p>{characteristic}</p>
       <h1 className={styles.price}>
-        {weightSelect === 50
-          ? prices?.prices[0]
-          : weightSelect === 250
-          ? prices?.prices[1]
-          : prices?.prices[2]}
+        {(weightSelect === 50
+            ? prices?.prices[0]
+            : weightSelect === 250
+                ? prices?.prices[1]
+                : prices?.prices[2]) * quantity}
       </h1>
-      <span className={styles.bottomSection}>
-        <ExpandableText
-          title={"Description"}
-          paragraph={
-            <span dangerouslySetInnerHTML={createMarkup(product.description)} />
-          }
-        />
-
-        <ExpandableText
-          title={"Characteristic"}
-          paragraph={
-            <span
-              dangerouslySetInnerHTML={createMarkup(product.characteristic)}
-            />
-          }
-        />
-      </span>
       <div className={styles.snipcartAddItem}>
         <button
-          className="snipcart-add-item"
+          className="snipcart-add-item "
           data-item-id={`detail-${id}`}
           data-item-price={
-            weightSelect === 50
-              ? prices?.prices[0]
-              : weightSelect === 250
-              ? prices?.prices[1]
-              : prices?.prices[2]
+              (weightSelect === 50
+                  ? prices?.prices[0]
+                  : weightSelect === 250
+                      ? prices?.prices[1]
+                      : prices?.prices[2])
           }
           data-item-url={router?.pathname || ""}
-          data-item-description={description}
+          data-item-description={taste}
           data-item-image={horizontalProductView.url}
           data-item-name={productName}
-          data-item-custom1-name="Weight"
+          data-item-quantity={quantity}
+
+          data-item-custom1-name={t('select.weight')}
+          data-item-custom1-id={`weight-${id}`}
           data-item-custom1-value={weightSelect}
-          data-item-custom2-name="Method"
+          data-item-custom2-name={t('select.method')}
+          data-item-custom2-id={`method-${id}`}
           data-item-custom2-value={methodSelect}
+
+
         >
           Add to cart
         </button>

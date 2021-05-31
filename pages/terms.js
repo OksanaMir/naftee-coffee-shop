@@ -37,12 +37,12 @@ export default function Terms() {
                 return (
                   <li key={term.id}>
                     <ExpandableText
-                      index={index}
+                        id={`termsIconWrapper${index}`}
                       title={term.headline}
                       paragraph={
                         <li
                           dangerouslySetInnerHTML={createMarkup(term.paragraph)}
-                        ></li>
+                        />
                       }
                     />
                   </li>

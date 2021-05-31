@@ -71,7 +71,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
     method
     select
     id
-    productPhoto{
+    horizontalProductView {
       alt
       id
       url

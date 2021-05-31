@@ -1,10 +1,11 @@
-import { Form, Button, Radio, Popover } from 'antd';
-import { useState, useEffect, useRef } from 'react';
-import { useTranslation, i18n } from 'react-i18next';
-import { QuizNavBar } from '../bar/QuizNavBar';
-import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
-import { request } from '../../../lib/datoCMS';
+import {Button, Form, Popover, Radio} from 'antd';
+import {useEffect, useRef, useState} from 'react';
+import {i18n, useTranslation} from 'react-i18next';
+import {QuizNavBar} from '../bar/QuizNavBar';
+import {QuizBlockBtns} from '../buttons/QuizBlockBtns';
+import {request} from '../../../lib/datoCMS';
 import styles from '../../../styles/QuizForm.module.scss';
+
 const layout = {
   labelCol: {
     span: 8,
@@ -20,7 +21,7 @@ const tailLayout = {
   },
 };
 export function QuizForm({ onFinished }) {
-  const { t, i18n } = useTranslation();
+  const {  i18n } = useTranslation();
   const [form] = Form.useForm();
   const [quiz, setQuiz] = useState([]);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
@@ -55,17 +56,12 @@ export function QuizForm({ onFinished }) {
   };
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
   const onContinue = () => {
-    console.log('ans', answers, chosenAnswerValue, quizItemIndex);
     setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
     if (isLastQuizItem) {
       return;
     }
     console.log('ans', answers);
-    // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
-  };
-  const chooseInstruction = (e) => {
-    setChosenAnswerIndex(e.target.index);
   };
 
   const sendAnswers = () => {
@@ -79,18 +75,7 @@ export function QuizForm({ onFinished }) {
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
-  const text = <span>Title</span>;
-  const content = (
-    <div>
-      <p></p>
-      <p></p>
-    </div>
-  );
-  console.log(
-    quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
-    'popover',
-  );
-  console.log(chosenAnswerIndex, 'answer');
+
   return (
     <div className={styles.form}>
       <Form form={form} {...layout}>

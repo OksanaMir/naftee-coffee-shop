@@ -6,7 +6,7 @@ body {
   margin: 0;
   height: 100vh;
 
-  > div {
+  :global(.__next) {
     @media (min-width: 760px) {
       height: 100vh;
     }

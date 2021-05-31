@@ -1,18 +1,15 @@
-import Link from 'next/link';
-
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import {useState} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMinus, faPlus} from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../../styles/ExpandableText.module.scss';
 
-export function ExpandableText(props) {
-  //const {question, answer} = props;
+export function ExpandableText({id, paragraph, title}) {
 
   const [showParagraph, setShowParagraph] = useState(false);
   const onClick = () => {
     setShowParagraph(!showParagraph);
-    const elm = document.getElementById(`iconWrapper${props.index}`);
+    const elm = document.getElementById(id);
     showParagraph
       ? elm.setAttribute('style', 'transform: rotate(90deg)')
       : elm.setAttribute('style', 'transform: rotate(180deg)');
@@ -20,10 +17,10 @@ export function ExpandableText(props) {
   return (
     <article className={styles.expandableText}>
       <div className={styles.list}>
-        <h3>{props.title}</h3>
+        <h3>{title}</h3>
         <div
           className={styles.iconBox}
-          id={`iconWrapper${props.index}`}
+          id={id}
           onClick={onClick}
         >
           <FontAwesomeIcon
@@ -35,7 +32,7 @@ export function ExpandableText(props) {
 
       {showParagraph && (
         <>
-          <p className={styles.text}>{props.paragraph}</p>
+          <p className={styles.text}>{paragraph}</p>
           {/* <div>{props.children} </div> */}
         </>
       )}

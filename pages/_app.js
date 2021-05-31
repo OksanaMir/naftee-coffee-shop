@@ -17,26 +17,18 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>Naftee</title>
-        <link rel="preconnect" href="https://app.snipcart.com" />
-        <link rel="preconnect" href="https://cdn.snipcart.com" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css"
-        />
+
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik:wght@300&display=swap"
           rel="stylesheet"
-        ></link>
+        />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
           rel="stylesheet"
-        ></link>
-        <script
-          async
-          src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"
-        ></script>
+        />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="stylesheet"

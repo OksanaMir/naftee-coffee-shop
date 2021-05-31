@@ -36,14 +36,14 @@ export default function Privacy() {
               return (
                 <li key={policy.id}>
                   <ExpandableText
-                    index={index}
+                      id={`privacyIconWrapper${index}`}
                     title={policy.headlinePdp}
                     paragraph={
                       <span
                         dangerouslySetInnerHTML={createMarkup(
                           policy.paragrapPdp,
                         )}
-                      ></span>
+                      />
                     }
                   />
                 </li>

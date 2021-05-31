@@ -19,7 +19,7 @@ const layout = {
   },
 };
 export function ContactForm() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const { SiteClient } = require('datocms-client');
   const client = new SiteClient('dcf7c70ca6f6fb69721273dbc749b3');
@@ -32,7 +32,6 @@ export function ContactForm() {
       subject: form.getFieldsValue().subject,
       message: form.getFieldsValue().message,
     });
-    console.log(record);
   }
   useEffect(() => {
     console.log(form.getFieldsValue(), 'hdskds');

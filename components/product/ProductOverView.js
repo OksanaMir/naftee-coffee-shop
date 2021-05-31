@@ -1,23 +1,27 @@
 import Image from "next/image";
 
-import "antd/dist/antd.css";
-import styles from "../../styles/ProductOverView.module.scss";
-import {Form} from "antd";
-import {useRouter} from "next/router";
-import {useEffect, useRef, useState} from "react";
-import {request} from "../../lib/datoCMS";
-import {SelectComponent} from "../form/select/SelectComponent";
+import styles from '../../styles/ProductOverView.module.scss';
+import {Form, InputNumber} from 'antd';
+import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import { request } from '../../lib/datoCMS';
+import { SelectComponent } from '../form/select/SelectComponent';
+import {useTranslation} from "react-i18next";
 
 export function ProductOverView({ data }) {
   const formRef = useRef(null);
+  const { t } = useTranslation();
+
   const router = useRouter();
   const [form] = Form.useForm();
   const [selectsData, setSelectsData] = useState({});
   const [weightSelect, setWeightSelect] = useState(50);
   const [methodSelect, setMethodSelect] = useState("espresso");
+  const [quantity, setQuantity] = useState(1);
+
   const {
     productName,
-    productPhoto,description,
+    horizontalProductView,
     id,
     prices,
     taste,
@@ -34,7 +38,9 @@ export function ProductOverView({ data }) {
 
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
-
+  function handleQuantityChange(value) {
+    setQuantity(value)
+  }
   const onFinish = (values) => {
     console.log(values);
   };
@@ -44,13 +50,13 @@ export function ProductOverView({ data }) {
       {data && (
         <article className={styles.productOverView}>
           <div className={styles.productImg}>
-            <p>{productName}</p>
+            <h1>{productName}</h1>
             <Image
-              width={productPhoto.width / 5}
-              height={productPhoto.height / 5}
-              src={productPhoto.url}
-              alt={productPhoto.alt}
-              title={productPhoto.title}
+              width={horizontalProductView.width / 5}
+              height={horizontalProductView.height / 5}
+              src={horizontalProductView.url}
+              alt={horizontalProductView.alt}
+              title={horizontalProductView.title}
             />
           </div>
           <p>{taste}</p>
@@ -86,6 +92,17 @@ export function ProductOverView({ data }) {
                   </Form.Item>
                 )}
               </div>
+              <Form.Item
+                  name="amount"
+                  label={t("select.amount")}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+              >
+                <InputNumber min={1} onChange={handleQuantityChange} />
+              </Form.Item>
               <div
                 id={`weight-select-${id}-overview`}
                 className={styles.selectWrapper}
@@ -114,25 +131,42 @@ export function ProductOverView({ data }) {
             </Form>
           </div>
           <p>{cuppingScoreRatingSca}</p>
-          <p>{weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}</p>
+          <p>
+            {(weightSelect === 50
+              ? prices?.prices[0]
+              : weightSelect === 250
+              ? prices?.prices[1]
+              : prices?.prices[2]) * quantity}
+          </p>
           <button
-            className="snipcart-add-item"
+
+            className="snipcart-add-item "
             data-item-id={`overview-${id}`}
-            data-item-price={weightSelect === 50? (prices?.prices[0]) : weightSelect === 250 ? prices?.prices[1] : prices?.prices[2]}
+            data-item-price={
+              (weightSelect === 50
+                  ? prices?.prices[0]
+                  : weightSelect === 250
+                      ? prices?.prices[1]
+                      : prices?.prices[2])
+            }
             data-item-url={router?.pathname || ''}
-            data-item-image={productPhoto.url}
+            data-item-image={horizontalProductView.url}
             data-item-name={productName}
+            data-item-description={taste}
 
-
-            data-item-custom1-name="Weight"
+            data-item-custom1-name={t('select.weight')}
+            data-item-custom1-id={`weight-${id}`}
             data-item-custom1-value={weightSelect}
-            data-item-custom2-name="Method"
+            data-item-custom2-name={t('select.method')}
+            data-item-custom2-id={`method-${id}`}
+            data-item-quantity={quantity}
+
             data-item-custom2-value={methodSelect}
           >
             Add to cart
           </button>
         </article>
-      )}{" "}
+      )}{' '}
     </>
   );
 }

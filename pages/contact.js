@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Layout } from '../components/layout/Layout';
 
 export default function ContactFormPage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <Head>Contact</Head>
@@ -18,7 +18,7 @@ export default function ContactFormPage() {
           <p>{t('contacts.adress3')}</p>
           <p>{t('contacts.phone')}</p>
           <p>{t('contacts.text2')}</p>
-          <p>{t('contacts.instruction')}</p>
+          <p className={styles.instruction}>{t('contacts.instruction')}</p>
 
           <ContactForm />
         </section>
