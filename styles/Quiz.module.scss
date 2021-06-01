@@ -18,8 +18,54 @@
   font-size: x-large;
 }
 .result {
+  svg {
+    color: $borderLight;
+  }
+  svg:hover,
+  svg:focus {
+    color: $primary;
+  }
+  :global(.ant-result-title) {
+    color: $textWhite;
+    margin: 5px;
+  }
   :global(.ant-result-subtitle) {
     font-size: 20px;
-    color: darkblue;
+    color: $textWhite;
+    margin: 5px;
+  }
+  :global(.ant-result-extra > *:last-child) {
+    background-color: $borderLight;
+    border: $borderLight;
+    color: $textBlack;
+    width: 5rem;
+    font-family: $fontText;
+    text-align: center;
+    padding: 0;
+    margin: 15px;
+  }
+  :global(.ant-result-extra > *:last-child:hover) {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+    font-family: $fontText;
+    text-align: center;
+    padding: 0;
+    margin: 15px;
+  }
+  :global(.ant-btn-primary) {
+    background-color: $borderLight;
+    border: $borderLight;
+    color: $textBlack;
+    width: 5rem;
+    font-family: $fontText;
+    padding: 0;
+    margin: 15px;
+  }
+  :global(.ant-btn-primary:hover) {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+    font-family: $fontText;
+    padding: 0;
+    margin: 15px;
   }
 }

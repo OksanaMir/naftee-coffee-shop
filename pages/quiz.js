@@ -1,12 +1,12 @@
 import Head from 'next/head';
 
-import {QuizForm} from '../components/form/forms/QuizForm';
-import {useState} from 'react';
-import {Button, Result} from 'antd';
+import { QuizForm } from '../components/form/forms/QuizForm';
+import { useState } from 'react';
+import { Button, Result } from 'antd';
 
-import {CoffeeOutlined} from '@ant-design/icons';
+import { CoffeeOutlined } from '@ant-design/icons';
 
-import {Layout} from '../components/layout/Layout';
+import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Quiz.module.scss';
 
 export default function QuizPage() {

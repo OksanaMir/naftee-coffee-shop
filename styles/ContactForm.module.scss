@@ -1,3 +1,27 @@
+@import 'variables';
 .form {
   width: 80%;
+  :global(.ant-form-item-label > label) {
+    color: $textWhite;
+  }
+  :global(.ant-form-item-label
+      > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
+    color: $primary;
+  }
+  :global(.ant-btn-primary) {
+    background-color: $borderLight;
+    border: $borderLight;
+    color: $textBlack;
+    width: 5rem;
+    font-family: $fontText;
+    padding: 0;
+    margin: 15px;
+  }
+  :global(.ant-btn-primary:hover) {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+    font-family: $fontText;
+    padding: 0;
+    margin: 15px;
+  }
 }

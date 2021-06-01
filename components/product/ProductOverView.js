@@ -1,34 +1,28 @@
 import Image from 'next/image';
 
+import 'antd/dist/antd.css';
 import styles from '../../styles/ProductOverView.module.scss';
-import { Form, InputNumber } from 'antd';
+import { Form } from 'antd';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { request } from '../../lib/datoCMS';
 import { SelectComponent } from '../form/select/SelectComponent';
-import { useTranslation } from 'react-i18next';
 
 export function ProductOverView({ data }) {
   const formRef = useRef(null);
-  const { t } = useTranslation();
-
   const router = useRouter();
   const [form] = Form.useForm();
   const [selectsData, setSelectsData] = useState({});
-  const [weightSelect, setWeightSelect] = useState(250);
+  const [weightSelect, setWeightSelect] = useState(50);
   const [methodSelect, setMethodSelect] = useState('espresso');
-  const [quantity, setQuantity] = useState(1);
-
   const {
     productName,
     horizontalProductView,
     id,
-    quantityWeight,
+    prices,
     taste,
     cuppingScoreRatingSca,
-  } = data;
-
-  const { productData } = quantityWeight;
+  } = data ?? {};
   useEffect(() => {
     request({
       query: SELECTORS_QUERY,
@@ -40,9 +34,7 @@ export function ProductOverView({ data }) {
 
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
-  function handleQuantityChange(value) {
-    setQuantity(value);
-  }
+
   const onFinish = (values) => {
     console.log(values);
   };
@@ -62,12 +54,11 @@ export function ProductOverView({ data }) {
             />
           </div>
           <p>{taste}</p>
-
           <div>
             <Form
               form={form}
               ref={formRef}
-              name={`productsSelect-${id}-overview`}
+              name="control-ref"
               onFinish={onFinish}
             >
               <div
@@ -95,17 +86,6 @@ export function ProductOverView({ data }) {
                   </Form.Item>
                 )}
               </div>
-              <Form.Item
-                name="amount"
-                label={t('select.amount')}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber min={1} onChange={handleQuantityChange} />
-              </Form.Item>
               <div
                 id={`weight-select-${id}-overview`}
                 className={styles.selectWrapper}
@@ -122,7 +102,10 @@ export function ProductOverView({ data }) {
                   >
                     <SelectComponent
                       id={`weight-select-${id}-overview`}
-                      options={productData.map((data) => data.weight)}
+                      options={
+                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
+                        []
+                      }
                       handleChange={handleWeightChange}
                     />
                   </Form.Item>
@@ -132,53 +115,35 @@ export function ProductOverView({ data }) {
           </div>
           <p>{cuppingScoreRatingSca}</p>
           <p>
-            Quantity:
-            {(weightSelect === 50
-              ? productData?.[0]?.quantity
+            {weightSelect === 50
+              ? prices?.prices[0]
               : weightSelect === 250
-              ? productData?.[1]?.quantity
-              : productData?.[2]?.quantity) === 0
-              ? 'out of stock'
-              : weightSelect === 50
-              ? productData?.[0]?.quantity
-              : weightSelect === 250
-              ? productData?.[1]?.quantity
-              : productData?.[2]?.quantity}
+              ? prices?.prices[1]
+              : prices?.prices[2]}
           </p>
-
-          <p>
-            {(weightSelect === 50
-              ? productData?.[0]?.price
-              : weightSelect === 250
-              ? productData?.[1]?.price
-              : productData?.[2]?.price) * quantity}
-          </p>
-          <button
+          {/* <button
+          
             className="snipcart-add-item"
             data-item-id={id}
             data-item-price={
               weightSelect === 50
-                ? productData?.[0]?.price
+                ? prices?.prices[0]
                 : weightSelect === 250
-                ? productData?.[1]?.price
-                : productData?.[2]?.price
+                ? prices?.prices[1]
+                : prices?.prices[2]
             }
             data-item-url={router?.pathname || ''}
             data-item-image={horizontalProductView.url}
             data-item-name={productName}
-            data-item-description={taste}
-            data-item-custom1-name={t('select.weight')}
-            data-item-custom1-id={`weight-${id}`}
+            data-item-custom1-name="Weight"
             data-item-custom1-value={weightSelect}
-            data-item-custom2-name={t('select.method')}
-            data-item-custom2-id={`method-${id}`}
-            data-item-quantity={quantity}
+            data-item-custom2-name="Method"
             data-item-custom2-value={methodSelect}
           >
             Add to cart
-          </button>
+          </button> */}
         </article>
-      )}{' '}
+      )}
     </>
   );
 }

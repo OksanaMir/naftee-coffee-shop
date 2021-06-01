@@ -1,11 +1,10 @@
-import { Button, Form, Popover, Radio } from 'antd';
-import { useEffect, useRef, useState } from 'react';
+import { Form, Button, Radio, Popover } from 'antd';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation, i18n } from 'react-i18next';
 import { QuizNavBar } from '../bar/QuizNavBar';
 import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
 import { request } from '../../../lib/datoCMS';
 import styles from '../../../styles/QuizForm.module.scss';
-
 const layout = {
   labelCol: {
     span: 8,
@@ -21,7 +20,7 @@ const tailLayout = {
   },
 };
 export function QuizForm({ onFinished }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
   const [quiz, setQuiz] = useState([]);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
@@ -31,6 +30,11 @@ export function QuizForm({ onFinished }) {
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
   const ref = useRef(null);
   const [answers, setAnswers] = useState([]);
+  // const [chosenMethod, setChosenMetod] = useState(0);
+  // const [chosenAmount, setChosenAmount] = useState(0);
+  // const [chosenSort, setChosenSort] = useState({});
+  //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
+
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
@@ -50,11 +54,31 @@ export function QuizForm({ onFinished }) {
       });
     });
   }, [i18n.language]);
+
   const chooseOption = (e) => {
+    // switch (quizItemIndex) {
+    //   case 0:
+    //     setChosenMetod(e.target.index);
+    //     break;
+
+    //   case 2:
+    //     setChosenAmount(e.target.index);
+    //     break;
+
+    //   default:
+    //     let sorts = { ...chosenSort };
+    //     let sort = e.target.index;
+    //     sorts[sort] = 1 + (chosenSort[sort] || 0);
+
+    //     setChosenSort(sorts);
+    // }
+
     setChosenAnswerValue(e.target.value);
     setChosenAnswerIndex(e.target.index);
   };
+
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
+
   const onContinue = () => {
     console.log('ans', answers, chosenAnswerValue, quizItemIndex);
     setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
@@ -65,15 +89,16 @@ export function QuizForm({ onFinished }) {
     // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
-  // const chooseInstruction = (e) => {
-  //   setChosenAnswerIndex(e.target.index);
-  // };
+  const chooseInstruction = (e) => {
+    setChosenAnswerIndex(e.target.index);
+  };
+
   const sendAnswers = () => {
     const results = [
       ...answers,
       [chosenAnswerValue, quiz[quizItemIndex].question],
     ];
-    console.log('send', results);
+    console.log('send', results /*, chosenSort*/);
     onFinished();
   };
   const FormQuestion = () => {
@@ -91,7 +116,6 @@ export function QuizForm({ onFinished }) {
     'popover',
   );
   console.log(chosenAnswerIndex, 'answer');
-
   return (
     <div className={styles.form}>
       <Form form={form} {...layout}>
@@ -123,7 +147,7 @@ export function QuizForm({ onFinished }) {
                         }
                       </p>
                     }
-                    trigger={['click']}
+                    // trigger={['click']}
                     // visible={true}
                     getPopupContainer={() =>
                       document.getElementById(`popoverArea${index}`)

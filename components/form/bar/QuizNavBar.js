@@ -10,7 +10,7 @@ export function QuizNavBar({ onContinue, quizItemIndex, length }) {
     <div className={styles.navigation}>
       <Form.Item noStyle>
         <Button onClick={goBackInHistory}>
-          <p>Quit quiz</p>
+          <span>Quit quiz</span>
         </Button>
       </Form.Item>
       <div>

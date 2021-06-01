@@ -1,3 +1,4 @@
+@import 'variables';
 * {
   box-sizing: border-box;
 }
@@ -5,7 +6,17 @@
 body {
   margin: 0;
   height: 100vh;
-
+  > div {
+    @media (min-width: 760px) {
+      height: 100vh;
+    }
+  }
+  h1 {
+    font-family: $fontHeader;
+  }
+  p {
+    font-family: $fontText;
+  }
   :global(.__next) {
     @media (min-width: 760px) {
       height: 100vh;
