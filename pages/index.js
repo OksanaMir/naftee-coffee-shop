@@ -6,20 +6,27 @@ import { request } from '../lib/datoCMS';
 import { Carousel } from 'antd';
 import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
 import { Layout } from '../components/layout/Layout';
+import { Loader } from '../components/loader/Loader';
 import { ProductOverView } from '../components/product/ProductOverView';
 import styles from '../styles/Index.module.scss';
 
 export default function Index() {
   const { i18n } = useTranslation();
   const [data, setData] = useState({});
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: PRODUCT_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setData(response);
-    });
+    })
+      .then((response) => {
+        setData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
   function onChange(a, b, c) {
@@ -37,11 +44,16 @@ export default function Index() {
           <div className={styles.mainPhoto}>
             <LandingPageAboutUs />
           </div>
-          <section className={styles.main}>
-            <Carousel accessibility={true} arrows={true} afterChange={onChange}>
-              {data &&
-                data.allProducts &&
-                data.allProducts.map((product) => {
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <section className={styles.main}>
+              <Carousel
+                accessibility={true}
+                arrows={true}
+                afterChange={onChange}
+              >
+                {data?.allProducts?.map((product) => {
                   return (
                     <div
                       style={{
@@ -56,8 +68,9 @@ export default function Index() {
                     </div>
                   );
                 })}
-            </Carousel>
-          </section>
+              </Carousel>
+            </section>
+          )}
         </main>
       </Layout>
     </div>
