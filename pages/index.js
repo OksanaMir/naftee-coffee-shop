@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { request } from '../lib/datoCMS';
 import { Loader } from '../components/loader/Loader';
+import { ProductTeaser } from '../components/product/ProductTeaser';
 import { Carousel } from 'antd';
 import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
 import { Layout } from '../components/layout/Layout';
@@ -41,33 +42,35 @@ export default function Index() {
           <div className={styles.mainPhoto}>
             <LandingPageAboutUs />
           </div>
+
           {isLoading ? (
             <Loader />
           ) : (
             <section className={styles.main}>
-              <Carousel
+              {data?.allProducts?.map((product) => (
+                <ProductTeaser key={product.id} data={product} />
+              ))}
+              {/* <Carousel
                 accessibility={true}
                 arrows={true}
                 afterChange={onChange}
               >
-                {data &&
-                  data.allProducts &&
-                  data.allProducts.map((product) => {
-                    return (
-                      <div
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                        key={product.id}
-                      >
-                        <ProductOverView key={product.id} data={product} />
-                      </div>
-                    );
-                  })}
-              </Carousel>
+                {data?.allProducts?.map((product) => {
+                  return (
+                    <div
+                      style={{
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                      key={product.id}
+                    >
+                      <ProductOverView key={product.id} data={product} />
+                    </div>
+                  );
+                })}
+              </Carousel> */}
             </section>
           )}
         </main>
@@ -91,6 +94,16 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
       width
       height
     }
+    productBanner {
+      alt
+      id
+      url
+      title
+      width
+      height
+    }
+
+    
     price
     prices
     cuppingScoreRatingSca

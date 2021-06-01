@@ -6,7 +6,10 @@
   position: relative;
   overflow-x: hidden;
   background-color: $backgroundColor;
-
+  h1 {
+    color: white;
+  }
+  color: aliceblue;
   p {
     font-family: $fontText;
   }
@@ -24,6 +27,9 @@
   min-height: calc(100vh - 14rem);
   width: 100%;
   margin: 3rem 0 0 0;
+  background-color: $primary;
+  color: $textWhite;
+
   h1,
   h3 {
     font-family: $fontHeader;

@@ -22,7 +22,7 @@ export function ProductOverView({ data }) {
     prices,
     taste,
     cuppingScoreRatingSca,
-  } = data;
+  } = data ?? {};
   useEffect(() => {
     request({
       query: SELECTORS_QUERY,

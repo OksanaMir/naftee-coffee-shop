@@ -3,12 +3,19 @@
   text-align: center;
 }
 .form {
+  background-color: antiquewhite;
+  color: black;
   padding: 5px;
   height: 100%;
   flex-grow: 1;
   text-align: left;
   display: flex;
   flex-direction: column;
+  h1,
+  h3,
+  p {
+    color: black;
+  }
   .radioWrapper {
     margin: 2rem;
   }
@@ -20,30 +27,40 @@
     border-color: $borderLight;
   }
 
-  :global(.ant-radio-inner, .ant-radio:hover) {
-    border-color: $borderLight;
-  }
-
   :global(.ant-btn) {
     background-color: $borderLight;
     border: $borderLight;
     color: $textBlack;
   }
+  :global(.ant-btn.ant-btn-primary) {
+    background-color: $secondary;
+    color: $textWhite;
+  }
+  :global(.ant-radio:hover .ant-radio-inner) {
+    border-color: $secondary;
+  }
+  :global(.ant-btn.ant-btn-primary:hover) {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+  }
+
+  :global(.ant-radio-wrapper:hover) {
+    border-color: $secondary;
+  }
   :global(.ant-radio-inner::after) {
     background-color: $borderLight;
     border-color: $borderLight;
   }
-  :global(.ant-radio-input:focus) {
+  :global(.ant-radio-inner:hover) {
+    background-color: $borderLight;
+    border-color: $secondary;
+  }
+  :global(.ant-radio-input:hover) {
     background-color: $borderLight;
     border-color: $borderLight;
   }
-  :global(.ant-radio-wrapper:hover) {
-    border-color: $borderLight;
-  }
-  :global(.ant-radio-checked, ) {
+
+  :global(.ant-radio-checked) {
     border-color: $borderLight;
   }
 }
-// :global(.ant-radio:hover .ant-radio-input:focus, .ant-radio-inner) {
-//   border-color: $borderLight;
-// }

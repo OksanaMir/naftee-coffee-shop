@@ -30,6 +30,11 @@ export function QuizForm({ onFinished }) {
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
   const ref = useRef(null);
   const [answers, setAnswers] = useState([]);
+  // const [chosenMethod, setChosenMetod] = useState(0);
+  // const [chosenAmount, setChosenAmount] = useState(0);
+  // const [chosenSort, setChosenSort] = useState({});
+  //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
+
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
@@ -49,11 +54,31 @@ export function QuizForm({ onFinished }) {
       });
     });
   }, [i18n.language]);
+
   const chooseOption = (e) => {
+    // switch (quizItemIndex) {
+    //   case 0:
+    //     setChosenMetod(e.target.index);
+    //     break;
+
+    //   case 2:
+    //     setChosenAmount(e.target.index);
+    //     break;
+
+    //   default:
+    //     let sorts = { ...chosenSort };
+    //     let sort = e.target.index;
+    //     sorts[sort] = 1 + (chosenSort[sort] || 0);
+
+    //     setChosenSort(sorts);
+    // }
+
     setChosenAnswerValue(e.target.value);
     setChosenAnswerIndex(e.target.index);
   };
+
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
+
   const onContinue = () => {
     console.log('ans', answers, chosenAnswerValue, quizItemIndex);
     setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
@@ -73,7 +98,7 @@ export function QuizForm({ onFinished }) {
       ...answers,
       [chosenAnswerValue, quiz[quizItemIndex].question],
     ];
-    console.log('send', results);
+    console.log('send', results /*, chosenSort*/);
     onFinished();
   };
   const FormQuestion = () => {
@@ -103,7 +128,8 @@ export function QuizForm({ onFinished }) {
         <Form.Item shouldUpdate name="options" noStyle>
           <Radio.Group onChange={chooseOption}>
             {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-              <div key={option}
+              <div
+                key={option}
                 className={styles.radioWrapper}
                 ref={ref}
                 id={`popoverArea${index}`}
