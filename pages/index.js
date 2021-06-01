@@ -6,13 +6,12 @@ import { request } from '../lib/datoCMS';
 import { Carousel } from 'antd';
 import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
 import { Layout } from '../components/layout/Layout';
-import { Loader } from '../components/loader/Loader';
+import { Loader } from '../components/ loader/Loader';
 import { ProductOverView } from '../components/product/ProductOverView';
 import styles from '../styles/Index.module.scss';
 
 export default function Index() {
   const { i18n } = useTranslation();
-  const [data, setData] = useState({});
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
