@@ -30,9 +30,9 @@ export function QuizForm({ onFinished }) {
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
   const ref = useRef(null);
   const [answers, setAnswers] = useState([]);
-  // const [chosenMethod, setChosenMetod] = useState(0);
-  // const [chosenAmount, setChosenAmount] = useState(0);
-  // const [chosenSort, setChosenSort] = useState({});
+  const [chosenMethod, setChosenMetod] = useState(0);
+  const [chosenAmount, setChosenAmount] = useState(0);
+  const [chosenSort, setChosenSort] = useState({});
   //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
 
   useEffect(() => {
@@ -56,23 +56,6 @@ export function QuizForm({ onFinished }) {
   }, [i18n.language]);
 
   const chooseOption = (e) => {
-    // switch (quizItemIndex) {
-    //   case 0:
-    //     setChosenMetod(e.target.index);
-    //     break;
-
-    //   case 2:
-    //     setChosenAmount(e.target.index);
-    //     break;
-
-    //   default:
-    //     let sorts = { ...chosenSort };
-    //     let sort = e.target.index;
-    //     sorts[sort] = 1 + (chosenSort[sort] || 0);
-
-    //     setChosenSort(sorts);
-    // }
-
     setChosenAnswerValue(e.target.value);
     setChosenAnswerIndex(e.target.index);
   };
@@ -80,30 +63,58 @@ export function QuizForm({ onFinished }) {
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
 
   const onContinue = () => {
-    console.log('ans', answers, chosenAnswerValue, quizItemIndex);
+    // console.log('on-continue');
+
+    let index = chosenAnswerIndex;
+
+    switch (quizItemIndex) {
+      case 0:
+        setChosenMetod(index);
+        break;
+
+      case 2:
+        setChosenAmount(index);
+        break;
+
+      default:
+        let sorts = { ...chosenSort };
+
+        sorts[index] = 1 + (chosenSort[index] || 0);
+
+        setChosenSort(sorts);
+    }
+
+    // console.log('sort counts', chosenSort);
+
+    // console.log('ans-1', answers, chosenAnswerValue, quizItemIndex);
     setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
     if (isLastQuizItem) {
       return;
     }
-    console.log('ans', answers);
+    // console.log('ans-2', answers);
     // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
+
   const chooseInstruction = (e) => {
     setChosenAnswerIndex(e.target.index);
   };
 
   const sendAnswers = () => {
-    const results = [
-      ...answers,
-      [chosenAnswerValue, quiz[quizItemIndex].question],
-    ];
-    console.log('send', results /*, chosenSort*/);
+    // const results = [
+    //   ...answers,
+    //   [chosenAnswerValue, quiz[quizItemIndex].question],
+    // ];
+
+    console.log('send', chosenSort, chosenAmount, chosenMethod);
+
     onFinished();
   };
+
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
+
   const text = <span>Title</span>;
   const content = (
     <div>
@@ -111,11 +122,13 @@ export function QuizForm({ onFinished }) {
       <p></p>
     </div>
   );
-  console.log(
-    quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
-    'popover',
-  );
-  console.log(chosenAnswerIndex, 'answer');
+
+  // console.log(
+  //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
+  //   'popover',
+  // );
+  // console.log(chosenAnswerIndex, 'answer');
+
   return (
     <div className={styles.form}>
       <Form form={form} {...layout}>
@@ -190,3 +203,8 @@ const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
       recommendation
     } 
 }`;
+// ?quiz?.[quizItemIndex]
+{
+  /* <p>{quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]}</p>; */
+}
+// :
