@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation, i18n } from 'react-i18next';
 import { QuizNavBar } from '../bar/QuizNavBar';
 import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
+import { Loader } from '../../../components/ loader/Loader';
+
 import { request } from '../../../lib/datoCMS';
 import styles from '../../../styles/QuizForm.module.scss';
 const layout = {
@@ -33,6 +35,8 @@ export function QuizForm({ onFinished }) {
   const [chosenMethod, setChosenMetod] = useState(0);
   const [chosenAmount, setChosenAmount] = useState(0);
   const [chosenSort, setChosenSort] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
 
   useEffect(() => {
@@ -41,18 +45,23 @@ export function QuizForm({ onFinished }) {
   }, [quizItemIndex]);
 
   useEffect(() => {
+    setIsLoading(true);
+
     request({
       query: QUIZ_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setQuizItemIndex(0);
-      setQuiz(response?.allCoffeeQuizzes);
-      setChosenAnswerValue(response?.allCoffeeQuizzes?.[0]?.option[0]);
+    })
+      .then((response) => {
+        setQuizItemIndex(0);
+        setQuiz(response?.allCoffeeQuizzes);
+        setChosenAnswerValue(response?.allCoffeeQuizzes?.[0]?.option[0]);
 
-      form.setFieldsValue({
-        options: response?.allCoffeeQuizzes?.[0]?.option[0],
-      });
-    });
+        form.setFieldsValue({
+          options: response?.allCoffeeQuizzes?.[0]?.option[0],
+        });
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
   const chooseOption = (e) => {
@@ -122,66 +131,72 @@ export function QuizForm({ onFinished }) {
   // console.log(chosenAnswerIndex, 'answer');
 
   return (
-    <div className={styles.form}>
-      <Form form={form} {...layout}>
-        <QuizNavBar
-          onContinue={onContinue}
-          quizItemIndex={quizItemIndex + 1}
-          length={quiz.length}
-        />
-        <FormQuestion />
-        <Form.Item shouldUpdate name="options" noStyle>
-          <Radio.Group onChange={chooseOption}>
-            {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-              <div
-                key={option}
-                className={styles.radioWrapper}
-                ref={ref}
-                id={`popoverArea${index}`}
-              >
-                {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex] ? (
-                  <Popover
-                    placement="right"
-                    title={undefined}
-                    content={
-                      <p>
-                        {
-                          quiz?.[quizItemIndex]?.instruction?.[
-                            chosenAnswerIndex
-                          ]
-                        }
-                      </p>
-                    }
-                    trigger={['click']}
-                    // visible={true}
-                    getPopupContainer={() =>
-                      document.getElementById(`popoverArea${index}`)
-                    }
-                    align={{ offset: [ref?.current?.clientWidth, 0] }}
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.form}>
+          <Form form={form} {...layout}>
+            <QuizNavBar
+              onContinue={onContinue}
+              quizItemIndex={quizItemIndex + 1}
+              length={quiz.length}
+            />
+            <FormQuestion />
+            <Form.Item shouldUpdate name="options" noStyle>
+              <Radio.Group onChange={chooseOption}>
+                {quiz?.[quizItemIndex]?.option?.map((option, index) => (
+                  <div
+                    key={option}
+                    className={styles.radioWrapper}
+                    ref={ref}
+                    id={`popoverArea${index}`}
                   >
-                    <Radio key={option.id} value={option} index={index}>
-                      {option}
-                    </Radio>
-                  </Popover>
-                ) : (
-                  <Radio key={option.id} value={option} index={index}>
-                    {option}
-                  </Radio>
-                )}
-              </div>
-            ))}
-          </Radio.Group>
-        </Form.Item>
-        {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
-        {isLastQuizItem && (
-          <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit" onClick={sendAnswers}>
-              Find my coffee
-            </Button>
-          </Form.Item>
-        )}
-      </Form>
-    </div>
+                    {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex] ? (
+                      <Popover
+                        placement="right"
+                        title={undefined}
+                        content={
+                          <p>
+                            {
+                              quiz?.[quizItemIndex]?.instruction?.[
+                                chosenAnswerIndex
+                              ]
+                            }
+                          </p>
+                        }
+                        trigger={['click']}
+                        // visible={true}
+                        getPopupContainer={() =>
+                          document.getElementById(`popoverArea${index}`)
+                        }
+                        align={{ offset: [ref?.current?.clientWidth, 0] }}
+                      >
+                        <Radio key={option.id} value={option} index={index}>
+                          {option}
+                        </Radio>
+                      </Popover>
+                    ) : (
+                      <Radio key={option.id} value={option} index={index}>
+                        {option}
+                      </Radio>
+                    )}
+                  </div>
+                ))}
+              </Radio.Group>
+            </Form.Item>
+            {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
+            {isLastQuizItem && (
+              <Form.Item {...tailLayout}>
+                <Button type="primary" htmlType="submit" onClick={sendAnswers}>
+                  Find my coffee
+                </Button>
+              </Form.Item>
+            )}
+          </Form>
+        </div>
+      )}
+    </>
   );
 }
 const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
@@ -194,8 +209,3 @@ const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
       recommendation
     } 
 }`;
-// ?quiz?.[quizItemIndex]
-{
-  /* <p>{quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]}</p>; */
-}
-// :

@@ -3,11 +3,11 @@
   background-color: $primary;
   padding: 0.5rem 0;
   position: relative;
-  :global(.ant-modal) {
-    top: unset;
-    padding: 0;
-    max-width: unset;
-  }
+  // :global(.ant-modal) {
+  //   top: unset;
+  //   padding: 0;
+  //   max-width: unset;
+  // }
 
   .wrapper {
     @media (min-width: 450px) {
@@ -27,7 +27,6 @@
   :global(.ant-modal-wrap) {
     top: unset;
     bottom: 0;
-    position: absolute;
     overflow: hidden;
   }
 
@@ -35,6 +34,11 @@
     top: unset;
     padding: 0;
     max-width: unset;
+  }
+  :global(.ant-modal-body) {
+    p {
+      color: black;
+    }
   }
 
   ul {
@@ -48,7 +52,7 @@
     justify-content: center;
     color: $textWhite;
   }
-  &:hover {
+  a:hover {
     background-color: $secondary;
   }
 

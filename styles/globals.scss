@@ -6,11 +6,11 @@
 body {
   margin: 0;
   height: 100vh;
-  > div {
-    @media (min-width: 760px) {
-      height: 100vh;
-    }
-  }
+  // > div {
+  //   @media (min-width: 760px) {
+  //     height: 100vh;
+  //   }
+  // }
 
   h1 {
     font-family: $fontHeader;
