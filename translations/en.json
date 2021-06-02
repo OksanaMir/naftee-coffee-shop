@@ -28,19 +28,7 @@
     "contacts": "Contacts"
   },
 
-  "aboutUs": {
-    "paragraph": "We are here for your enjoyment from the multifaceted taste of the best varieties of specialty coffee. We share this feelings with the world around. Join us now. All good things come with love. We started from direct trade with farmers and continued work with specialization on the light roasting of the coffee beans. That's why we have the rich taste and aroma during drink preparation. Now we will continue to promote the culture of coffee consumption. Quality and taste are the basis of the Third Wave Coffee. Every new sip brings us closer to the goal. It is important that coffee is at the center of events that bring people together."
-  },
-
   "contacts": {
-    "contact": "Contact.",
-    "text1": "Find us at Iggy shopping centre",
-    "adress1": "Pražská tř. 1247/24",
-    "adress2": "370 04 Czech Budweis",
-    "adress3": "Czech Republic",
-    "phone": "+420 776 245 218",
-
-    "instruction": "At naftee we feel the power of the collaboration. Contact us for any question…",
     "userName": "Name and Surname",
     "email": "Email",
     "subject": "Subject",
