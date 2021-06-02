@@ -1,6 +1,6 @@
 @import 'variables';
 
-.main {
+.mainMobile {
   position: relative;
 
   @media (min-width: 760px) {
@@ -58,6 +58,74 @@
       }
       @media (min-width: 760px) {
         width: 60px;
+      }
+    }
+  }
+}
+.mainDesctop {
+  position: relative;
+  width: 100%;
+  color: aliceblue !important;
+  @media (min-width: 760px) {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: baseline;
+    align-self: center;
+  }
+  @media (min-width: 2000px) {
+    width: 70%;
+    :global(.slick-arrow) {
+      cursor: pointer;
+
+      &:global(.slick-prev) {
+        &::before {
+          display: block;
+          position: relative;
+          bottom: 20px;
+          right: -50px;
+          font-size: 25px;
+          color: gray;
+          background-color: white;
+          border: 2px solid gray;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 50%;
+          width: 33px;
+          height: 33px;
+          z-index: 100;
+          top: -80px;
+        }
+        @media (min-width: 760px) {
+          width: 60px;
+        }
+      }
+      &:global(.slick-next) {
+        &::before {
+          display: block;
+          position: relative;
+          right: 20px;
+          bottom: 80px;
+          font-size: 25px;
+          color: gray;
+          background-color: white;
+          border: 2px solid gray;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 50%;
+          width: 33px;
+          height: 33px;
+        }
+        @media (min-width: 760px) {
+          width: 60px;
+        }
       }
     }
   }
