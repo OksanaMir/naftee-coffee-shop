@@ -3,25 +3,32 @@
   background-color: $primary;
   padding: 0.5rem 0;
   position: relative;
-  // :global(.ant-modal) {
-  //   top: unset;
-  //   padding: 0;
-  //   max-width: unset;
-  // }
 
+  .contacts {
+    display: none;
+    @media (min-width: 450px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  :global(.ant-modal) {
+    top: unset;
+    padding: 0;
+    max-width: unset;
+  }
   .wrapper {
     @media (min-width: 450px) {
+      display: flex;
       justify-content: space-around;
       align-items: center;
-
-      display: flex;
     }
   }
   :global(.ant-modal-root) {
-    height: 100%;
     position: fixed;
-    z-index: 100;
     width: 100%;
+    height: 100%;
+    z-index: 100;
   }
 
   :global(.ant-modal-wrap) {
@@ -65,6 +72,7 @@
   .social {
     display: flex;
     justify-content: center;
+
     a {
       margin: 0 0.5rem;
     }

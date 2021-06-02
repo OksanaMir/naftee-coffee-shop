@@ -68,7 +68,7 @@ export function Header() {
                 <div className=" snipcartShoppingBasket">
                   <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
                 </div>
-                <span>{itemsCount}</span>
+                <span className={styles.itemsCount}>{itemsCount}</span>
               </div>
             </div>
           </div>

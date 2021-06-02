@@ -59,14 +59,14 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
       <span className={styles.bottomSection}>
         <ExpandableText
           id={`descriptionIconWrapper${id}`}
-          title={'Description'}
+          title={t('shopList.description')}
           paragraph={
             <span dangerouslySetInnerHTML={createMarkup(product.description)} />
           }
         />
 
         <ExpandableText
-          title={'Characteristic'}
+          title={t('shopList.characteristic')}
           id={`characteristicIconWrapper${id}`}
           paragraph={
             <span

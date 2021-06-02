@@ -14,9 +14,11 @@ body {
 
   h1 {
     font-family: $fontHeader;
+    font-size: $headlineFontSize;
   }
   p {
     font-family: $fontText;
+    text-align: center;
   }
   :global(.__next) {
     @media (min-width: 760px) {

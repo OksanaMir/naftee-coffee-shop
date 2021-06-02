@@ -53,29 +53,38 @@ export function Footer() {
           </li>
 
           <li>
-            <a href="/terms">Terms and Conditions</a>
+            <Link href="/terms">
+              <a>Terms and Conditions</a>
+            </Link>
+          </li>
+
+          <li>
+            <Link href="/privacy">
+              <a>Privacy policy</a>
+            </Link>
           </li>
           <li>
-            <a href="/privacy">Privacy policy</a>
-          </li>
-          <li>
-            <a href="/faq">FAQ</a>
+            <Link href="/faq">
+              <a>FAQ</a>
+            </Link>
           </li>
         </ul>
       </section>
-      {visible && !accepted && <Modal
+      {visible && !accepted && (
+        <Modal
           title={undefined}
           visible={visible && !accepted}
           getContainer={false}
-          bodyStyle={{margin: 0}}
+          bodyStyle={{ margin: 0 }}
           onOk={onAcceptCookies}
           onCancel={() => setVisible(false)}
           width={'100%'}
           mask={null}
           maskClosable={false}
-      >
-        <p>{data?.cookie?.text}</p>
-      </Modal>}
+        >
+          <p>{data?.cookie?.text}</p>
+        </Modal>
+      )}
     </footer>
   );
 }
