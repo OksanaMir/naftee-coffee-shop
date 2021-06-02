@@ -63,5 +63,6 @@ const ABOUT_QUERY = `query AboutQuery($locale: SiteLocale){
  
   about(locale: $locale) {
     history(markdown: true)
+  
   }
 }`;

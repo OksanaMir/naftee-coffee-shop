@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
 import { request } from '../lib/datoCMS';
+
 import { useEffect, useState } from 'react';
 import { ContactForm } from '../components/form/forms/ContactForm';
 
