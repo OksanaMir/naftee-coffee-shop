@@ -43,11 +43,7 @@ export default function Index() {
             <Loader />
           ) : (
             <section className={styles.main}>
-              <Carousel
-                accessibility={true}
-                arrows={true}
-                afterChange={onChange}
-              >
+              <Carousel accessibility={true} arrows={true}>
                 {data?.allProducts?.map((product) => {
                   return (
                     <div
