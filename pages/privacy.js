@@ -31,25 +31,28 @@ export default function Privacy() {
       </Head>
       <Layout>
         <section className={styles.privacyContainer}>
-          <ul className={styles.list}>
-            {data?.allPersonalDataProtections?.map((policy, index) => {
-              return (
-                <li key={policy.id}>
-                  <ExpandableText
+          <div className={styles.main}>
+            <h1>Privacy Policy</h1>
+            <ul className={styles.list}>
+              {data?.allPersonalDataProtections?.map((policy, index) => {
+                return (
+                  <li key={policy.id}>
+                    <ExpandableText
                       id={`privacyIconWrapper${index}`}
-                    title={policy.headlinePdp}
-                    paragraph={
-                      <span
-                        dangerouslySetInnerHTML={createMarkup(
-                          policy.paragrapPdp,
-                        )}
-                      />
-                    }
-                  />
-                </li>
-              );
-            })}
-          </ul>
+                      title={policy.headlinePdp}
+                      paragraph={
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            policy.paragrapPdp,
+                          )}
+                        />
+                      }
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </section>
       </Layout>
     </>

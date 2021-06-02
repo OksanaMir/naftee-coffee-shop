@@ -178,12 +178,11 @@ export function ProductOverView({ data }) {
             Add to cart
           </button>
         </article>
-      )}{' '}
+      )}
     </>
   );
 }
 const SELECTORS_QUERY = `query SelectorsQuery{
-
     allSelectors {
      id
       select

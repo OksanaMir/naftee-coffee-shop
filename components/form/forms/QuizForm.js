@@ -1,11 +1,10 @@
-import {Button, Form, Popover, Radio} from 'antd';
-import {useEffect, useRef, useState} from 'react';
-import {i18n, useTranslation} from 'react-i18next';
-import {QuizNavBar} from '../bar/QuizNavBar';
-import {QuizBlockBtns} from '../buttons/QuizBlockBtns';
-import {request} from '../../../lib/datoCMS';
+import { Form, Button, Radio, Popover } from 'antd';
+import { useState, useEffect, useRef } from 'react';
+import { useTranslation, i18n } from 'react-i18next';
+import { QuizNavBar } from '../bar/QuizNavBar';
+import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
+import { request } from '../../../lib/datoCMS';
 import styles from '../../../styles/QuizForm.module.scss';
-
 const layout = {
   labelCol: {
     span: 8,
@@ -21,7 +20,7 @@ const tailLayout = {
   },
 };
 export function QuizForm({ onFinished }) {
-  const {  i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
   const [quiz, setQuiz] = useState([]);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
@@ -31,6 +30,11 @@ export function QuizForm({ onFinished }) {
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
   const ref = useRef(null);
   const [answers, setAnswers] = useState([]);
+  const [chosenMethod, setChosenMetod] = useState(0);
+  const [chosenAmount, setChosenAmount] = useState(0);
+  const [chosenSort, setChosenSort] = useState({});
+  //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
+
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
@@ -50,31 +54,72 @@ export function QuizForm({ onFinished }) {
       });
     });
   }, [i18n.language]);
+
   const chooseOption = (e) => {
     setChosenAnswerValue(e.target.value);
     setChosenAnswerIndex(e.target.index);
   };
+
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
+
   const onContinue = () => {
+    // console.log('on-continue');
+
+    let index = chosenAnswerIndex;
+
+    switch (quizItemIndex) {
+      case 0:
+        setChosenMetod(index);
+        break;
+
+      case 2:
+        setChosenAmount(index);
+        break;
+
+      default:
+        let sorts = { ...chosenSort };
+
+        sorts[index] = 1 + (chosenSort[index] || 0);
+
+        setChosenSort(sorts);
+    }
+
+    // console.log('sort counts', chosenSort);
+
+    // console.log('ans-1', answers, chosenAnswerValue, quizItemIndex);
     setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
     if (isLastQuizItem) {
       return;
     }
-    console.log('ans', answers);
+    // console.log('ans-2', answers);
+    // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
 
+  const chooseInstruction = (e) => {
+    setChosenAnswerIndex(e.target.index);
+  };
+
   const sendAnswers = () => {
-    const results = [
-      ...answers,
-      [chosenAnswerValue, quiz[quizItemIndex].question],
-    ];
-    console.log('send', results);
+    // const results = [
+    //   ...answers,
+    //   [chosenAnswerValue, quiz[quizItemIndex].question],
+    // ];
+
+    console.log('send', chosenSort, chosenAmount, chosenMethod);
+
     onFinished();
   };
+
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
+
+  // console.log(
+  //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
+  //   'popover',
+  // );
+  // console.log(chosenAnswerIndex, 'answer');
 
   return (
     <div className={styles.form}>
@@ -88,7 +133,8 @@ export function QuizForm({ onFinished }) {
         <Form.Item shouldUpdate name="options" noStyle>
           <Radio.Group onChange={chooseOption}>
             {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-              <div key={option}
+              <div
+                key={option}
                 className={styles.radioWrapper}
                 ref={ref}
                 id={`popoverArea${index}`}
@@ -122,7 +168,6 @@ export function QuizForm({ onFinished }) {
                     {option}
                   </Radio>
                 )}
-                g{' '}
               </div>
             ))}
           </Radio.Group>
@@ -149,3 +194,8 @@ const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
       recommendation
     } 
 }`;
+// ?quiz?.[quizItemIndex]
+{
+  /* <p>{quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]}</p>; */
+}
+// :
