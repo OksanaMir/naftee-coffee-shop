@@ -28,10 +28,6 @@ export default function Index() {
       .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
-  function onChange(a, b, c) {
-    console.log(a, b, c);
-  }
-
   return (
     <div className="container">
       <Head>

@@ -38,7 +38,8 @@ export default function Faq() {
                 <li key={faq.id}>
                   {/* props */}
                   <ExpandableText
-                    index={index}
+                    // index={index}
+                    id={`faqIconWrapper${index}`}
                     title={faq.question}
                     // children={
                     //   <div className={styles.social}>
@@ -53,7 +54,7 @@ export default function Faq() {
                     paragraph={
                       <span
                         dangerouslySetInnerHTML={createMarkup(faq.answer)}
-                      ></span>
+                      />
                     }
 
                     // paragraph={faq.answer}

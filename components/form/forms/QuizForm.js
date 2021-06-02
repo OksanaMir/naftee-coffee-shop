@@ -115,14 +115,6 @@ export function QuizForm({ onFinished }) {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
 
-  const text = <span>Title</span>;
-  const content = (
-    <div>
-      <p></p>
-      <p></p>
-    </div>
-  );
-
   // console.log(
   //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
   //   'popover',
@@ -160,7 +152,7 @@ export function QuizForm({ onFinished }) {
                         }
                       </p>
                     }
-                    // trigger={['click']}
+                    trigger={['click']}
                     // visible={true}
                     getPopupContainer={() =>
                       document.getElementById(`popoverArea${index}`)
@@ -176,7 +168,6 @@ export function QuizForm({ onFinished }) {
                     {option}
                   </Radio>
                 )}
-                g{' '}
               </div>
             ))}
           </Radio.Group>

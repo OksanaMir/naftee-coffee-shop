@@ -63,12 +63,8 @@ export function Header() {
                 <LangButton changeLanguage={changeLanguage} language={'EN'} />
               </div>
             </div>
-            <div
-              className={`${styles.shoppingBasket}`}
-              id="snipcartShoppingBasket"
-            >
+            <div className={styles.shoppingBasket} id="snipcartShoppingBasket">
               <div className="snipcart-checkout">
-                {' '}
                 <div className=" snipcartShoppingBasket">
                   <FontAwesomeIcon icon={faShoppingBasket} color={'white'} />
                 </div>

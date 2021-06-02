@@ -20,9 +20,11 @@ export function ProductOverView({ data }) {
     horizontalProductView,
     id,
     prices,
+    quantityWeight,
     taste,
     cuppingScoreRatingSca,
   } = data ?? {};
+  const { productData } = quantityWeight;
   useEffect(() => {
     request({
       query: SELECTORS_QUERY,
