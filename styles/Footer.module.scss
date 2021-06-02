@@ -5,9 +5,10 @@
   position: relative;
 
   .contacts {
-    display: flex;
+    display: none;
     @media (min-width: 450px) {
-      display: none;
+      display: flex;
+      flex-direction: column;
     }
   }
 
