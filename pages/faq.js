@@ -31,7 +31,7 @@ export default function Faq() {
       </Head>
       <Layout>
         <section className={styles.faqContainer}>
-          <h1>Frequently asked questions</h1>
+          <h1>Frequently asked questions.</h1>
           <ul className={styles.list}>
             {data?.allFaqs?.map((faq, index) => {
               return (

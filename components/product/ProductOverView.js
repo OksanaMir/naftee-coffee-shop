@@ -1,12 +1,11 @@
 import Image from 'next/image';
-
-import styles from '../../styles/ProductOverView.module.scss';
 import { Form, InputNumber } from 'antd';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { request } from '../../lib/datoCMS';
-import { SelectComponent } from '../form/select/SelectComponent';
 import { useTranslation } from 'react-i18next';
+import { SelectComponent } from '../form/select/SelectComponent';
+import styles from '../../styles/ProductOverView.module.scss';
 
 export function ProductOverView({ data }) {
   const formRef = useRef(null);

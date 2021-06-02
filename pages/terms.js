@@ -33,7 +33,7 @@ export default function Terms() {
   return (
     <>
       <Head>
-        <title>Terms and Conditions</title>
+        <title>Terms and Conditions.</title>
       </Head>
       <Layout>
         {isLoading ? (

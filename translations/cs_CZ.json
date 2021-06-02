@@ -33,5 +33,9 @@
     "subject": "Subject",
     "message": "Váš vzkaz",
     "button": "Odeslat"
+  },
+  "shopList": {
+    "description": "Popis",
+    "characteristic": "Charakteristiky"
   }
 }

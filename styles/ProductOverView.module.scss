@@ -23,4 +23,20 @@
   h1 {
     font-size: 25px;
   }
+  :global(.snipcart-add-item) {
+    background-color: $borderLight;
+    border: $borderLight;
+    color: $textBlack;
+    width: 7rem;
+    font-family: $fontText;
+    padding: 4px;
+    margin: 15px;
+  }
+  :global(.snipcart-add-item:hover) {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+    font-family: $fontText;
+    padding: 4px;
+    margin: 15px;
+  }
 }

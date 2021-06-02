@@ -34,5 +34,10 @@
     "subject": "Subject",
     "message": "Message",
     "button": "Send"
+  },
+
+  "shopList": {
+    "description": "Description",
+    "characteristic": "Characteristic"
   }
 }
