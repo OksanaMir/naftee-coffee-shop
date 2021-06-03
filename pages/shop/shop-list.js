@@ -45,8 +45,10 @@ export default function ShopList() {
   const onFinish = (values) => {
     console.log(values);
   };
+
   const { allProducts } = productsData || {};
   console.log(selectsData, 'hjsflaaks');
+
   const onMouseEnter = () => {
     setShowItem(!setShowItem);
   };
@@ -60,9 +62,13 @@ export default function ShopList() {
         <title>Shop list</title>
       </Head>
       <Layout>
-        <h1>Shop.</h1>
-        <section className={styles.shopListContainer}>
-          {/* {images.map((image, index) => {
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <h1>Shop.</h1>
+            <section className={styles.shopListContainer}>
+              {/* {images.map((image, index) => {
             return (
               <div className={styles.imageContainer}>
                 <img width={'50%'} alt={'product' + (index + 1)} src={image} />
@@ -70,22 +76,24 @@ export default function ShopList() {
             );
           })} */}
 
-          {allProducts?.map((product) => {
-            return (
-              <div className={styles.container} key={product.id}>
-                <ProductDetail
-                  product={product}
-                  selectWeight={
-                    selectsData?.allSelectors?.[1]?.select?.selectWeight
-                  }
-                  selectMethod={
-                    selectsData?.allSelectors?.[0]?.select?.selectMethod
-                  }
-                />
-              </div>
-            );
-          })}
-        </section>
+              {allProducts?.map((product) => {
+                return (
+                  <div className={styles.container} key={product.id}>
+                    <ProductDetail
+                      product={product}
+                      selectWeight={
+                        selectsData?.allSelectors?.[1]?.select?.selectWeight
+                      }
+                      selectMethod={
+                        selectsData?.allSelectors?.[0]?.select?.selectMethod
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </section>
+          </>
+        )}
       </Layout>
     </>
   );
