@@ -5,6 +5,7 @@ import { Layout } from '../../components/layout/Layout';
 import { useTranslation } from 'react-i18next';
 
 import { useEffect, useState } from 'react';
+import { Loader } from '../../components/ loader/Loader';
 import { request } from '../../lib/datoCMS';
 import { ProductDetail } from '../../components/product/ProductDetail';
 import styles from '../../styles/ShopList.module.scss';
@@ -14,14 +15,18 @@ export default function ShopList() {
   const [productsData, setProductsData] = useState({});
   const [showItem, setShowItem] = useState(false);
   const { i18n } = useTranslation();
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: PRODUCT_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setProductsData(response);
-    });
+    })
+      .then((response) => {
+        setProductsData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
   useEffect(() => {
@@ -49,12 +54,6 @@ export default function ShopList() {
     setShowItem(showItem);
   };
 
-  // const images = [
-  //   '../assets/naftee_zastavka-01.png',
-  //   '../assets/naftee_zastavka-02.png',
-  //   '../assets/naftee_zastavka-03.png',
-  //   '../assets/naftee_zastavka-04.png',
-  // ];
   return (
     <>
       <Head>

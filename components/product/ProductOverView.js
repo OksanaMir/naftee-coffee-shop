@@ -3,6 +3,7 @@ import { Form, InputNumber } from 'antd';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { request } from '../../lib/datoCMS';
+import { Loader } from '../ loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { SelectComponent } from '../form/select/SelectComponent';
 import styles from '../../styles/ProductOverView.module.scss';
@@ -17,6 +18,7 @@ export function ProductOverView({ data }) {
   const [weightSelect, setWeightSelect] = useState(250);
   const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     productName,
@@ -29,12 +31,16 @@ export function ProductOverView({ data }) {
 
   const { productData } = quantityWeight;
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: SELECTORS_QUERY,
       variables: {},
-    }).then((response) => {
-      setSelectsData(response);
-    });
+    })
+      .then((response) => {
+        setSelectsData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleMethodChange = (value) => setMethodSelect(value);
@@ -48,6 +54,7 @@ export function ProductOverView({ data }) {
 
   return (
     <>
+      isLoading ? <Loader /> : (
       {data && (
         <article className={styles.productOverView}>
           <div className={styles.productImg}>
@@ -178,6 +185,7 @@ export function ProductOverView({ data }) {
           </button>
         </article>
       )}
+      )
     </>
   );
 }

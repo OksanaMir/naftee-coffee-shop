@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { request } from '../../lib/datoCMS';
+import { Loader } from '../ loader/Loader';
 import { useState, useEffect } from 'react';
 import { Modal } from 'antd';
 import { useLocalStorageState } from 'ahooks';
@@ -9,6 +10,7 @@ import styles from '../../styles/Footer.module.scss';
 export function Footer() {
   const { i18n } = useTranslation();
   const [data, setData] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(true);
   const [accepted, setAccepted] = useLocalStorageState(
     'cookies-accepted',
@@ -20,72 +22,84 @@ export function Footer() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: COOKIE_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setData(response);
-    });
+    })
+      .then((response) => {
+        setData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
   return (
-    <footer className={styles.footer}>
-      <section className={styles.wrapper}>
-        <ul className={styles.contacts}>
-          <li>
-            <a href="tel:+420776245218">+420 776 245 218</a>
-          </li>
-          <li>
-            <a href="mailto:nafteecoffee@gmail.com">nafteecoffee@gmail.com</a>
-          </li>
-          <li>
-            <address>Czech Budweis, Czech Republic</address>
-          </li>
-        </ul>
-        <ul>
-          <li className={styles.social}>
-            <Link href="https://www.instagram.com/nafteecoffee/">
-              <a className="fa fa-instagram" />
-            </Link>
-            <Link href="https://www.facebook.com/search/top?q=Naftee">
-              <a className="fa fa-facebook" />
-            </Link>
-          </li>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <footer className={styles.footer}>
+          <section className={styles.wrapper}>
+            <ul className={styles.contacts}>
+              <li>
+                <a href="tel:+420776245218">+420 776 245 218</a>
+              </li>
+              <li>
+                <a href="mailto:nafteecoffee@gmail.com">
+                  nafteecoffee@gmail.com
+                </a>
+              </li>
+              <li>
+                <address>Czech Budweis, Czech Republic</address>
+              </li>
+            </ul>
+            <ul>
+              <li className={styles.social}>
+                <Link href="https://www.instagram.com/nafteecoffee/">
+                  <a className="fa fa-instagram" />
+                </Link>
+                <Link href="https://www.facebook.com/search/top?q=Naftee">
+                  <a className="fa fa-facebook" />
+                </Link>
+              </li>
 
-          <li>
-            <Link href="/terms">
-              <a>Terms and Conditions</a>
-            </Link>
-          </li>
+              <li>
+                <Link href="/terms">
+                  <a>Terms and Conditions</a>
+                </Link>
+              </li>
 
-          <li>
-            <Link href="/privacy">
-              <a>Privacy policy</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/faq">
-              <a>FAQ</a>
-            </Link>
-          </li>
-        </ul>
-      </section>
-      {visible && !accepted && (
-        <Modal
-          title={undefined}
-          visible={visible && !accepted}
-          getContainer={false}
-          bodyStyle={{ margin: 0 }}
-          onOk={onAcceptCookies}
-          onCancel={() => setVisible(false)}
-          width={'100%'}
-          mask={null}
-          maskClosable={false}
-        >
-          <p>{data?.cookie?.text}</p>
-        </Modal>
+              <li>
+                <Link href="/privacy">
+                  <a>Privacy policy</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq">
+                  <a>FAQ</a>
+                </Link>
+              </li>
+            </ul>
+          </section>
+          {visible && !accepted && (
+            <Modal
+              title={undefined}
+              visible={visible && !accepted}
+              getContainer={false}
+              bodyStyle={{ margin: 0 }}
+              onOk={onAcceptCookies}
+              onCancel={() => setVisible(false)}
+              width={'100%'}
+              mask={null}
+              maskClosable={false}
+            >
+              <p>{data?.cookie?.text}</p>
+            </Modal>
+          )}
+        </footer>
       )}
-    </footer>
+    </>
   );
 }
 
