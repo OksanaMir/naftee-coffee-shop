@@ -5,19 +5,6 @@
     "weight": "Vaha"
   },
 
-  "order": {
-    "email_for_order_confirmation": "E-mail",
-    "first_name": "Křestní jméno",
-    "last_name": "Příjmení",
-    "company_name": "Název firmy",
-    "country": "Stát",
-    "city": "Město",
-    "address": "Poštovní adresa",
-    "postal_code": "PSČ",
-    "phone": "Telefonní číslo",
-    "post_method": "Pražení",
-    "payment_method": "Způsob platby"
-  },
   "header": {
     "home": "Hlavní stránka",
     "aboutUs": "O nás",

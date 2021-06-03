@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 
 import styles from '../../../styles/ContactForm.module.scss';
 const validateMessages = {
-  required: '${label} is required!',
+  required: '${name} is required!',
   types: {
-    email: '${label} is not a valid email!',
+    email: '${name} is not a valid email!',
   },
 };
 const layout = {
@@ -59,32 +59,16 @@ export function ContactForm() {
       onFinishFailed={onFinishFailed}
       validateMessages={validateMessages}
     >
-      <Form.Item
-        label={t('contacts.userName')}
-        name={'user_name'}
-        rules={[{ required: true }]}
-      >
+      <Form.Item name={'user_name'} rules={[{ required: true }]}>
         <Input placeholder={t('contacts.userName')} />
       </Form.Item>
-      <Form.Item
-        label={t('contacts.email')}
-        name="user_email"
-        rules={[{ type: 'email', required: true }]}
-      >
+      <Form.Item name="user_email" rules={[{ type: 'email', required: true }]}>
         <Input placeholder={t('contacts.email')} />
       </Form.Item>
-      <Form.Item
-        label={t('contacts.subject')}
-        name={'subject'}
-        rules={[{ type: 'string', required: true }]}
-      >
+      <Form.Item name={'subject'} rules={[{ type: 'string', required: true }]}>
         <Input placeholder={t('contacts.subject')} />
       </Form.Item>
-      <Form.Item
-        name="message"
-        label={t('contacts.message')}
-        rules={[{ type: 'string', required: true }]}
-      >
+      <Form.Item name="message" rules={[{ type: 'string', required: true }]}>
         <Input.TextArea placeholder={t('contacts.message')} />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

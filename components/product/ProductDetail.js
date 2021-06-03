@@ -54,7 +54,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           />
         )}
       </div>
-      <p>Taste:{taste}</p>
+      <p>{taste}</p>
       <span className={styles.bottomSection}>
         <ExpandableText
           id={`descriptionIconWrapper${id}`}
@@ -161,7 +161,8 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           ? productData?.[0]?.price
           : weightSelect === 250
           ? productData?.[1]?.price
-          : productData?.[2]?.price) * quantity}
+          : productData?.[2]?.price) * quantity}{' '}
+        Kč
       </h1>
 
       <div className={styles.snipcartAddItem}>
