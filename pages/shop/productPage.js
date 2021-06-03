@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Layout } from '../../components/layout/Layout';
 
 import { useTranslation } from 'react-i18next';
-
+import { Loader } from '../../components/ loader/Loader';
 import { useState, useEffect } from 'react';
 import { request } from '../../lib/datoCMS';
 import { ProductDetail } from '../../components/product/ProductDetail';
@@ -13,18 +13,23 @@ export default function ShopList() {
   const [productsData, setProductsData] = useState({});
   const [showItem, setShowItem] = useState(false);
   const { i18n } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     request({
       query: PRODUCT_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setProductsData(response);
-    });
+    })
+      .then((response) => {
+        setProductsData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
   console.log(productsData, 'dataIndex');
 
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: SELECTORS_QUERY,
       variables: {},
@@ -55,6 +60,7 @@ export default function ShopList() {
         <title>Shop list</title>
       </Head>
       <Layout>
+        isLoading ? <Loader /> : (
         {allProducts?.map((product) => {
           return (
             <div className={styles.container} key={product.id}>
@@ -70,6 +76,7 @@ export default function ShopList() {
             </div>
           );
         })}
+        )
       </Layout>
     </>
   );

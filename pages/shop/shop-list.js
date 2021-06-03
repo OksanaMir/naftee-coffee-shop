@@ -5,6 +5,7 @@ import { Layout } from '../../components/layout/Layout';
 import { useTranslation } from 'react-i18next';
 
 import { useEffect, useState } from 'react';
+import { Loader } from '../../components/ loader/Loader';
 import { request } from '../../lib/datoCMS';
 import { ProductDetail } from '../../components/product/ProductDetail';
 import styles from '../../styles/ShopList.module.scss';
@@ -14,14 +15,18 @@ export default function ShopList() {
   const [productsData, setProductsData] = useState({});
   const [showItem, setShowItem] = useState(false);
   const { i18n } = useTranslation();
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: PRODUCT_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setProductsData(response);
-    });
+    })
+      .then((response) => {
+        setProductsData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
 
   useEffect(() => {
@@ -40,8 +45,10 @@ export default function ShopList() {
   const onFinish = (values) => {
     console.log(values);
   };
+
   const { allProducts } = productsData || {};
   console.log(selectsData, 'hjsflaaks');
+
   const onMouseEnter = () => {
     setShowItem(!setShowItem);
   };
@@ -49,21 +56,19 @@ export default function ShopList() {
     setShowItem(showItem);
   };
 
-  // const images = [
-  //   '../assets/naftee_zastavka-01.png',
-  //   '../assets/naftee_zastavka-02.png',
-  //   '../assets/naftee_zastavka-03.png',
-  //   '../assets/naftee_zastavka-04.png',
-  // ];
   return (
     <>
       <Head>
         <title>Shop list</title>
       </Head>
       <Layout>
-        <h1>Shop.</h1>
-        <section className={styles.shopListContainer}>
-          {/* {images.map((image, index) => {
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <h1>Shop.</h1>
+            <section className={styles.shopListContainer}>
+              {/* {images.map((image, index) => {
             return (
               <div className={styles.imageContainer}>
                 <img width={'50%'} alt={'product' + (index + 1)} src={image} />
@@ -71,22 +76,24 @@ export default function ShopList() {
             );
           })} */}
 
-          {allProducts?.map((product) => {
-            return (
-              <div className={styles.container} key={product.id}>
-                <ProductDetail
-                  product={product}
-                  selectWeight={
-                    selectsData?.allSelectors?.[1]?.select?.selectWeight
-                  }
-                  selectMethod={
-                    selectsData?.allSelectors?.[0]?.select?.selectMethod
-                  }
-                />
-              </div>
-            );
-          })}
-        </section>
+              {allProducts?.map((product) => {
+                return (
+                  <div className={styles.container} key={product.id}>
+                    <ProductDetail
+                      product={product}
+                      selectWeight={
+                        selectsData?.allSelectors?.[1]?.select?.selectWeight
+                      }
+                      selectMethod={
+                        selectsData?.allSelectors?.[0]?.select?.selectMethod
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </section>
+          </>
+        )}
       </Layout>
     </>
   );

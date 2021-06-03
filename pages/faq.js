@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 
 import { Layout } from '../components/layout/Layout';
+import { Loader } from '../components/ loader/Loader';
 import { ExpandableText } from '../components/expandableText/ExpandableText';
 import { request } from '../lib/datoCMS';
 import styles from '../styles/Faq.module.scss';
@@ -11,14 +12,20 @@ import styles from '../styles/Faq.module.scss';
 export default function Faq() {
   const { i18n } = useTranslation();
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+
     request({
       query: FAQ_QUERY,
       variables: { locale: i18n.language },
-    }).then((response) => {
-      setData(response);
-    });
+    })
+      .then((response) => {
+        setData(response);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, [i18n.language]);
   function createMarkup(answer) {
     return { __html: `${answer}` };
@@ -30,40 +37,44 @@ export default function Faq() {
         <title>FAQ</title>
       </Head>
       <Layout>
-        <section className={styles.faqContainer}>
-          <h1>Frequently asked questions.</h1>
-          <ul className={styles.list}>
-            {data?.allFaqs?.map((faq, index) => {
-              return (
-                <li key={faq.id}>
-                  {/* props */}
-                  <ExpandableText
-                    // index={index}
-                    id={`faqIconWrapper${index}`}
-                    title={faq.question}
-                    // children={
-                    //   <div className={styles.social}>
-                    //     <Link href="https://www.instagram.com/nafteecoffee/">
-                    //       <a className="fa fa-instagram" />
-                    //     </Link>
-                    //     <Link href="https://www.facebook.com/search/top?q=Naftee">
-                    //       <a className="fa fa-facebook" />
-                    //     </Link>
-                    //   </div>
-                    // }
-                    paragraph={
-                      <span
-                        dangerouslySetInnerHTML={createMarkup(faq.answer)}
-                      />
-                    }
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <section className={styles.faqContainer}>
+            <h1>Frequently asked questions.</h1>
+            <ul className={styles.list}>
+              {data?.allFaqs?.map((faq, index) => {
+                return (
+                  <li key={faq.id}>
+                    {/* props */}
+                    <ExpandableText
+                      // index={index}
+                      id={`faqIconWrapper${index}`}
+                      title={faq.question}
+                      // children={
+                      //   <div className={styles.social}>
+                      //     <Link href="https://www.instagram.com/nafteecoffee/">
+                      //       <a className="fa fa-instagram" />
+                      //     </Link>
+                      //     <Link href="https://www.facebook.com/search/top?q=Naftee">
+                      //       <a className="fa fa-facebook" />
+                      //     </Link>
+                      //   </div>
+                      // }
+                      paragraph={
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(faq.answer)}
+                        />
+                      }
 
-                    // paragraph={faq.answer}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+                      // paragraph={faq.answer}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
       </Layout>
     </>
   );

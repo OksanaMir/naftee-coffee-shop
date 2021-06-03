@@ -15,6 +15,19 @@ export default function QuizPage() {
   const onFinished = () => {
     setIsfinished(true);
   };
+  const ResultBlock = (onFinished) => {
+    return (
+      <div>
+        Best choice for you:
+        <br />
+        sort ""
+        <br />
+        method ""
+        <br />
+        package ""
+      </div>
+    );
+  };
 
   return (
     <>
@@ -38,7 +51,7 @@ export default function QuizPage() {
                 <Result
                   icon={<CoffeeOutlined />}
                   title="Thank you for answering questions!"
-                  subTitle="Your best coffee choice is ''."
+                  subTitle={<ResultBlock />}
                   extra={[
                     <Button type="primary" key="home">
                       Back

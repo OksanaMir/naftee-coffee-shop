@@ -110,14 +110,14 @@ export function QuizForm({ onFinished }) {
   };
 
   const sendAnswers = () => {
-    // const results = [
-    //   ...answers,
-    //   [chosenAnswerValue, quiz[quizItemIndex].question],
-    // ];
+    const results = [
+      ...answers,
+      [chosenAnswerValue, quiz[quizItemIndex].question],
+    ];
 
     console.log('send', chosenSort, chosenAmount, chosenMethod);
 
-    onFinished();
+    onFinished(sendAnswers);
   };
 
   const FormQuestion = () => {
