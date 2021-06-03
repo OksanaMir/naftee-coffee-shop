@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from '../../../styles/ContactForm.module.scss';
-
 export function ContactForm() {
   const { t } = useTranslation();
   const [form] = Form.useForm();
