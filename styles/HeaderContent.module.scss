@@ -61,6 +61,8 @@
   font-family: $fontHeader;
   font-size: 35px;
   line-height: 1;
+  position: absolute;
+
   @media (min-width: 760px) {
     display: none;
   }

@@ -1,8 +1,11 @@
 @import 'variables';
 .form {
-  width: 80%;
+  width: 100%;
   :global(.ant-form-item-label > label) {
     color: $textWhite;
+  }
+  :global(.ant-col ant-col-8 ant-form-item-label) {
+    padding-right: 0;
   }
   :global(.ant-form-item-label
       > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
@@ -16,6 +19,10 @@
     font-family: $fontText;
     padding: 0;
     margin: 15px;
+  }
+  :global(.ant-input) {
+    background-color: rgb(243, 222, 237);
+    color: $primary !important;
   }
   :global(.ant-btn-primary:hover) {
     background-color: rgb(136, 129, 175);

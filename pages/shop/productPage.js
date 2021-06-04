@@ -16,6 +16,7 @@ export default function ShopList() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: PRODUCT_QUERY,
       variables: { locale: i18n.language },

@@ -46,6 +46,7 @@ export default function AboutUs() {
                 <img alt="about us" src="../assets/aboutUs.jpg" />
 
                 <span
+                  className={styles.paragraphWrapper}
                   dangerouslySetInnerHTML={createMarkup(data.about.history)}
                 />
 

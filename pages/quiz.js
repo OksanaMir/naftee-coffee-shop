@@ -1,40 +1,40 @@
 import Head from 'next/head';
-
 import { QuizForm } from '../components/form/forms/QuizForm';
 import { useState } from 'react';
 import { Button, Result } from 'antd';
-
 import { CoffeeOutlined } from '@ant-design/icons';
-
 import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Quiz.module.scss';
-
 export default function QuizPage() {
   const [isFinished, setIsfinished] = useState(false);
-
+  const [answers, setAnswers] = useState([]);
   const onFinished = () => {
     setIsfinished(true);
   };
-  const ResultBlock = (onFinished) => {
+  const ResultBlock = () => {
     return (
-      <div>
-        Best choice for you:
-        <br />
-        sort ""
-        <br />
-        method ""
-        <br />
-        package ""
-      </div>
+      <>
+        <div>
+          Best choice for you:
+          <br />
+          sort: {answers[1]}, {answers[3]}, {answers[4]}
+          <br />
+          method: {answers[0]}
+          <br />
+          package: {answers[2]}
+        </div>
+        <span>
+          If you got more than one sort in quiz results we recommend you to buy
+          a pack of varieties first.
+        </span>
+      </>
     );
   };
-
   return (
     <>
       <Head>
         <title>Quiz</title>
       </Head>
-
       <Layout>
         <section className={styles.quizContainer}>
           {!isFinished ? (
@@ -43,7 +43,11 @@ export default function QuizPage() {
               <h3 className={styles.invitation}>
                 Answer the questions below to make your choice easier.
               </h3>
-              <QuizForm onFinished={onFinished} />
+              <QuizForm
+                onFinished={onFinished}
+                answers={answers}
+                setAnswers={setAnswers}
+              />
             </div>
           ) : (
             <>

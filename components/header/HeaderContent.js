@@ -35,11 +35,11 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
           <a>{t('header.quiz')}</a>
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link href="/">
           <a>{t('header.nafteeBar')}</a>
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link href="/contact">
           <a>{t('header.contacts')}</a>
