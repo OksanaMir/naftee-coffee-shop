@@ -4,7 +4,6 @@ import { useTranslation, i18n } from 'react-i18next';
 import { QuizNavBar } from '../bar/QuizNavBar';
 import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
 import { Loader } from '../../../components/ loader/Loader';
-
 import { request } from '../../../lib/datoCMS';
 import styles from '../../../styles/QuizForm.module.scss';
 const layout = {
@@ -21,7 +20,7 @@ const tailLayout = {
     span: 16,
   },
 };
-export function QuizForm({ onFinished }) {
+export function QuizForm({ onFinished, answers, setAnswers }) {
   const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
   const [quiz, setQuiz] = useState([]);
@@ -31,22 +30,17 @@ export function QuizForm({ onFinished }) {
   );
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
   const ref = useRef(null);
-  const [answers, setAnswers] = useState([]);
   const [chosenMethod, setChosenMetod] = useState(0);
   const [chosenAmount, setChosenAmount] = useState(0);
   const [chosenSort, setChosenSort] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
   //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
-
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
   }, [quizItemIndex]);
-
   useEffect(() => {
     setIsLoading(true);
-
     request({
       query: QUIZ_QUERY,
       variables: { locale: i18n.language },
@@ -55,7 +49,6 @@ export function QuizForm({ onFinished }) {
         setQuizItemIndex(0);
         setQuiz(response?.allCoffeeQuizzes);
         setChosenAnswerValue(response?.allCoffeeQuizzes?.[0]?.option[0]);
-
         form.setFieldsValue({
           options: response?.allCoffeeQuizzes?.[0]?.option[0],
         });
@@ -63,40 +56,19 @@ export function QuizForm({ onFinished }) {
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }, [i18n.language]);
-
   const chooseOption = (e) => {
     setChosenAnswerValue(e.target.value);
     setChosenAnswerIndex(e.target.index);
   };
-
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
-
   const onContinue = () => {
     // console.log('on-continue');
-
-    let index = chosenAnswerIndex;
-
-    switch (quizItemIndex) {
-      case 0:
-        setChosenMetod(index);
-        break;
-
-      case 2:
-        setChosenAmount(index);
-        break;
-
-      default:
-        let sorts = { ...chosenSort };
-
-        sorts[index] = 1 + (chosenSort[index] || 0);
-
-        setChosenSort(sorts);
-    }
-
     // console.log('sort counts', chosenSort);
-
     // console.log('ans-1', answers, chosenAnswerValue, quizItemIndex);
-    setAnswers([...answers, [chosenAnswerValue, quiz[quizItemIndex].question]]);
+    setAnswers([
+      ...answers,
+      quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
+    ]);
     if (isLastQuizItem) {
       return;
     }
@@ -104,49 +76,26 @@ export function QuizForm({ onFinished }) {
     // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
-
   const chooseInstruction = (e) => {
     setChosenAnswerIndex(e.target.index);
-    const allRecommendation =[];
-    quiz[quizItemIndex].option.map((option, index)=>{allRecommendation.push(quiz.[quizItemIndex].recommendation.[chosenAnswerIndex])}
-
   };
-  const map1 = new Map();
-  map1.set('bar', 'foo');
-  
-  console.log(map1.get('bar'));
-  // expected output: "foo"
-  
-  console.log(map1.get('baz'));
-  // expected output: undefined
-  
-  Map.prototype.set(key, value)
-
-  // const chooseRecommendation = (e) => {
-  //   setChosenAnswerIndex(e.target.index);
-  // };
-  
-
-
   const sendAnswers = () => {
     const results = [
       ...answers,
-      [chosenAnswerValue, quiz[quizItemIndex].question],
+      quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
     ];
-
-    console.log('send', chosenSort, chosenAmount, chosenMethod);
-
-    onFinished(sendAnswers);
+    setAnswers(results);
+    console.log('send', results);
+    onFinished();
   };
-
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
-
   // console.log(
+  //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
+  //   'popover',
   // );
   // console.log(chosenAnswerIndex, 'answer');
-
   return (
     <>
       {isLoading ? (
@@ -216,5 +165,13 @@ export function QuizForm({ onFinished }) {
     </>
   );
 }
-
-
+const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
+{
+  allCoffeeQuizzes(locale:$locale) {
+      id
+      question
+      option
+      instruction
+      recommendation
+    } 
+}`;
