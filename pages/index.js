@@ -36,42 +36,44 @@ export default function Index() {
       </Head>
 
       <Layout>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <main>
-            <div className={styles.mainPhoto}>
-              <LandingPageAboutUs />
-            </div>
-            {isMobile ? (
-              <section className={styles.mainMobile}>
-                <Carousel accessibility={true} arrows={true}>
-                  {data?.allProducts?.map((product) => {
-                    return (
-                      <div
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                        key={product.id}
-                      >
-                        <ProductOverView key={product.id} data={product} />
-                      </div>
-                    );
-                  })}
-                </Carousel>
-              </section>
-            ) : (
-              <section className={styles.mainDesctop}>
-                {data?.allProducts?.map((product) => (
-                  <ProductTeaser key={product.id} data={product} />
-                ))}
-              </section>
-            )}
-          </main>
-        )}
+        <main>
+          <div className={styles.mainPhoto}>
+            <LandingPageAboutUs />
+          </div>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              {isMobile ? (
+                <section className={styles.mainMobile}>
+                  <Carousel accessibility={true} arrows={true}>
+                    {data?.allProducts?.map((product) => {
+                      return (
+                        <div
+                          style={{
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                          key={product.id}
+                        >
+                          <ProductOverView key={product.id} data={product} />
+                        </div>
+                      );
+                    })}
+                  </Carousel>
+                </section>
+              ) : (
+                <section className={styles.mainDesctop}>
+                  {data?.allProducts?.map((product) => (
+                    <ProductTeaser key={product.id} data={product} />
+                  ))}
+                </section>
+              )}
+            </>
+          )}
+        </main>
       </Layout>
     </div>
   );

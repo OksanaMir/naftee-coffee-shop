@@ -43,7 +43,7 @@ export default function AboutUs() {
             <section className={styles.aboutUsContainer}>
               <h1>About us.</h1>
               <section className={styles.aboutSection}>
-                <img alt="about us" src="../assets/aboutUs.jpg" />
+                <img alt="About us" src="../assets/AboutUs.jpg" />
 
                 <span
                   className={styles.paragraphWrapper}
