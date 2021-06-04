@@ -24,5 +24,10 @@
   "shopList": {
     "description": "Popis",
     "characteristic": "Charakteristiky"
+  },
+
+  "quantaty": {
+    "outOfStock": "Vyprodáno",
+    "inStock": "Skladem"
   }
 }

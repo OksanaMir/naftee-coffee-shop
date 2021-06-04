@@ -48,7 +48,7 @@ export function Header() {
               <img
                 alt={'logo'}
                 className={styles.logo}
-                src="/assets/naftee_specialty_logo.png"
+                src="/assets/naftee_logo_mobile.png"
               />
             </a>
           </Link>

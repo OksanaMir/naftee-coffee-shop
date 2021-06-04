@@ -1,12 +1,20 @@
 @import 'variables';
 .productDetail {
+  :global(.ant-form-item-label > label) {
+    color: $textWhite;
+  }
+  :global(.ant-form-item-label
+      > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
+    color: $primary;
+  }
   .topSection {
     margin-bottom: 15px;
     img {
       width: 50rem;
+      box-shadow: 0 6px 7px rgba(0, 0, 0, 0.15);
     }
     h1 {
-      font-size: xx-large;
+      font-size: 1rem;
     }
     text-align: center;
   }
@@ -79,20 +87,30 @@
     font-weight: 900;
     font-size: xx-large;
   }
+  p {
+    text-align: left;
+  }
+  :global(.ant-select-selection) {
+    background-color: $borderLight;
+  }
+
+  :global(.ant-input-number) {
+    background-color: $borderLight;
+  }
+
   :global(.snipcart-add-item) {
     background-color: $borderLight;
     border: $borderLight;
     color: $textBlack;
-    width: 7rem;
+    width: 9rem;
     font-family: $fontText;
-    padding: 4px;
-    margin: 15px;
+    padding: 9px;
   }
   :global(.snipcart-add-item:hover) {
     background-color: rgb(136, 129, 175);
     color: $textWhite;
     font-family: $fontText;
-    padding: 4px;
+    padding: 9px;
     margin: 15px;
   }
 }

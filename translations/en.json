@@ -25,5 +25,10 @@
   "shopList": {
     "description": "Description",
     "characteristic": "Characteristic"
+  },
+
+  "quantaty": {
+    "outOfStock": "Out of stock",
+    "inStock": "In stock"
   }
 }
