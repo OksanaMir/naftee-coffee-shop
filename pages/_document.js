@@ -5,6 +5,10 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+<<<<<<< HEAD
+=======
+          <title>Naftee coffee shop</title>
+>>>>>>> Checkout
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://app.snipcart.com" />
           <link rel="preconnect" href="https://cdn.snipcart.com" />

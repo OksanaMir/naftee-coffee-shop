@@ -153,7 +153,7 @@ export function ProductOverView({ data }) {
                   ? productData?.[0]?.price
                   : weightSelect === 250
                   ? productData?.[1]?.price
-                  : productData?.[2]?.price) * quantity}{' '}
+                  : productData?.[2]?.price) * quantity}
                 Kč
               </p>
               <button
