@@ -13,7 +13,7 @@ export default function(req, res) {
         },
         {
             "id": "38162386",
-            "price": 100.00,
+            "price": 110.00,
             "url": "https://naftee-coffee-shop.vercel.app/api/products",
             "customFields": [
                 {

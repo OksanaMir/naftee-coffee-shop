@@ -21,7 +21,6 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
     horizontalProductView,
     id,
     taste,
-    prices,
     quantityWeight,
     cuppingScoreRatingSca,
   } = product;
@@ -176,7 +175,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
                       ? productData?.[1]?.price
                       : productData?.[2]?.price)
           }
-          data-item-url={"/"}
+          data-item-url={router?.pathname }
           data-item-description={taste}
           data-item-image={horizontalProductView.url}
           data-item-name={productName}

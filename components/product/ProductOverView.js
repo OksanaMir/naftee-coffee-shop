@@ -54,8 +54,8 @@ export function ProductOverView({ data }) {
 
   return (
     <>
-      isLoading ? <Loader /> : (
-      {data && (
+      {isLoading ? <Loader /> : (
+      <>{data && (
         <article className={styles.productOverView}>
           <div className={styles.productImg}>
             <h1>{productName}</h1>
@@ -169,7 +169,7 @@ export function ProductOverView({ data }) {
                 ? productData?.[1]?.price
                 : productData?.[2]?.price
             }
-            data-item-url={'/'}
+            data-item-url={router?.pathname}
             data-item-image={horizontalProductView.url}
             data-item-name={productName}
             data-item-description={taste}
@@ -184,8 +184,8 @@ export function ProductOverView({ data }) {
             Add to cart
           </button>
         </article>
+      )}</>
       )}
-      )
     </>
   );
 }
