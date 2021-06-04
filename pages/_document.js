@@ -1,11 +1,11 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
-            <title>Naftee coffee shop</title>
+          <title>Naftee coffee shop</title>
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://app.snipcart.com" />
           <link rel="preconnect" href="https://cdn.snipcart.com" />
@@ -22,13 +22,13 @@ class MyDocument extends Document {
             src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"
           />
           <div
-              hidden
-              id="snipcart"
-              // data-config-modal-style="side"
-              data-api-key="YmM2YzIwOTEtMDZjZi00NTk2LTg4OWItZGUxMjU4ZWVkM2ExNjM3NTY5NTIzNTU2Mzc2ODgz"
+            hidden
+            id="snipcart"
+            // data-config-modal-style="side"
+            data-api-key="YmM2YzIwOTEtMDZjZi00NTk2LTg4OWItZGUxMjU4ZWVkM2ExNjM3NTY5NTIzNTU2Mzc2ODgz"
           >
-              <billing section="bottom">
-                  {/* <div className="root">
+            <billing section="bottom">
+              {/* <div className="root">
             <form id="snipcart-billing-address-form" className="snipcart-form">
               <div className="snipcart__box">
                 <div className="snipcart__box--header">
@@ -41,15 +41,15 @@ class MyDocument extends Document {
                     </h1>
                   </div>
                 </div>*/}
-                  {/* <div className="snipcart-shipping-address--readonly">
+              {/* <div className="snipcart-shipping-address--readonly">
                   <div className="snipcart-shipping-address__header--readonly"> */}
-                  <fieldset className="snipcart-form__set">
-                      <div className={"snipcart-form__field"}>
-                          <snipcart-label htmlFor="phone">Phone number</snipcart-label>
-                          <snipcart-input name="phone"/>
-                      </div>
+              <fieldset className="snipcart-form__set">
+                <div className={'snipcart-form__field'}>
+                  <snipcart-label htmlFor="phone">Phone number</snipcart-label>
+                  <snipcart-input name="phone" />
+                </div>
 
-                      {/* <div className="snipcart-form__field">
+                {/* <div className="snipcart-form__field">
               <snipcart-label for="country">Country</snipcart-label>
               <snipcart-typeahead
                 type="dropdown"
@@ -89,13 +89,13 @@ class MyDocument extends Document {
               <snipcart-input name="postalCode"></snipcart-input>
               <snipcart-error-message name="postalCode"></snipcart-error-message>
             </div> */}
-                  </fieldset>
-                  {/* </div>
+              </fieldset>
+              {/* </div>
                 </div> */}
-                  {/* </div>
+              {/* </div>
             </form>
           </div> */}
-              </billing>
+            </billing>
           </div>
         </body>
       </Html>

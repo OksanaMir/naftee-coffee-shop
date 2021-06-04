@@ -176,7 +176,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               ? prices?.prices[1]
               : prices?.prices[2]
           }
-          data-item-url={router?.pathname || ''}
+          data-item-url={'https://naftee-coffee-shop.vercel.app/shop/shop-list'}
           data-item-description={taste}
           data-item-image={horizontalProductView.url}
           data-item-name={productName}

@@ -20,12 +20,12 @@ body {
     font-family: $fontText;
     text-align: center;
   }
-  :global(.__next) {
-    @media (min-width: 760px) {
-      height: 100vh;
-    }
-  }
-  :global(.snipcart-modal__container) {
+  // :global(.__next) {
+  //   @media (min-width: 760px) {
+  //     height: 100vh;
+  //   }
+  // }
+  .snipcart-modal__container {
     //  won't work
     margin-top: 3rem;
   }
