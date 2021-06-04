@@ -62,11 +62,11 @@ export default function ShopList() {
         <title>Shop list</title>
       </Head>
       <Layout>
+        <h1>Shop.</h1>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            <h1>Shop.</h1>
             <section className={styles.shopListContainer}>
               {/* {images.map((image, index) => {
             return (
