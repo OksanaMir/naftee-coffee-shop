@@ -6,6 +6,10 @@ class MyDocument extends Document {
       <Html>
         <Head>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+          <title>Naftee coffee shop</title>
+>>>>>>> Checkout
 =======
           <title>Naftee coffee shop</title>
 >>>>>>> Checkout
