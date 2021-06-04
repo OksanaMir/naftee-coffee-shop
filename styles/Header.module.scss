@@ -61,13 +61,15 @@
       }
     }
   }
+
   .burgerMenu {
     display: flex;
     align-items: center;
-
+    position: relative;
     svg {
-      width: 1rem;
-      height: 1rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      padding-right: 10px;
     }
 
     @media (min-width: 760px) {

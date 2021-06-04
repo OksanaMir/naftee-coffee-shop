@@ -1,35 +1,71 @@
 .aboutUsContainer {
-  margin-bottom: 15px;
+  margin-bottom: 25px !important;
+
   h1 {
-    font-size: xx-large;
+    font-size: 3rem;
   }
   img {
     width: 100%;
     margin: auto;
   }
+
+  p {
+    font-size: 1rem;
+    padding: 0 !important;
+  }
   .aboutSection {
     p {
       line-height: 2;
       margin: 15px;
+      text-align: left;
+      padding: 0 3rem 0 3rem;
     }
   }
   @media (min-width: 760px) {
-    margin: 15px;
     .aboutSection {
       display: flex;
       align-items: center;
+      padding: 2rem 0 !important;
       img {
-        width: 80%;
-        margin-right: 15px;
+        height: 90%;
+        margin-right: 0 !important;
+        padding: 0.5rem 2rem;
+      }
+
+      .paragraphWrapper {
+        height: 100%;
+        padding: 2rem 2rem 2rem 0 !important;
+        margin: auto;
+        p {
+          text-align: left;
+        }
       }
     }
   }
   @media (min-width: 1500px) {
-    width: 70%;
-    margin: 0 auto;
+    img {
+      width: 30vw;
+      margin: 0 auto;
+      padding: 6rem 12rem 6rem 12rem;
+    }
     .aboutSection {
       p {
         padding: 0 100px;
+        font-size: 1.65rem;
+        padding-left: 3rem;
+      }
+    }
+  }
+  @media (min-width: 2500px) {
+    img {
+      width: 20vw;
+      margin: 0 auto;
+      padding: 12rem 24rem 12rem 24rem;
+    }
+    .aboutSection {
+      p {
+        padding: 0 100px;
+        font-size: 2rem;
       }
     }
   }

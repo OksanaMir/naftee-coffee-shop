@@ -76,7 +76,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         />
       </span>
 
-      <div>
+      <div className={styles.inputBlock}>
         <Form
           initialValues={{ amount: 1 }}
           ref={formRef}
