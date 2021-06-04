@@ -169,7 +169,7 @@ export function ProductOverView({ data }) {
                 ? productData?.[1]?.price
                 : productData?.[2]?.price
             }
-            data-item-url={'https://naftee-coffee-shop.vercel.app/'}
+            data-item-url={'/'}
             data-item-image={horizontalProductView.url}
             data-item-name={productName}
             data-item-description={taste}

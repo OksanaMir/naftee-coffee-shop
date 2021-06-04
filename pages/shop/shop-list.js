@@ -110,13 +110,9 @@ const SELECTORS_QUERY = `query SelectorsQuery{
 
 const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
   allProducts(locale: $locale) {
-    amount
     taste
     productName
-    method
-    select
     id
-    prices
     quantityWeight
     productPhoto{
       alt
@@ -142,7 +138,6 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
       width
       height
     }
-    price
     cuppingScoreRatingSca
     description
     characteristic

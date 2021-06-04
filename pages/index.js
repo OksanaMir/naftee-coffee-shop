@@ -80,11 +80,8 @@ export default function Index() {
 }
 const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
   allProducts(locale: $locale) {
-    amount
     taste
     productName
-    method
-    select
     id
     quantityWeight 
     horizontalProductView {
@@ -103,8 +100,6 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
       width
       height
     }
-    price
-    prices
     cuppingScoreRatingSca
   
   }
