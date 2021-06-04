@@ -107,7 +107,26 @@ export function QuizForm({ onFinished }) {
 
   const chooseInstruction = (e) => {
     setChosenAnswerIndex(e.target.index);
+    const allRecommendation =[];
+    quiz[quizItemIndex].option.map((option, index)=>{allRecommendation.push(quiz.[quizItemIndex].recommendation.[chosenAnswerIndex])}
+
   };
+  const map1 = new Map();
+  map1.set('bar', 'foo');
+  
+  console.log(map1.get('bar'));
+  // expected output: "foo"
+  
+  console.log(map1.get('baz'));
+  // expected output: undefined
+  
+  Map.prototype.set(key, value)
+
+  // const chooseRecommendation = (e) => {
+  //   setChosenAnswerIndex(e.target.index);
+  // };
+  
+
 
   const sendAnswers = () => {
     const results = [
@@ -125,8 +144,6 @@ export function QuizForm({ onFinished }) {
   };
 
   // console.log(
-  //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
-  //   'popover',
   // );
   // console.log(chosenAnswerIndex, 'answer');
 
@@ -199,13 +216,5 @@ export function QuizForm({ onFinished }) {
     </>
   );
 }
-const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
-{
-  allCoffeeQuizzes(locale:$locale) {
-      id
-      question
-      option
-      instruction
-      recommendation
-    } 
-}`;
+
+

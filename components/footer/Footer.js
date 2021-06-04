@@ -36,69 +36,71 @@ export function Footer() {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <footer className={styles.footer}>
-          <section className={styles.wrapper}>
-            <ul className={styles.contacts}>
-              <li>
-                <a href="tel:+420776245218">+420 776 245 218</a>
-              </li>
-              <li>
-                <a href="mailto:nafteecoffee@gmail.com">
-                  nafteecoffee@gmail.com
-                </a>
-              </li>
-              <li>
-                <address>Czech Budweis, Czech Republic</address>
-              </li>
-            </ul>
-            <ul>
-              <li className={styles.social}>
-                <Link href="https://www.instagram.com/nafteecoffee/">
-                  <a className="fa fa-instagram" />
-                </Link>
-                <Link href="https://www.facebook.com/search/top?q=Naftee">
-                  <a className="fa fa-facebook" />
-                </Link>
-              </li>
+      <footer className={styles.footer}>
+        <section className={styles.wrapper}>
+          <ul className={styles.contacts}>
+            <li>
+              <a href="tel:+420776245218">+420 776 245 218</a>
+            </li>
+            <li>
+              <a href="mailto:nafteecoffee@gmail.com">nafteecoffee@gmail.com</a>
+            </li>
+            <li>
+              <address>Czech Budweis, Czech Republic</address>
+            </li>
+          </ul>
+          <ul>
+            <li className={styles.social}>
+              <Link href="https://www.instagram.com/nafteecoffee/">
+                <a className="fa fa-instagram" />
+              </Link>
+              <Link href="https://www.facebook.com/search/top?q=Naftee">
+                <a className="fa fa-facebook" />
+              </Link>
+            </li>
 
-              <li>
-                <Link href="/terms">
-                  <a>Terms and Conditions</a>
-                </Link>
-              </li>
+            <li>
+              <Link href="/terms">
+                <a>Terms and Conditions</a>
+              </Link>
+            </li>
 
-              <li>
-                <Link href="/privacy">
-                  <a>Privacy policy</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq">
-                  <a>FAQ</a>
-                </Link>
-              </li>
-            </ul>
-          </section>
-          {visible && !accepted && (
-            <Modal
-              title={undefined}
-              visible={visible && !accepted}
-              getContainer={false}
-              bodyStyle={{ margin: 0 }}
-              onOk={onAcceptCookies}
-              onCancel={() => setVisible(false)}
-              width={'100%'}
-              mask={null}
-              maskClosable={false}
-            >
-              <p>{data?.cookie?.text}</p>
-            </Modal>
-          )}
-        </footer>
-      )}
+            <li>
+              <Link href="/privacy">
+                <a>Privacy policy</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/faq">
+                <a>FAQ</a>
+              </Link>
+            </li>
+          </ul>
+        </section>
+        (
+        {visible && !accepted && (
+          <>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <Modal
+                title={undefined}
+                visible={visible && !accepted}
+                getContainer={false}
+                bodyStyle={{ margin: 0 }}
+                onOk={onAcceptCookies}
+                onCancel={() => setVisible(false)}
+                width={'100%'}
+                mask={null}
+                maskClosable={false}
+              >
+                <p>{data?.cookie?.text}</p>
+              </Modal>
+            )}
+          </>
+        )}
+        )
+      </footer>
     </>
   );
 }

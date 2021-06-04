@@ -15,6 +15,7 @@ export default function ContactFormPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     request({
       query: CONTACT_QUERY,
       variables: { locale: i18n.language },
