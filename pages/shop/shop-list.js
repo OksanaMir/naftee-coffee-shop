@@ -1,42 +1,42 @@
 import Head from 'next/head';
 
-import { Layout } from '../../components/layout/Layout';
+import {Layout} from '../../components/layout/Layout';
 
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { useEffect, useState } from 'react';
-import { Loader } from '../../components/ loader/Loader';
-import { request } from '../../lib/datoCMS';
-import { ProductDetail } from '../../components/product/ProductDetail';
+import {useState} from 'react';
+import {Loader} from '../../components/ loader/Loader';
+import {request} from '../../lib/datoCMS';
+import {ProductDetail} from '../../components/product/ProductDetail';
 import styles from '../../styles/ShopList.module.scss';
 
-export default function ShopList() {
-  const [selectsData, setSelectsData] = useState({});
-  const [productsData, setProductsData] = useState({});
+export default function ShopList({ selectsData, productsData }) {
+  // const [selectsData, setSelectsData] = useState({});
+  // const [productsData, setProductsData] = useState({});
   const [showItem, setShowItem] = useState(false);
   const { i18n } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);
-    request({
-      query: PRODUCT_QUERY,
-      variables: { locale: i18n.language },
-    })
-      .then((response) => {
-        setProductsData(response);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [i18n.language]);
-
-  useEffect(() => {
-    request({
-      query: SELECTORS_QUERY,
-      variables: {},
-    }).then((response) => {
-      setSelectsData(response);
-    });
-  }, [i18n.language]);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   request({
+  //     query: PRODUCT_QUERY,
+  //     variables: { locale: i18n.language },
+  //   })
+  //     .then((response) => {
+  //       setProductsData(response);
+  //     })
+  //     .catch(console.error)
+  //     .finally(() => setIsLoading(false));
+  // }, [i18n.language]);
+  //
+  // useEffect(() => {
+  //   request({
+  //     query: SELECTORS_QUERY,
+  //     variables: {},
+  //   }).then((response) => {
+  //     setSelectsData(response);
+  //   });
+  // }, [i18n.language]);
 
   function handleChange(value) {
     console.log(`selected ${value}`);
@@ -97,6 +97,23 @@ export default function ShopList() {
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps(context) {
+  const productsData = await request({
+    query: PRODUCT_QUERY,
+    variables: { locale: 'en' },
+  })
+  const selectsData = await request({
+    query: SELECTORS_QUERY,
+    variables: {},
+  });
+  return {
+    props: {
+      productsData,
+      selectsData
+    }
+  }
 }
 
 const SELECTORS_QUERY = `query SelectorsQuery{
