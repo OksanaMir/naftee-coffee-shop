@@ -1,16 +1,20 @@
 import Head from 'next/head';
 import { QuizForm } from '../components/form/forms/QuizForm';
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Button, Result } from 'antd';
 import { CoffeeOutlined } from '@ant-design/icons';
 import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Quiz.module.scss';
+
 export default function QuizPage() {
   const [isFinished, setIsfinished] = useState(false);
   const [answers, setAnswers] = useState([]);
   const onFinished = () => {
     setIsfinished(true);
   };
+  const { t, i18n } = useTranslation();
   const ResultBlock = () => {
     return (
       <>
@@ -30,6 +34,8 @@ export default function QuizPage() {
       </>
     );
   };
+  const router = useRouter();
+  const goBackInHistory = () => router.back();
   return (
     <>
       <Head>
@@ -57,10 +63,15 @@ export default function QuizPage() {
                   title="Thank you for answering questions!"
                   subTitle={<ResultBlock />}
                   extra={[
-                    <Button type="primary" key="home">
-                      Back
+                    <Button onClick={goBackInHistory} type="primary" key="home">
+                      {t('quiz.back')}
                     </Button>,
-                    <Button key="buy">Buy now</Button>,
+                    <Button
+                      onClick={(window.location.href = '/shop/shop-list')}
+                      key="buy"
+                    >
+                      {t('quiz.buy')}
+                    </Button>,
                   ]}
                 />
               </div>

@@ -1,37 +1,36 @@
 @import 'variables';
 
 .termsContainer {
-  @media (min-width: 450px) {
+  padding-top: 2rem;
+  margin: 0 1rem;
+
+  @media (min-width: 760px) {
+    width: 90%;
+    margin: 0 auto;
+  }
+  @media (min-width: 1500px) {
     width: 70%;
     margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-family: $fontHeader;
+    @media (min-width: 1500px) {
+      text-align: center;
+    }
   }
   .list {
     margin-top: 3rem;
     padding-left: 0;
-    border-top: 0.01px solid $borderLight;
-    border-bottom: 0.01px solid $borderLight;
-    font-size: 0.6rem;
-    @media (min-width: 760px) {
-      font-size: 0.75rem;
-    }
+    font-size: 1rem;
+
     @media (min-width: 1500px) {
       width: 70%;
-      font-size: 1rem;
+      margin: 0 auto;
     }
     li {
       list-style: none;
-
-      p {
-        text-align: left;
-        padding: 5px 15px;
-
-        @media (min-width: 1500px) {
-          padding: 0.25rem 1.5rem;
-        }
-        @media (min-width: 2500px) {
-          padding: 0.5rem 3rem;
-        }
-      }
     }
   }
 }

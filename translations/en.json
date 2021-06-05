@@ -39,5 +39,13 @@
   "quantaty": {
     "outOfStock": "Out of stock",
     "inStock": "In stock"
+  },
+  "quiz": {
+    "quit": "Quit quiz",
+    "skip": "Skip question",
+    "continue": "Continue",
+    "finish": "Find my coffee",
+    "back": "Back",
+    "buy": "Buy now"
   }
 }

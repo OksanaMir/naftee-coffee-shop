@@ -155,7 +155,7 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
             {isLastQuizItem && (
               <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit" onClick={sendAnswers}>
-                  Find my coffee
+                  {t('quiz.finish')}
                 </Button>
               </Form.Item>
             )}
