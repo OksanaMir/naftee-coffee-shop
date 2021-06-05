@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styles from '../../styles/ProductTeaser.module.scss';
 export function ProductTeaser({ data }) {

@@ -17,10 +17,20 @@
   "contacts": {
     "userName": "Jmeno a Přijmení",
     "email": "Email",
-    "subject": "Subject",
-    "message": "Váš vzkaz",
-    "button": "Odeslat"
+    "subject": "Předmět",
+    "message": "Váše zprava",
+    "button": "Odeslat",
+    "isNotAValidEmail": "neexistuje e-mail!",
+    "isRequired": "požadováno!"
   },
+
+  "message": {
+    "userNameIsRequired": "Zadejte, prosím, Jmeno a Přijmení",
+    "emailIsRequired": "Zadejte, prosím, platný e-mail",
+    "subjectIsRequired": "Zadejte, prosím, předmět",
+    "messageIsRequired": "Zadejte, prosím, váše zpravu"
+  },
+
   "shopList": {
     "description": "Popis",
     "characteristic": "Charakteristiky"

@@ -54,137 +54,135 @@ export function ProductOverView({ data }) {
 
   return (
     <>
-      {isLoading ? <Loader /> : (
-      <>{data && (
-        <article className={styles.productOverView}>
-          <div className={styles.productImg}>
-            <h1>{productName}</h1>
-            <Image
-              width={horizontalProductView.width / 5}
-              height={horizontalProductView.height / 5}
-              src={horizontalProductView.url}
-              alt={horizontalProductView.alt}
-              title={horizontalProductView.title}
-            />
-          </div>
-          <p>{taste}</p>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {data && (
+            <article className={styles.productOverView}>
+              <div className={styles.productImg}>
+                <h1>{productName}</h1>
+                <Image
+                  width={horizontalProductView.width / 5}
+                  height={horizontalProductView.height / 5}
+                  src={horizontalProductView.url}
+                  alt={horizontalProductView.alt}
+                  title={horizontalProductView.title}
+                />
+              </div>
+              <p>{taste}</p>
 
-          <div>
-            <Form
-              form={form}
-              ref={formRef}
-              name={`productsSelect-${id}-overview`}
-              onFinish={onFinish}
-            >
-              <div
-                id={`method-select-${id}-overview`}
-                className={styles.selectWrapper}
-              >
-                {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
+              <div>
+                <Form
+                  form={form}
+                  ref={formRef}
+                  name={`productsSelect-${id}-overview`}
+                  onFinish={onFinish}
+                >
+                  <div
+                    id={`method-select-${id}-overview`}
+                    className={styles.selectWrapper}
+                  >
+                    {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
+                      <Form.Item
+                        name="method"
+                        label="Method"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
+                        <SelectComponent
+                          id={`method-select-${id}-overview`}
+                          options={
+                            selectsData?.allSelectors?.[0]?.select
+                              ?.selectMethod ?? []
+                          }
+                          handleChange={handleMethodChange}
+                        />
+                      </Form.Item>
+                    )}
+                  </div>
                   <Form.Item
-                    name="method"
-                    label="Method"
+                    name="amount"
+                    label={t('select.amount')}
                     rules={[
                       {
                         required: true,
                       },
                     ]}
                   >
-                    <SelectComponent
-                      id={`method-select-${id}-overview`}
-                      options={
-                        selectsData?.allSelectors?.[0]?.select?.selectMethod ??
-                        []
-                      }
-                      handleChange={handleMethodChange}
-                    />
+                    <InputNumber min={1} onChange={handleQuantityChange} />
                   </Form.Item>
-                )}
-              </div>
-              <Form.Item
-                name="amount"
-                label={t('select.amount')}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <InputNumber min={1} onChange={handleQuantityChange} />
-              </Form.Item>
-              <div
-                id={`weight-select-${id}-overview`}
-                className={styles.selectWrapper}
-              >
-                {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
-                  <Form.Item
-                    name="weight"
-                    label="Weight"
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
+                  <div
+                    id={`weight-select-${id}-overview`}
+                    className={styles.selectWrapper}
                   >
-                    <SelectComponent
-                      id={`weight-select-${id}-overview`}
-                      options={productData.map((data) => data.weight)}
-                      handleChange={handleWeightChange}
-                    />
-                  </Form.Item>
-                )}
+                    {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
+                      <Form.Item
+                        name="weight"
+                        label="Weight"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
+                        <SelectComponent
+                          id={`weight-select-${id}-overview`}
+                          options={productData.map((data) => data.weight)}
+                          handleChange={handleWeightChange}
+                        />
+                      </Form.Item>
+                    )}
+                  </div>
+                </Form>
               </div>
-            </Form>
-          </div>
-          <p>{cuppingScoreRatingSca}</p>
-          <p>
-            Quantity:
-            {(weightSelect === 50
-              ? productData?.[0]?.quantity
-              : weightSelect === 250
-              ? productData?.[1]?.quantity
-              : productData?.[2]?.quantity) === 0
-              ? 'out of stock'
-              : weightSelect === 50
-              ? productData?.[0]?.quantity
-              : weightSelect === 250
-              ? productData?.[1]?.quantity
-              : productData?.[2]?.quantity}
-          </p>
+              <p>{cuppingScoreRatingSca}</p>
+              <p>
+                {(weightSelect === 50 && productData?.[0]?.quantity) ||
+                (weightSelect === 250 && productData?.[1]?.quantity) ||
+                (weightSelect === 1000 && productData?.[2]?.quantity)
+                  ? t('quantaty.inStock')
+                  : t('quantaty.outOfStock')}
+              </p>
 
-          <p>
-            {(weightSelect === 50
-              ? productData?.[0]?.price
-              : weightSelect === 250
-              ? productData?.[1]?.price
-              : productData?.[2]?.price) * quantity}
-          </p>
-          <button
-            className="snipcart-add-item"
-            data-item-id={id}
-            data-item-price={
-              weightSelect === 50
-                ? productData?.[0]?.price
-                : weightSelect === 250
-                ? productData?.[1]?.price
-                : productData?.[2]?.price
-            }
-            data-item-url={router?.pathname}
-            data-item-image={horizontalProductView.url}
-            data-item-name={productName}
-            data-item-description={taste}
-            data-item-custom1-name={t('select.weight')}
-            data-item-custom1-id={`weight-${id}`}
-            data-item-custom1-value={weightSelect}
-            data-item-custom2-name={t('select.method')}
-            data-item-custom2-id={`method-${id}`}
-            data-item-quantity={quantity}
-            data-item-custom2-value={methodSelect}
-          >
-            Add to cart
-          </button>
-        </article>
-      )}</>
+              <p className={styles.price}>
+                {(weightSelect === 50
+                  ? productData?.[0]?.price
+                  : weightSelect === 250
+                  ? productData?.[1]?.price
+                  : productData?.[2]?.price) * quantity}{' '}
+                Kč
+              </p>
+              <button
+                className="snipcart-add-item"
+                data-item-id={id}
+                data-item-price={
+                  weightSelect === 50
+                    ? productData?.[0]?.price
+                    : weightSelect === 250
+                    ? productData?.[1]?.price
+                    : productData?.[2]?.price
+                }
+                data-item-url={router?.pathname}
+                data-item-image={horizontalProductView.url}
+                data-item-name={productName}
+                data-item-description={taste}
+                data-item-custom1-name={t('select.weight')}
+                data-item-custom1-id={`weight-${id}`}
+                data-item-custom1-value={weightSelect}
+                data-item-custom2-name={t('select.method')}
+                data-item-custom2-id={`method-${id}`}
+                data-item-quantity={quantity}
+                data-item-custom2-value={methodSelect}
+              >
+                Add to cart
+              </button>
+            </article>
+          )}
+        </>
       )}
     </>
   );

@@ -19,7 +19,16 @@
     "email": "Email",
     "subject": "Subject",
     "message": "Message",
-    "button": "Send"
+    "button": "Send",
+    "isNotAValidEmail": "is not a valid email!",
+    "isRequired": "is required!"
+  },
+
+  "message": {
+    "userNameIsRequired": "user name is required",
+    "emailIsRequired": "email is required",
+    "subjectIsRequired": "subject is required",
+    "messageIsRequired": "Message is required"
   },
 
   "shopList": {
