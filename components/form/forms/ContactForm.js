@@ -4,13 +4,14 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from '../../../styles/ContactForm.module.scss';
+import {useRouter} from "next/router";
 
 export function ContactForm() {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const { SiteClient } = require('datocms-client');
   const client = new SiteClient('dcf7c70ca6f6fb69721273dbc749b3');
-
+const router = useRouter()
   async function createRecord() {
     const record = await client.items.create({
       itemType: '801810', // model ID
@@ -55,40 +56,40 @@ export function ContactForm() {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label={t('contacts.userName')}
+        label={t('contacts.userName', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
         name={'user_name'}
-        rules={[{ required: true, message: t('message.userNameIsRequired') }]}
+        rules={[{ required: true, message: t('message.userNameIsRequired', {lng: router.locale  === "cs"? 'cs_CZ': "en"}) }]}
       >
-        <Input placeholder={t('contacts.userName')} />
+        <Input placeholder={t('contacts.userName', {lng: router.locale  === "cs"? 'cs_CZ': "en"})} />
       </Form.Item>
       <Form.Item
-        label={t('contacts.email')}
+        label={t('contacts.email', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
         name="user_email"
         rules={[
           {
             type: 'email',
             required: true,
-            message: t('message.emailIsRequired'),
+            message: t('message.emailIsRequired', {lng: router.locale  === "cs"? 'cs_CZ': "en"}),
           },
         ]}
       >
-        <Input placeholder={t('contacts.email')} />
+        <Input placeholder={t('contacts.email', {lng: router.locale  === "cs"? 'cs_CZ': "en"})} />
       </Form.Item>
       <Form.Item
-        label={t('contacts.subject')}
+        label={t('contacts.subject', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
         name={'subject'}
         rules={[
           {
             type: 'string',
             required: true,
-            message: t('message.subjectIsRequired'),
+            message: t('message.subjectIsRequired', {lng: router.locale  === "cs"? 'cs_CZ': "en"}),
           },
         ]}
       >
-        <Input placeholder={t('contacts.subject')} />
+        <Input placeholder={t('contacts.subject', {lng: router.locale  === "cs"? 'cs_CZ': "en"})} />
       </Form.Item>
       <Form.Item
-        label={t('contacts.message')}
+        label={t('contacts.message', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
         name="message"
         rules={[
           {
@@ -98,11 +99,11 @@ export function ContactForm() {
           },
         ]}
       >
-        <Input.TextArea placeholder={t('contacts.message')} />
+        <Input.TextArea placeholder={t('contacts.message', {lng: router.locale  === "cs"? 'cs_CZ': "en"})} />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         <Button type="primary" htmlType="submit">
-          {t('contacts.button')}
+          {t('contacts.button', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
         </Button>
       </Form.Item>
     </Form>

@@ -23,17 +23,15 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
     taste,
     quantityWeight,
     cuppingScoreRatingSca,
-  } = product;
+  } = product || {};
 
-  const { productData } = quantityWeight;
+  const { productData } = quantityWeight || {};
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
 
-  function handleQuantityChange(value) {
+
+  const handleQuantityChange=(value) =>
     setQuantity(value);
-  }
+
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
 
@@ -47,11 +45,11 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         <h1>{productName}</h1>
         {horizontalProductView && (
           <Image
-            src={horizontalProductView?.url || ''}
-            width={(horizontalProductView?.width || 640) / 5}
-            height={(horizontalProductView?.height || 900) / 5}
-            alt={horizontalProductView?.alt || ''}
-            title={horizontalProductView?.title || ''}
+            src={horizontalProductView?.url }
+            width={horizontalProductView?.width }
+            height={horizontalProductView?.height }
+            alt={horizontalProductView?.alt}
+            title={horizontalProductView?.title }
           />
         )}
       </div>
@@ -59,14 +57,14 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
       <span className={styles.bottomSection}>
         <ExpandableText
           id={`descriptionIconWrapper${id}`}
-          title={t('shopList.description')}
+          title={t('shopList.description', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
           paragraph={
             <span dangerouslySetInnerHTML={createMarkup(product.description)} />
           }
         />
 
         <ExpandableText
-          title={t('shopList.characteristic')}
+          title={t('shopList.characteristic', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
           id={`characteristicIconWrapper${id}`}
           paragraph={
             <span
@@ -81,7 +79,6 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           initialValues={{ amount: 1 }}
           ref={formRef}
           name={`productsSelect-${id}-detail`}
-          onFinish={onFinish}
         >
           <div
             id={`method-select-${id}-detail`}
@@ -90,7 +87,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
             {selectMethod && (
               <Form.Item
                 name="method"
-                label={t('select.method')}
+                label={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
                 rules={[
                   {
                     required: true,
@@ -108,7 +105,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
 
           <Form.Item
             name="amount"
-            label={t('select.amount')}
+            label={t('select.amount', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
             rules={[
               {
                 required: true,
@@ -121,10 +118,9 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
             id={`weight-select-${id}-detail`}
             className={styles.selectWrapper}
           >
-            {selectWeight && (
               <Form.Item
                 name="weight"
-                label={t('select.weight')}
+                label={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
                 rules={[
                   {
                     required: true,
@@ -133,11 +129,10 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               >
                 <SelectComponent
                   id={`weight-select-${id}-detail`}
-                  options={productData.map((data) => data.weight)}
+                  options={productData?.map((data) => data?.weight)}
                   handleChange={handleWeightChange}
                 />
               </Form.Item>
-            )}
           </div>
         </Form>
       </div>
@@ -146,8 +141,8 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
         {(weightSelect === 50 && productData?.[0]?.quantity) ||
         (weightSelect === 250 && productData?.[1]?.quantity) ||
         (weightSelect === 1000 && productData?.[2]?.quantity)
-          ? t('quantaty.inStock')
-          : t('quantaty.outOfStock')}
+          ? t('quantaty.inStock', {lng: router.locale  === "cs"? 'cs_CZ': "en"})
+          : t('quantaty.outOfStock', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
       </p>
 
       <h1 className={styles.price}>
@@ -172,11 +167,11 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           }
           data-item-url={router?.pathname}
           data-item-description={taste}
-          data-item-image={horizontalProductView.url}
+          data-item-image={horizontalProductView?.url}
           data-item-name={productName}
-          data-item-custom1-name={t('select.weight')}
+          data-item-custom1-name={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
           data-item-custom1-value={weightSelect}
-          data-item-custom2-name={t('select.method')}
+          data-item-custom2-name={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
           data-item-custom2-value={methodSelect}
           data-item-quantity={quantity}
         >

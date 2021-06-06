@@ -1,60 +1,20 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import { Layout } from '../../components/layout/Layout';
+import {Layout} from '../../components/layout/Layout';
 
-import { useTranslation } from 'react-i18next';
-
-import { useState } from 'react';
-import { Loader } from '../../components/ loader/Loader';
-import { request } from '../../lib/datoCMS';
-import { ProductDetail } from '../../components/product/ProductDetail';
-import styles from '../../styles/ShopList.module.scss';
+import {request} from "../../lib/datoCMS";
+import {ProductDetail} from "../../components/product/ProductDetail";
+import styles from "../../styles/ShopList.module.scss";
 
 export default function ShopList({ selectsData, productsData }) {
-  // const [selectsData, setSelectsData] = useState({});
-  // const [productsData, setProductsData] = useState({});
-  const [showItem, setShowItem] = useState(false);
-  const { i18n } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   request({
-  //     query: PRODUCT_QUERY,
-  //     variables: { locale: i18n.language },
-  //   })
-  //     .then((response) => {
-  //       setProductsData(response);
-  //     })
-  //     .catch(console.error)
-  //     .finally(() => setIsLoading(false));
-  // }, [i18n.language]);
-  //
-  // useEffect(() => {
-  //   request({
-  //     query: SELECTORS_QUERY,
-  //     variables: {},
-  //   }).then((response) => {
-  //     setSelectsData(response);
-  //   });
-  // }, [i18n.language]);
 
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
+
 
   const { allProducts } = productsData || {};
-  console.log(selectsData, 'hjsflaaks');
+  console.log(selectsData, "hjsflaaks");
 
-  const onMouseEnter = () => {
-    setShowItem(!setShowItem);
-  };
-  const onMouseLeave = () => {
-    setShowItem(showItem);
-  };
+
 
   return (
     <>
@@ -63,18 +23,8 @@ export default function ShopList({ selectsData, productsData }) {
       </Head>
       <Layout>
         <h1>Shop.</h1>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <>
+
             <section className={styles.shopListContainer}>
-              {/* {images.map((image, index) => {
-            return (
-              <div className={styles.imageContainer}>
-                <img width={'50%'} alt={'product' + (index + 1)} src={image} />
-              </div>
-            );
-          })} */}
 
               {allProducts?.map((product) => {
                 return (
@@ -92,17 +42,17 @@ export default function ShopList({ selectsData, productsData }) {
                 );
               })}
             </section>
-          </>
-        )}
+
       </Layout>
     </>
   );
 }
 
 export async function getStaticProps(context) {
+  const {locale} = context
   const productsData = await request({
     query: PRODUCT_QUERY,
-    variables: { locale: 'en' },
+    variables: { locale: locale === "cs"? 'cs_CZ': "en" },
   });
   const selectsData = await request({
     query: SELECTORS_QUERY,
@@ -115,6 +65,7 @@ export async function getStaticProps(context) {
     },
   };
 }
+
 
 const SELECTORS_QUERY = `query SelectorsQuery{
 

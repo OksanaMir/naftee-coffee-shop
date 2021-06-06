@@ -1,11 +1,12 @@
-import { Form, Button, Radio, Popover } from 'antd';
-import { useState, useEffect, useRef } from 'react';
-import { useTranslation, i18n } from 'react-i18next';
-import { QuizNavBar } from '../bar/QuizNavBar';
-import { QuizBlockBtns } from '../buttons/QuizBlockBtns';
-import { Loader } from '../../../components/ loader/Loader';
-import { request } from '../../../lib/datoCMS';
-import styles from '../../../styles/QuizForm.module.scss';
+import { Button, Form, Popover, Radio } from "antd";
+import { useEffect, useRef, useState } from "react";
+import { i18n, useTranslation } from "react-i18next";
+import { QuizNavBar } from "./QuizNavBar";
+import { QuizBlockBtns } from "./QuizBlockBtns";
+import { Loader } from "../ loader/Loader";
+import styles from "../../styles/QuizForm.module.scss";
+import { useRouter } from "next/router";
+
 const layout = {
   labelCol: {
     span: 8,
@@ -20,59 +21,50 @@ const tailLayout = {
     span: 16,
   },
 };
-export function QuizForm({ onFinished }) {
-  const { t, i18n } = useTranslation();
+export function QuizForm({ onFinished, answers, setAnswers, quiz }) {
+  const { t } = useTranslation();
+  const router = useRouter();
   const [form] = Form.useForm();
-  const [quiz, setQuiz] = useState([]);
-  const [answers, setAnswers] = useState([]);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
   const [chosenAnswerValue, setChosenAnswerValue] = useState(
-    quiz?.[quizItemIndex]?.option[0],
+    quiz?.[quizItemIndex]?.option[0]
   );
   const [chosenAnswerIndex, setChosenAnswerIndex] = useState(0);
   const ref = useRef(null);
-  const [chosenMethod, setChosenMetod] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [chosenAmount, setChosenAmount] = useState(0);
   const [chosenSort, setChosenSort] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
   //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
-
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
   }, [quizItemIndex]);
   useEffect(() => {
-    setIsLoading(true);
-    request({
-      query: QUIZ_QUERY,
-      variables: { locale: i18n.language },
-    })
-      .then((response) => {
-        setQuizItemIndex(0);
-        setQuiz(response?.allCoffeeQuizzes);
-        setChosenAnswerValue(response?.allCoffeeQuizzes?.[0]?.option[0]);
-        form.setFieldsValue({
-          options: response?.allCoffeeQuizzes?.[0]?.option[0],
-        });
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [i18n.language]);
+    setQuizItemIndex(0);
+    setChosenAnswerValue(quiz?.[0]?.option[0]);
+    form.setFieldsValue({
+      options: quiz?.[0]?.option[0],
+    });
+  }, [quiz]);
   const chooseOption = (e) => {
     setChosenAnswerValue(e.target.value);
     setChosenAnswerIndex(e.target.index);
+  };
+  const returnCorrectAnswer = () => {
+    return typeof quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex] ===
+      "string" ||
+      typeof quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex] ===
+        "number"
+      ? quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]
+      : quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]?.id;
   };
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
   const onContinue = () => {
     // console.log('on-continue');
     // console.log('sort counts', chosenSort);
     // console.log('ans-1', answers, chosenAnswerValue, quizItemIndex);
-    setAnswers([
-      ...answers,
-      quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
-    ]);
-
+    setSelectedAnswers([...selectedAnswers, returnCorrectAnswer()]);
     if (isLastQuizItem) {
       return;
     }
@@ -84,36 +76,25 @@ export function QuizForm({ onFinished }) {
   //   setChosenAnswerIndex(e.target.index);
   // };
   const sendAnswers = () => {
-    const results = [
-      ...answers,
-      quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
-    ];
+    const results = [...selectedAnswers, returnCorrectAnswer()];
 
-    let counts = {};
-    let maxCount = 0;
-    let maxValue = '';
+    const sort =
+      results[1] === results[3]
+        ? results[3]
+        : results[3] === results[4]
+        ? results[3]
+        : results[4];
 
-    results.forEach((result) => {
-      const count = 1 + (counts[result] || 0);
-      counts[result] = count;
-      if (count >= maxCount) {
-        maxCount = count;
-        maxValue = '' + result;
-      }
-    });
-
-    console.log('send', results, counts, maxValue);
+    console.log("send", results, "sort", sort);
     onFinished({
       package: results[2],
       method: results[0],
-      coffeSort: results[4].id,
+      coffeeSort: sort,
     });
   };
-
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
-
   // console.log(
   //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
   //   'popover',
@@ -154,7 +135,7 @@ export function QuizForm({ onFinished }) {
                             }
                           </p>
                         }
-                        trigger={['click']}
+                        trigger={["click"]}
                         // visible={true}
                         getPopupContainer={() =>
                           document.getElementById(`popoverArea${index}`)
@@ -178,7 +159,9 @@ export function QuizForm({ onFinished }) {
             {isLastQuizItem && (
               <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit" onClick={sendAnswers}>
-                  {t('quiz.finish')}
+                  {t("quiz.finish", {
+                    lng: router.locale === "cs" ? "cs_CZ" : "en",
+                  })}
                 </Button>
               </Form.Item>
             )}
@@ -188,13 +171,3 @@ export function QuizForm({ onFinished }) {
     </>
   );
 }
-const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
-{
-  allCoffeeQuizzes(locale:$locale) {
-      id
-      question
-      option
-      instruction
-      recommendation
-    } 
-}`;

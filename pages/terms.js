@@ -9,23 +9,8 @@ import { request } from '../lib/datoCMS';
 
 import styles from '../styles/Terms.module.scss';
 
-export default function Terms() {
-  const { i18n } = useTranslation();
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+export default function Terms({data}) {
 
-  useEffect(() => {
-    setIsLoading(true);
-    request({
-      query: TERMS_QUERY,
-      variables: { locale: i18n.language },
-    })
-      .then((response) => {
-        setData(response);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [i18n.language]);
   function createMarkup(paragraph) {
     return { __html: `${paragraph}` };
   }
@@ -36,9 +21,7 @@ export default function Terms() {
         <title>Terms and Conditions.</title>
       </Head>
       <Layout>
-        {isLoading ? (
-          <Loader />
-        ) : (
+
           <section className={styles.termsContainer}>
             <div className={styles.main}>
               <h1>Terms and Conditions</h1>
@@ -63,10 +46,23 @@ export default function Terms() {
               </ul>
             </div>
           </section>
-        )}
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps(context) {
+    const {locale} = context
+    const data = await request({
+        query: TERMS_QUERY,
+        variables: { locale: locale === "cs"? 'cs_CZ': "en" },
+    });
+
+    return {
+        props: {
+            data
+        },
+    };
 }
 
 const TERMS_QUERY = `query TermsQuery($locale: SiteLocale)

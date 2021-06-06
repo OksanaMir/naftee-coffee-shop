@@ -1,66 +1,52 @@
-import Head from 'next/head';
-import { QuizForm } from '../components/form/forms/QuizForm';
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
-import { request } from '../lib/datoCMS';
-import { useState, useEffect } from 'react';
-import { Button, Result } from 'antd';
-import { CoffeeOutlined } from '@ant-design/icons';
-import { ProductQuiz } from '../components/product/ProductQuiz';
-import { Layout } from '../components/layout/Layout';
-import styles from '../styles/Quiz.module.scss';
+import Head from "next/head";
+import { QuizForm } from "../components/quiz/QuizForm";
+import { useRouter } from "next/router";
+import { request } from "../lib/datoCMS";
+import { useEffect, useRef, useState } from "react";
+import { Button, Result } from "antd";
+import { CoffeeOutlined } from "@ant-design/icons";
+import { Layout } from "../components/layout/Layout";
+import styles from "../styles/Quiz.module.scss";
+import { useTranslation } from "react-i18next";
+import { ResultBlock } from "../components/quiz/QuizResultBlock";
 
-export default function QuizPage() {
-  const [isFinished, setIsfinished] = useState(false);
-  const [answers, setAnswers] = useState({
-    method: '',
-    package: '',
-    coffeSort: '',
-  });
+export default function QuizPage({ quizData }) {
   const { t, i18n } = useTranslation();
-  const [data, setData] = useState({});
+  const router = useRouter();
+  const [isFinished, setIsfinished] = useState(false);
+  const [product, setProduct] = useState(null);
+  const [answers, setAnswers] = useState({
+    method: "",
+    package: "",
+    coffeeSort: "",
+  });
+  const ref = useRef(false);
 
-  // useEffect(() => {
-  //   request({
-  //     query: PRODUCT_QUERY,
-  //     variables: { filter: { id: answers.coffeeSort.id } },
-  //   })
-  //     .then((response) => {
-  //       setData(response);
-  //     })
-  //     .catch(console.error);
-  // }, [i18n.language]);
+  useEffect(() => {
+    if (answers.coffeeSort) {
+      if (!ref.current) {
+        ref.current = true;
+        request({
+          query: PRODUCT_QUERY,
+          variables: {
+            filter: { id: { eq: answers.coffeeSort } },
+            locale: router.locale === "CZ" ? "cs" : "en",
+          },
+        })
+          .then((response) => {
+            console.log(response.product);
+            setProduct(response.product);
+            setIsfinished(true);
+          })
+          .catch(console.error);
+      }
+    }
+  }, [answers.coffeeSort]);
 
   const onFinished = (ans) => {
     setAnswers(ans);
-    setIsfinished(true);
   };
-  const ResultBlock = () => {
-    return (
-      <>
-        {/* <ProductQuiz
-          product={data.product}
-          quantity={answers.package}
-          method={answers.method}
-        /> */}
-        <div>
-          Best choice for you:
-          <br />
-          sort: {answers.coffeSort}
-          <br />
-          method: {answers.method}
-          <br />
-          package: {answers.package}
-        </div>
-        <span>
-          If you got more than one sort in quiz results we recommend you to buy
-          a pack of varieties first.
-        </span>
-      </>
-    );
-  };
-  const router = useRouter();
-  const goBackInHistory = () => router.back();
+
   return (
     <>
       <Head>
@@ -74,34 +60,42 @@ export default function QuizPage() {
               <h3 className={styles.invitation}>
                 Answer the questions below to make your choice easier.
               </h3>
-              <QuizForm onFinished={onFinished} />
+              <QuizForm
+                quiz={quizData?.allCoffeeQuizzes}
+                onFinished={onFinished}
+                answers={answers}
+                setAnswers={setAnswers}
+              />
             </div>
           ) : (
             <>
               <div className={styles.result}>
-                <Result
-                  icon={<CoffeeOutlined />}
-                  title="Thank you for answering questions!"
-                  subTitle={<ResultBlock />}
-                  extra={[
-                    <Button type="primary" key="home">
-                      {t('quiz.back')}
-                    </Button>,
-                    <Button key="buy">{t('quiz.buy')}</Button>,
-                  ]}
-                  // extra={[
-                  //   <Button onClick={goBackInHistory} type="primary" key="home">
-                  //     {t('quiz.back')}
-                  //   </Button>,
-                  //   <Button
-                  //     onClick={(window.location.href = '/shop/shop-list')}
-                  //     key="buy"
-                  //   >
-                  //     {t('quiz.buy')}
-                  //   </Button>,
-                  // ]}
-                />
+                {product && (
+                  <Result
+                    icon={<CoffeeOutlined />}
+                    title="Thank you for answering questions!"
+                    subTitle={"Test"}
+                    extra={[
+                      <Button type="primary" key="home">
+                        {t("quiz.back")}
+                      </Button>,
+                    ]}
+                    // extra={[
+                    //   <Button onClick={goBackInHistory} type="primary" key="home">
+                    //     {t('quiz.back')}
+                    //   </Button>,
+                    //   <Button
+                    //     onClick={(window.location.href = '/shop/shop-list')}
+                    //     key="buy"
+                    //   >
+                    //     {t('quiz.buy')}
+                    //   </Button>,
+                    // ]}
+                  />
+                )}
               </div>
+              ]
+              <ResultBlock product={product} answers={answers} />
             </>
           )}
         </section>
@@ -109,8 +103,34 @@ export default function QuizPage() {
     </>
   );
 }
-const PRODUCT_QUERY = `query ProductQuery($filter: ProductModelFilter){
-  product(filter: $filter) {
+
+export async function getStaticProps(context) {
+  const { locale } = context;
+  const quizData = await request({
+    query: QUIZ_QUERY,
+    variables: { locale: locale === "cs" ? "cs_CZ" : "en" },
+  });
+
+  return {
+    props: {
+      quizData,
+    },
+  };
+}
+
+const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
+{
+  allCoffeeQuizzes(locale:$locale) {
+      id
+      question
+      option
+      instruction
+      recommendation
+    } 
+}`;
+
+const PRODUCT_QUERY = `query ProductQuery($filter: ProductModelFilter, $locale: SiteLocale){
+  product(filter: $filter, locale:$locale) {
     productName
     id
     quantityWeight 

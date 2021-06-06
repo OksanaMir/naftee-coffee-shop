@@ -28,7 +28,6 @@ export function ExpandableText({ id, paragraph, title }) {
       {showParagraph && (
         <>
           <p className={styles.text}>{paragraph}</p>
-          {/* <div>{props.children} </div> */}
         </>
       )}
     </article>

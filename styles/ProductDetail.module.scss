@@ -34,8 +34,7 @@
   :global(.ant-col ant-form-item-label) {
     color: $textWhite;
   }
-  :global(.ant-form-item-label
-      > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
+  :global(.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
     color: $textWhite;
   }
 
