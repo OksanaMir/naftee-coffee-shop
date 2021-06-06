@@ -5,26 +5,12 @@ import {Carousel} from 'antd';
 import {LandingPageAboutUs} from '../components/landingPage/LandingPageAboutUs';
 import {Layout} from '../components/layout/Layout';
 import {ProductOverView} from '../components/product/ProductOverView';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import { request } from '../lib/datoCMS';
-import { Loader } from '../components/ loader/Loader';
-import { isMobile } from 'react-device-detect';
-import { ProductTeaser } from '../components/product/ProductTeaser';
-import { Carousel } from 'antd';
-import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
-
-import { Layout } from '../components/layout/Layout';
-import { ProductOverView } from '../components/product/ProductOverView';
 import styles from '../styles/Index.module.scss';
 
 export default function Index({ selectsData, productsData }) {
-  const { i18n } = useTranslation();
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectsData, setSelectsData] = useState({});
 
-    const { allProducts } = productsData || {};
+    const { allProducts: [_, ...rest] } = productsData || {};
+
 
 
     return (
@@ -41,7 +27,7 @@ export default function Index({ selectsData, productsData }) {
 
                 <section className={styles.mainMobile}>
                   <Carousel accessibility={true} arrows={true}>
-                    {allProducts?.map((product) => {
+                    {rest?.map((product) => {
                       return (
                         <div
                           style={{
@@ -50,7 +36,7 @@ export default function Index({ selectsData, productsData }) {
                             alignItems: 'center',
                             justifyContent: 'center',
                           }}
-                          key={product.id}
+                          key={product?.id}
                         >
                           <ProductOverView key={product?.id} data={product}
                                            selectMethod={
@@ -62,7 +48,7 @@ export default function Index({ selectsData, productsData }) {
                   </Carousel>
                 </section>
                 <section className={styles.mainDesctop}>
-                  {allProducts?.map((product) => (
+                  {rest?.map((product) => (
                     <ProductTeaser  selectMethod={
                         selectsData?.allSelectors?.[0]?.select?.selectMethod ??
                         []

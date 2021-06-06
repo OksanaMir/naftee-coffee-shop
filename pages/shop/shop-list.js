@@ -11,9 +11,7 @@ export default function ShopList({ selectsData, productsData }) {
 
 
 
-  const { allProducts } = productsData || {};
-  console.log(selectsData, "hjsflaaks");
-
+  const { allProducts:  [first, ...rest] } = productsData || {};
 
 
   return (
@@ -26,14 +24,12 @@ export default function ShopList({ selectsData, productsData }) {
 
             <section className={styles.shopListContainer}>
 
-              {allProducts?.map((product) => {
+              {[...rest,first]?.map((product) => {
                 return (
                   <div className={styles.container} key={product.id}>
                     <ProductDetail
                       product={product}
-                      selectWeight={
-                        selectsData?.allSelectors?.[1]?.select?.selectWeight
-                      }
+
                       selectMethod={
                         selectsData?.allSelectors?.[0]?.select?.selectMethod
                       }

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectComponent } from '../form/select/SelectComponent';
 import styles from '../../styles/ProductTeaser.module.scss';
+import Link from "next/link";
 
 export function ProductTeaser({ data, selectMethod, selectWeight }) {
   const { t } = useTranslation();
@@ -24,11 +25,9 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
     cuppingScoreRatingSca,
   } = data ?? {};
 
-  const { productData } = quantityWeight;
+  const { productData } = quantityWeight || {};
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
+
 
   function handleQuantityChange(value) {
     setQuantity(value);
@@ -65,13 +64,11 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
       </div>
       <div>
         <h1>{productName}</h1>
-        {/* <h1>{quantityWeight?.productData?.[1]?.price} Kč</h1> */}
         <div className={styles.inputBlock}>
           <Form
             initialValues={{ amount: 1 }}
             ref={formRef}
             name={`productsSelect-${id}-detail`}
-            onFinish={onFinish}
           >
             <div
               id={`method-select-${id}-detail`}
@@ -80,7 +77,7 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
               {selectMethod && (
                 <Form.Item
                   name="method"
-                  label={t('select.method')}
+                  label={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
                   rules={[
                     {
                       required: true,
@@ -114,7 +111,7 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
               {selectWeight && (
                 <Form.Item
                   name="weight"
-                  label={t('select.weight')}
+                  label={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
                   rules={[
                     {
                       required: true,
@@ -123,7 +120,7 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
                 >
                   <SelectComponent
                     id={`weight-select-${id}-detail`}
-                    options={productData.map((data) => data.weight)}
+                    options={productData?.map((data) => data.weight)}
                     handleChange={handleWeightChange}
                   />
                 </Form.Item>
@@ -136,8 +133,8 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
           {(weightSelect === 50 && productData?.[0]?.quantity) ||
           (weightSelect === 250 && productData?.[1]?.quantity) ||
           (weightSelect === 1000 && productData?.[2]?.quantity)
-            ? t('quantaty.inStock')
-            : t('quantaty.outOfStock')}
+            ? t('quantaty.inStock', {lng: router.locale  === "cs"? 'cs_CZ': "en"})
+            : t('quantaty.outOfStock', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
         </p>
 
         <h1 className={styles.price}>
@@ -145,7 +142,7 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
             ? productData?.[0]?.price
             : weightSelect === 250
             ? productData?.[1]?.price
-            : productData?.[2]?.price) * quantity}{' '}
+            : productData?.[2]?.price) * quantity}
           Kč
         </h1>
 
@@ -161,16 +158,19 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
                 : productData?.[2]?.price
             }
             data-item-url={router?.pathname}
-            data-item-image={horizontalProductView.url}
+            data-item-image={horizontalProductView?.url}
             data-item-name={productName}
-            data-item-custom1-name={t('select.weight')}
+            data-item-custom1-name={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
             data-item-custom1-value={weightSelect}
-            data-item-custom2-name={t('select.method')}
+            data-item-custom2-name={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
             data-item-custom2-value={methodSelect}
             data-item-quantity={quantity}
           >
             Add to cart
           </button>
+          <Link href={`/shop/details/${id}`} locale={router.locale}>
+            <a>Detail produktu</a>
+          </Link>
         </div>
       </div>
     </div>

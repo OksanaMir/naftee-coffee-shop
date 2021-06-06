@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 * {
   box-sizing: border-box;
 }
@@ -6,7 +6,6 @@
 body {
   margin: 0;
   height: 100vh;
-
 
   h1 {
     font-family: $fontHeader;
@@ -18,8 +17,10 @@ body {
   }
 
   .snipcart-modal__container {
-    //  won't work
-    margin-top: 3rem;
+    margin-top: 4.5rem;
+    @media (min-width: 760px) {
+      margin-top: 3rem;
+    }
   }
 
   .ant-form-item-label > label {
@@ -28,8 +29,8 @@ body {
   .ant-col .ant-col-8 .ant-form-item-label {
     padding-right: 0;
   }
-  .ant-form-item-label
-    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  .ant-form-item-label,
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
     color: $primary;
   }
   .ant-btn-primary {
@@ -42,7 +43,7 @@ body {
     margin: 15px;
   }
   .ant-input {
-    background-color: none;
+    background-color: unset;
     color: $textWhite !important;
   }
 
@@ -50,17 +51,17 @@ body {
     color: #ff38b3;
   }
 
-  .ant-form-item-label
-    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  .ant-form-item-label,
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
     color: #ff38b3;
   }
 
   .ant-form-item-control-input {
     color: $textWhite;
-    background-color: none;
+    background-color: unset;
   }
   .ant-form-item-control-input:active {
-    background-color: none;
+    background-color: unset;
   }
 
   // .ant-row ant-form-item {
@@ -95,5 +96,179 @@ body {
   }
   .ant-input:active {
     border-bottom: 1px solid #ff38b3;
+  }
+  .ant-row .ant-form-item {
+    margin-top: 20px;
+  }
+  .ant-form-horizontal {
+    margin-top: 20px;
+  }
+
+  .ant-form-item-label > label {
+    color: $textWhite;
+    padding-top: 10px;
+  }
+  .ant-form-item-label,
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    color: $primary;
+    margin-top: 10px !important;
+  }
+
+  .ant-form-item-required {
+    color: $textWhite;
+  }
+  .ant-col .ant-form-item-label {
+    color: $textWhite;
+  }
+  .ant-form-item-label,
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    color: $textWhite;
+  }
+
+  .ant-select-selector {
+    box-shadow: none;
+  }
+
+  .ant-select-single.ant-select-open .ant-select-selection-item {
+    color: $textWhite;
+    z-index: 2;
+  }
+
+  .ant-select-disabled.ant-select-open .ant-select-selection-item {
+    border: none;
+  }
+
+  .ant-select-disabled.ant-select-open .ant-select-selection-item:focus {
+    border: none;
+  }
+
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input).ant-select-selector {
+    border: none;
+    box-shadow: none;
+  }
+
+  .ant-selelect-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input).ant-select-selector::after {
+    border: none;
+    box-shadow: none;
+  }
+
+  .ant-selelect-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input).ant-select-selector::before {
+    border: none;
+    box-shadow: none;
+  }
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: $secondary;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector::after {
+    background-color: $secondary;
+    border: none;
+  }
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector:hover {
+    background-color: $secondary;
+    border: 1px solid #ff38b3;
+  }
+
+  .ant-form-item-explain.ant-form-item-explain-error {
+    color: #ff38b3;
+  }
+
+  // .--antd-wave-shadow-color{
+  //   color: none;
+  // }
+
+  .ant-form-item-explain.ant-form-item-explain-error {
+    border: 1px solid #ff38b3;
+  }
+
+  .ant-input-number-input {
+    background-color: $secondary;
+    color: $textWhite;
+
+    // border: 1px solid #ff38b3;
+  }
+  .ant-select-dropdown {
+    background-color: white;
+    color: $secondary;
+  }
+  .ant-select-item-option-selected {
+    background-color: white;
+  }
+  .ant-input-number-handler-down-inner svg {
+    color: $primary;
+  }
+  .ant-input-number-handler-up-inner svg {
+    color: $primary;
+  }
+  .ant-input-number-handler .ant-input-number-handler-up {
+    border: 1px solid white;
+    svg {
+      color: aliceblue;
+    }
+  }
+
+  // .ant-input-number-input{
+  //   color: white;
+  //   border: 0.1px #ff38b3 solid;
+  // }
+
+  // .ant-select-selection-item{
+  //   padding-left: 10px;
+  // }
+
+  .ant-select-arrow {
+    color: $textWhite;
+  }
+  .ant-form-item .ant-select {
+    color: white;
+    opacity: 50%;
+  }
+  .ant-select-item-option-content {
+    background-color: white;
+    color: $secondary;
+    text-align: left;
+    padding: 0;
+  }
+
+  .ant-select-item-option-content:hover {
+    background-color: $secondary;
+    color: $textWhite;
+    opacity: 50%;
+
+    // padding-left: 10px;
+  }
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 600;
+    background-color: white;
+  }
+
+  .ant-select-selection {
+    background-color: $borderLight;
+  }
+
+  .ant-input-number {
+    background-color: $borderLight;
+  }
+
+  .snipcart-add-item {
+    background-color: $borderLight;
+    border: $borderLight;
+    color: $textBlack;
+    width: 9rem;
+    font-family: $fontText;
+    padding: 9px;
+    margin: 20px;
+  }
+  .snipcart-add-item:hover {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+    font-family: $fontText;
+    padding: 9px;
+    margin: 20px;
   }
 }

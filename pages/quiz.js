@@ -1,17 +1,16 @@
 import Head from "next/head";
-import { QuizForm } from "../components/quiz/QuizForm";
-import { useRouter } from "next/router";
-import { request } from "../lib/datoCMS";
-import { useEffect, useRef, useState } from "react";
-import { Button, Result } from "antd";
-import { CoffeeOutlined } from "@ant-design/icons";
-import { Layout } from "../components/layout/Layout";
+import {QuizForm} from "../components/quiz/QuizForm";
+import {useRouter} from "next/router";
+import {request} from "../lib/datoCMS";
+import {useEffect, useRef, useState} from "react";
+import {Result} from "antd";
+import {CoffeeOutlined} from "@ant-design/icons";
+import {Layout} from "../components/layout/Layout";
 import styles from "../styles/Quiz.module.scss";
-import { useTranslation } from "react-i18next";
-import { ResultBlock } from "../components/quiz/QuizResultBlock";
+import {ResultBlock} from "../components/quiz/QuizResultBlock";
+import Link from "next/link";
 
 export default function QuizPage({ quizData }) {
-  const { t } = useTranslation();
   const router = useRouter();
   const [isFinished, setIsfinished] = useState(false);
   const [product, setProduct] = useState(null);
@@ -75,9 +74,9 @@ export default function QuizPage({ quizData }) {
                     title="Thank you for answering questions!"
                     subTitle={ <ResultBlock product={product} answers={answers} />}
                     extra={[
-                      <Button type="primary" key="home">
-                        {t("quiz.back")}
-                      </Button>,
+                      <Link href={'/shop/shop-list'} locale={router.locale}>
+                        <a>Do obchodu</a>
+                      </Link>
                     ]}
 
                   />

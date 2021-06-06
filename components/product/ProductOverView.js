@@ -5,6 +5,7 @@ import {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SelectComponent} from '../form/select/SelectComponent';
 import styles from '../../styles/ProductOverView.module.scss';
+import Link from "next/link";
 
 export function ProductOverView({ data, selectMethod }) {
   const formRef = useRef(null);
@@ -151,6 +152,9 @@ export function ProductOverView({ data, selectMethod }) {
           >
             Add to cart
           </button>
+          <Link href={`/shop/details/${id}`} locale={router.locale}>
+            <a>Detail produktu</a>
+          </Link>
         </article>
       )}</>
   );
