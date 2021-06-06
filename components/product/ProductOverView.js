@@ -1,14 +1,12 @@
 import Image from 'next/image';
-import { Form, InputNumber } from 'antd';
-import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
-import { request } from '../../lib/datoCMS';
-import { Loader } from '../ loader/Loader';
-import { useTranslation } from 'react-i18next';
-import { SelectComponent } from '../form/select/SelectComponent';
+import {Form, InputNumber} from 'antd';
+import {useRouter} from 'next/router';
+import {useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {SelectComponent} from '../form/select/SelectComponent';
 import styles from '../../styles/ProductOverView.module.scss';
 
-export function ProductOverView({ data, selectMethod, selectWeight }) {
+export function ProductOverView({ data, selectMethod }) {
   const formRef = useRef(null);
   const { t } = useTranslation();
 
@@ -17,7 +15,6 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
   const [weightSelect, setWeightSelect] = useState(250);
   const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
-  console.log(t?.params, "t")
   const {
     productName,
     horizontalProductView,

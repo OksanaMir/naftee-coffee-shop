@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import {request} from '../lib/datoCMS';
-import {isMobile} from 'react-device-detect';
 import {ProductTeaser} from '../components/product/ProductTeaser';
 import {Carousel} from 'antd';
 import {LandingPageAboutUs} from '../components/landingPage/LandingPageAboutUs';
@@ -38,9 +37,7 @@ export default function Index({ selectsData, productsData }) {
                           }}
                           key={product.id}
                         >
-                          <ProductOverView key={product?.id} data={product} selectWeight={
-                              selectsData?.allSelectors?.[1]?.select?.selectWeight
-                          }
+                          <ProductOverView key={product?.id} data={product}
                                            selectMethod={
                                                selectsData?.allSelectors?.[0]?.select?.selectMethod
                                            }/>
