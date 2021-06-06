@@ -17,7 +17,7 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
   const [weightSelect, setWeightSelect] = useState(250);
   const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
-
+  console.log(t?.params, "t")
   const {
     productName,
     horizontalProductView,
@@ -25,9 +25,9 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
     quantityWeight,
     taste,
     cuppingScoreRatingSca,
-  } = data;
+  } = data || {};
 
-  const { productData } = quantityWeight;
+  const { productData } = quantityWeight || {};
 
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
@@ -40,13 +40,13 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
         <article className={styles.productOverView}>
           <div className={styles.productImg}>
             <h1>{productName}</h1>
-            <Image
-              width={horizontalProductView.width}
-              height={horizontalProductView.height}
-              src={horizontalProductView.url}
-              alt={horizontalProductView.alt}
-              title={horizontalProductView.title}
-            />
+            {horizontalProductView && <Image
+                width={horizontalProductView?.width}
+                height={horizontalProductView?.height}
+                src={horizontalProductView?.url}
+                alt={horizontalProductView?.alt}
+                title={horizontalProductView?.title}
+            />}
           </div>
           <p>{taste}</p>
 
@@ -83,7 +83,7 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
               </div>
               <Form.Item
                 name="amount"
-                label={t('select.amount')}
+                label={t('select.amount', {lng: router.locale  === "cs"? 'cs_CZ': "en" })}
                 rules={[
                   {
                     required: true,
@@ -119,8 +119,8 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
                 {(weightSelect === 50 && productData?.[0]?.quantity) ||
                 (weightSelect === 250 && productData?.[1]?.quantity) ||
                 (weightSelect === 1000 && productData?.[2]?.quantity)
-                    ? t('quantaty.inStock')
-                    : t('quantaty.outOfStock')}
+                    ? t('quantaty.inStock', {lng: router.locale})
+                    : t('quantaty.outOfStock', {lng: router.locale})}
             </p>
             <p className={styles.price}>
             {(weightSelect === 50
@@ -140,13 +140,13 @@ export function ProductOverView({ data, selectMethod, selectWeight }) {
                 : productData?.[2]?.price
             }
             data-item-url={router?.pathname}
-            data-item-image={horizontalProductView.url}
+            data-item-image={horizontalProductView?.url}
             data-item-name={productName}
             data-item-description={taste}
-            data-item-custom1-name={t('select.weight')}
+            data-item-custom1-name={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
             data-item-custom1-id={`weight-${id}`}
             data-item-custom1-value={weightSelect}
-            data-item-custom2-name={t('select.method')}
+            data-item-custom2-name={t('select.method',{lng: router.locale  === "cs"? 'cs_CZ': "en"})}
             data-item-custom2-id={`method-${id}`}
             data-item-custom2-value={methodSelect}
             data-item-quantity={quantity}

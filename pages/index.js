@@ -25,7 +25,6 @@ export default function Index({ selectsData, productsData }) {
             <LandingPageAboutUs />
           </div>
 
-              {isMobile ? (
                 <section className={styles.mainMobile}>
                   <Carousel accessibility={true} arrows={true}>
                     {allProducts?.map((product) => {
@@ -39,7 +38,7 @@ export default function Index({ selectsData, productsData }) {
                           }}
                           key={product.id}
                         >
-                          <ProductOverView key={product.id} data={product} selectWeight={
+                          <ProductOverView key={product?.id} data={product} selectWeight={
                               selectsData?.allSelectors?.[1]?.select?.selectWeight
                           }
                                            selectMethod={
@@ -50,14 +49,12 @@ export default function Index({ selectsData, productsData }) {
                     })}
                   </Carousel>
                 </section>
-              ) : (
                 <section className={styles.mainDesctop}>
                   {allProducts?.map((product) => (
-                    <ProductTeaser key={product.id} data={product} />
+                    <ProductTeaser key={product?.id} data={product} />
                   ))}
                 </section>
 
-          )}
         </main>
       </Layout>
     </div>

@@ -8,7 +8,7 @@ export function SelectComponent({ options, handleChange, id }) {
       style={{ width: 220 }}
       getPopupContainer={() => document.getElementById(id)}
       onChange={handleChange && handleChange}
-      defaultValue={options[1]}
+      defaultValue={options?.[1]}
     >
       {options &&
         options.map((option) => {

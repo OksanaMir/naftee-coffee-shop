@@ -23,25 +23,19 @@ export function ProductTeaser({ data }) {
         onMouseEnter={changeContent}
         onClick={changeContent}
       >
-        <Image
-          src={switchContent ? horizontalProductView?.url : productBanner?.url}
-          alt={'product teaser'}
-          width={
-            switchContent ? horizontalProductView?.width : productBanner?.width
-          }
-          height={
-            switchContent
-              ? horizontalProductView?.height
-              : productBanner?.height
-          }
-        ></Image>
-        {switchContent ? (
-          <div>
-            <h1></h1>
-          </div>
-        ) : (
-          <div></div>
-        )}
+          {horizontalProductView && <Image
+              src={switchContent ? horizontalProductView?.url : productBanner?.url}
+              alt={'product teaser'}
+              width={
+                  switchContent ? horizontalProductView?.width : productBanner?.width
+              }
+              height={
+                  switchContent
+                      ? horizontalProductView?.height
+                      : productBanner?.height
+              }
+          />}
+
       </div>
       <div>
         <h1>{productName}</h1>

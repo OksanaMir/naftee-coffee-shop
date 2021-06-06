@@ -1,15 +1,19 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 
 import styles from '../../styles/LangButton.module.scss';
+import {useRouter} from "next/router";
+import Link from "next/link";
 
-export const LangButton = ({ changeLanguage, language }) => {
+export const LangButton = ({  language }) => {
+  const {pathname} = useRouter()
+  const locale = language  === "CZ"? 'cs': "en"
   return (
-    <button
+    <Link
       className={styles.langBtn}
-      onClick={changeLanguage}
-      value={language}
+      href={pathname}
+      locale={locale}
     >
       {language}
-    </button>
+    </Link>
   );
 };

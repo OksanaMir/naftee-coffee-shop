@@ -1,10 +1,8 @@
 import Head from 'next/head';
-import { useTranslation } from 'react-i18next';
-import { request } from '../lib/datoCMS';
-import { useEffect, useState } from 'react';
-import { Loader } from '../components/ loader/Loader';
+import {useTranslation} from 'react-i18next';
+import {request} from '../lib/datoCMS';
 
-import { Layout } from '../components/layout/Layout';
+import {Layout} from '../components/layout/Layout';
 
 import styles from '../styles/About.module.scss';
 

@@ -16,13 +16,8 @@ import styles from '../../styles/Header.module.scss';
 
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
-  const { t, i18n } = useTranslation();
 
-  const changeLanguage = (event) => {
-    i18n
-      .changeLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
-      .catch(console.error);
-  };
+
 
   const [itemsCount, setItemsCount] = useState(0);
 
@@ -59,8 +54,8 @@ export function Header() {
             <HeaderContent headerClassName="headerDesktop" />
             <div className={styles.langSwitcher}>
               <div className={styles.btnContainer}>
-                <LangButton changeLanguage={changeLanguage} language={'CZ'} />/
-                <LangButton changeLanguage={changeLanguage} language={'EN'} />
+                <LangButton  language={'CZ'} />/
+                <LangButton language={'EN'} />
               </div>
             </div>
             <div className={styles.shoppingBasket} id="snipcartShoppingBasket">

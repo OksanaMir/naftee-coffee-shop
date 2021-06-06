@@ -3,36 +3,33 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { LangButton } from '../translations/LangButton';
 import styles from '../../styles/HeaderContent.module.scss';
+import {useRouter} from "next/router";
 
 export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
   const { t, i18n } = useTranslation();
+const router = useRouter()
 
-  const changeLanguage = (event) => {
-    i18n
-      .changeLanguage(event.currentTarget.value === 'EN' ? 'en' : 'cs_CZ')
-      .catch(console.error);
-  };
   return (
     <ul className={styles[headerClassName]}>
       <li>
         <Link href="/">
-          <a>{t('header.home')}</a>
+          <a>{t('header.home', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}</a>
         </Link>
       </li>
 
       <li>
         <Link href="/about-us">
-          <a>{t('header.aboutUs')}</a>
+          <a>{t('header.aboutUs', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}</a>
         </Link>
       </li>
       <li>
         <Link href="/shop/shop-list">
-          <a>{t('header.shop')}</a>
+          <a>{t('header.shop', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}</a>
         </Link>
       </li>
       <li>
         <Link href="/quiz">
-          <a>{t('header.quiz')}</a>
+          <a>{t('header.quiz', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}</a>
         </Link>
       </li>
       {/* <li>
@@ -42,13 +39,13 @@ export function HeaderContent({ headerClassName, setShowMenu, showMenu }) {
       </li> */}
       <li>
         <Link href="/contact">
-          <a>{t('header.contacts')}</a>
+          <a>{t('header.contacts', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}</a>
         </Link>
       </li>
       <li className={styles.langSwitcher}>
         <div className={styles.btnContainer}>
-          <LangButton changeLanguage={changeLanguage} language={'CZ'} />/
-          <LangButton changeLanguage={changeLanguage} language={'EN'} />
+          <LangButton  language={'CZ'} />/
+          <LangButton  language={'EN'} />
         </div>
       </li>
     </ul>
