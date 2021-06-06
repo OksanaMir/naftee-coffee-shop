@@ -5,19 +5,6 @@
     "weight": "Vaha"
   },
 
-  "order": {
-    "email_for_order_confirmation": "E-mail",
-    "first_name": "Křestní jméno",
-    "last_name": "Příjmení",
-    "company_name": "Název firmy",
-    "country": "Stát",
-    "city": "Město",
-    "address": "Poštovní adresa",
-    "postal_code": "PSČ",
-    "phone": "Telefonní číslo",
-    "post_method": "Pražení",
-    "payment_method": "Způsob platby"
-  },
   "header": {
     "home": "Hlavní stránka",
     "aboutUs": "O nás",
@@ -30,12 +17,27 @@
   "contacts": {
     "userName": "Jmeno a Přijmení",
     "email": "Email",
-    "subject": "Subject",
-    "message": "Váš vzkaz",
-    "button": "Odeslat"
+    "subject": "Předmět",
+    "message": "Váše zprava",
+    "button": "Odeslat",
+    "isNotAValidEmail": "neexistuje e-mail!",
+    "isRequired": "požadováno!"
   },
+
+  "message": {
+    "userNameIsRequired": "Zadejte, prosím, Jmeno a Přijmení",
+    "emailIsRequired": "Zadejte, prosím, platný e-mail",
+    "subjectIsRequired": "Zadejte, prosím, předmět",
+    "messageIsRequired": "Zadejte, prosím, váše zpravu"
+  },
+
   "shopList": {
     "description": "Popis",
     "characteristic": "Charakteristiky"
+  },
+
+  "quantaty": {
+    "outOfStock": "Vyprodáno",
+    "inStock": "Skladem"
   }
 }

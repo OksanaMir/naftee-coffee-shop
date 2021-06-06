@@ -32,8 +32,8 @@
         border-radius: 50%;
         width: 33px;
         height: 33px;
-        z-index: 100;
-        top: -80px;
+        z-index: 50;
+        top: -230px;
       }
       @media (min-width: 760px) {
         width: 60px;
@@ -43,7 +43,7 @@
       &::before {
         position: relative;
         right: 20px;
-        bottom: 80px;
+        bottom: 230px;
         font-size: 25px;
         color: gray;
         background-color: white;

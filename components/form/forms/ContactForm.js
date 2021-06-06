@@ -4,20 +4,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from '../../../styles/ContactForm.module.scss';
-const validateMessages = {
-  required: '${label} is required!',
-  types: {
-    email: '${label} is not a valid email!',
-  },
-};
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
+
 export function ContactForm() {
   const { t } = useTranslation();
   const [form] = Form.useForm();
@@ -45,6 +32,15 @@ export function ContactForm() {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
   return (
     <Form
       form={form}
@@ -57,33 +53,50 @@ export function ContactForm() {
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      validateMessages={validateMessages}
     >
       <Form.Item
         label={t('contacts.userName')}
         name={'user_name'}
-        rules={[{ required: true }]}
+        rules={[{ required: true, message: t('message.userNameIsRequired') }]}
       >
         <Input placeholder={t('contacts.userName')} />
       </Form.Item>
       <Form.Item
         label={t('contacts.email')}
         name="user_email"
-        rules={[{ type: 'email', required: true }]}
+        rules={[
+          {
+            type: 'email',
+            required: true,
+            message: t('message.emailIsRequired'),
+          },
+        ]}
       >
         <Input placeholder={t('contacts.email')} />
       </Form.Item>
       <Form.Item
         label={t('contacts.subject')}
         name={'subject'}
-        rules={[{ type: 'string', required: true }]}
+        rules={[
+          {
+            type: 'string',
+            required: true,
+            message: t('message.subjectIsRequired'),
+          },
+        ]}
       >
         <Input placeholder={t('contacts.subject')} />
       </Form.Item>
       <Form.Item
-        name="message"
         label={t('contacts.message')}
-        rules={[{ type: 'string', required: true }]}
+        name="message"
+        rules={[
+          {
+            type: 'string',
+            required: true,
+            message: t('message.messageIsRequired'),
+          },
+        ]}
       >
         <Input.TextArea placeholder={t('contacts.message')} />
       </Form.Item>

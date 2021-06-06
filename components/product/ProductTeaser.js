@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styles from '../../styles/ProductTeaser.module.scss';
 export function ProductTeaser({ data }) {
@@ -37,7 +37,7 @@ export function ProductTeaser({ data }) {
         ></Image>
         {switchContent ? (
           <div>
-            <h1>DETAIL</h1>
+            <h1></h1>
           </div>
         ) : (
           <div></div>
@@ -45,7 +45,7 @@ export function ProductTeaser({ data }) {
       </div>
       <div>
         <h1>{productName}</h1>
-        <h1>{price}</h1>
+        <h1>{price} Kč</h1>
       </div>
     </div>
   );

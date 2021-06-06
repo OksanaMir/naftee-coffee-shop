@@ -3,6 +3,7 @@
   background-color: $primary;
   padding: 0.5rem 0;
   position: relative;
+  padding-top: 40px;
 
   .contacts {
     display: none;
@@ -59,9 +60,6 @@
     justify-content: center;
     color: $textWhite;
   }
-  a:hover {
-    background-color: $secondary;
-  }
 
   li {
     color: $textWhite;
@@ -72,6 +70,11 @@
   .social {
     display: flex;
     justify-content: center;
+
+    a:hover {
+      background-color: $secondary;
+      opacity: 50%;
+    }
 
     a {
       margin: 0 0.5rem;

@@ -5,6 +5,8 @@
   flex-direction: column;
   background-size: 100%;
   background-image: url(../public/assets/naftee_holder-04.png);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+
   background-repeat: no-repeat;
   background-position: top;
   padding: 0;
@@ -28,5 +30,9 @@
     position: absolute;
     top: 30%;
     right: 50%;
+
+    // @media (min-width: 460px) {
+    //   font-size: 1rem;
+    // }
   }
 }

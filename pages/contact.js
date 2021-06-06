@@ -10,7 +10,7 @@ import { Loader } from '../components/ loader/Loader';
 import styles from '../styles/Contact.module.scss';
 
 export default function ContactFormPage() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [data, setData] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +26,12 @@ export default function ContactFormPage() {
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }, [i18n.language]);
+  function createMarkup(information) {
+    return { __html: `${information}` };
+  }
+  function createMarkup(callToAction) {
+    return { __html: `${callToAction}` };
+  }
 
   return (
     <>
@@ -36,11 +42,16 @@ export default function ContactFormPage() {
         ) : (
           <section className={styles.contactContainer}>
             <h1>{data?.contact?.headline}</h1>
-            <p>{data?.contact?.information}</p>
-            <p>{data?.contact?.callToAction}</p>
-
-            <p className={styles.instruction}>{t('contacts.instruction')}</p>
-
+            <span
+              className={styles.contactInformation}
+              dangerouslySetInnerHTML={createMarkup(data?.contact?.information)}
+            />
+            <span
+              className={styles.contactcallToAction}
+              dangerouslySetInnerHTML={createMarkup(
+                data?.contact?.callToAction,
+              )}
+            />
             <ContactForm />
           </section>
         )}
@@ -52,7 +63,7 @@ const CONTACT_QUERY = `query ContactQuery($locale: SiteLocale)
 {
   contact(locale:$locale){
     headline
-   information
-   callToAction
+   information(markdown: true)
+   callToAction(markdown: true)
   }
  }`;

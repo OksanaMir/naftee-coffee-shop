@@ -12,6 +12,7 @@
   img {
     width: 50rem;
     height: auto;
+    padding: 20px;
   }
   p {
     text-align: center;
@@ -23,6 +24,201 @@
   h1 {
     font-size: 25px;
   }
+
+  .price {
+    font-weight: 900;
+    font-size: xx-large;
+  }
+
+  :global(ant-row ant-form-item) {
+    margin-top: 20px;
+  }
+  :global(.ant-form-horizontal) {
+    margin-top: 20px;
+  }
+
+  :global(.ant-form-item-label > label) {
+    color: $textWhite;
+    padding-top: 10px;
+  }
+  :global(.ant-form-item-label
+      > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
+    color: $primary;
+    margin-top: 10px !important;
+  }
+  .topSection {
+    margin-bottom: 15px;
+    img {
+      width: 50rem;
+      box-shadow: 0 6px 7px rgba(0, 0, 0, 0.15);
+    }
+    h1 {
+      font-size: 1rem;
+    }
+    text-align: center;
+  }
+
+  :global(.ant-form-item-required) {
+    color: $textWhite;
+  }
+  :global(.ant-col ant-form-item-label) {
+    color: $textWhite;
+  }
+  :global(.ant-form-item-label
+      > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
+    color: $textWhite;
+  }
+
+  :global(.ant-select-selector) {
+    box-shadow: none;
+  }
+
+  :global(.ant-select-single.ant-select-open .ant-select-selection-item) {
+    color: $textWhite;
+    z-index: 2;
+  }
+
+  // border
+
+  :global(.ant-select-disabled.ant-select-open .ant-select-selection-item) {
+    border: none;
+  }
+
+  :global(.ant-select-disabled.ant-select-open
+      .ant-select-selection-item:focus) {
+    border: none;
+  }
+
+  :global(.ant-selelect-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+      .ant-select-selector) {
+    border: none;
+    box-shadow: none;
+  }
+
+  :global(.ant-selelect-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+      .ant-select-selector::after) {
+    border: none;
+    box-shadow: none;
+  }
+
+  :global(.ant-select:not(.ant-select-customize-input) .ant-select-selector) {
+    background-color: $secondary;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  // :global(.ant-select:not(.ant-select-customize-input)
+  //     .ant-select-selector::after) {
+  //   background-color: $secondary;
+  //   border: none;
+  // }
+
+  :global(.ant-select:not(.ant-select-customize-input)
+      .ant-select-selector:hover) {
+    background-color: $secondary;
+    border: 1px solid #ff38b3;
+  }
+
+  :global(.ant-input-number-input) {
+    background-color: $secondary;
+    color: $textWhite;
+
+    // border: 1px solid #ff38b3;
+  }
+  :global(.ant-select-dropdown) {
+    background-color: white;
+    color: $secondary;
+  }
+  :global(.ant-select-item-option-selected) {
+    background-color: white;
+  }
+  :global(.ant-input-number-handler-down-inner svg) {
+    color: $primary;
+  }
+  :global(.ant-input-number-handler-up-inner svg) {
+    color: $primary;
+  }
+  :global(.ant-input-number-handler .ant-input-number-handler-up) {
+    border: 1px solid white;
+    svg {
+      color: aliceblue;
+    }
+  }
+
+  // :global(.ant-input-number-input) {
+  //   color: white;
+  //   border: 0.1px #ff38b3 solid;
+  // }
+
+  // :global(.ant-select-selection-item) {
+  //   padding-left: 10px;
+  // }
+
+  :global(.ant-select-arrow) {
+    color: $textWhite;
+  }
+  :global(.ant-form-item .ant-select) {
+    color: white;
+    opacity: 50%;
+  }
+  :global(.ant-select-item-option-content) {
+    background-color: white;
+    color: $secondary;
+    text-align: left;
+    padding: 0;
+  }
+
+  :global(.ant-select-item-option-content:hover) {
+    background-color: $secondary;
+    color: $textWhite;
+    opacity: 50%;
+
+    // padding-left: 10px;
+  }
+  :global(.ant-select-item-option-active:not(.ant-select-item-option-disabled)) {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 600;
+    background-color: white;
+  }
+  .selectWrapper {
+    position: relative;
+  }
+
+  .bottomSection {
+    margin-top: 15px;
+  }
+  .price {
+    font-weight: 900;
+    font-size: xx-large;
+  }
+  p {
+    text-align: left;
+  }
+  :global(.ant-select-selection) {
+    background-color: $borderLight;
+  }
+
+  :global(.ant-input-number) {
+    background-color: $borderLight;
+  }
+
+  :global(.snipcart-add-item) {
+    background-color: $borderLight;
+    border: $borderLight;
+    color: $textBlack;
+    width: 9rem;
+    font-family: $fontText;
+    padding: 9px;
+    margin: 20px;
+  }
+  :global(.snipcart-add-item:hover) {
+    background-color: rgb(136, 129, 175);
+    color: $textWhite;
+    font-family: $fontText;
+    padding: 9px;
+    margin: 20px;
+  }
+
   :global(.snipcart-add-item) {
     background-color: $borderLight;
     border: $borderLight;

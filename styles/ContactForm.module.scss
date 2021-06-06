@@ -21,14 +21,70 @@
     margin: 15px;
   }
   :global(.ant-input) {
-    background-color: rgb(243, 222, 237);
-    color: $primary !important;
+    background-color: none;
+    color: $textWhite !important;
   }
+
+  // :global(.--antd-wave-shadow-color) {
+  //   border: 1px solid #ff38b3;
+  // }
+
+  // :global(.ant-form-item-has-error .ant-input, .ant-form-item-has-error
+  //     .ant-input-affix-wrapper, .ant-form-item-has-error
+  //     .ant-input:hover, .ant-form-item-has-error
+  //     .ant-input-affix-wrapper:hover) {
+  //   background-color: none;
+  //   border-color: #ff38b3;
+  // }
+
+  :global(.ant-form-item-explain.ant-form-item-explain-error) {
+    color: #ff38b3;
+  }
+
+  :global(.ant-form-item-label
+      > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before) {
+    color: #ff38b3;
+  }
+
+  :global(.ant-form-item-control-input) {
+    color: $textWhite;
+    background-color: none;
+  }
+  :global(.ant-form-item-control-input:active) {
+    background-color: none;
+  }
+
+  // :global(.ant-row ant-form-item) {
+  //   color: $textWhite;
+  // }
+
+  :global(.ant-form-item-explain-error) {
+    border-bottom: #ff38b3;
+  }
+
+  :global(.ant-form-item-control-input-content) {
+    color: #ff38b3;
+  }
+
   :global(.ant-btn-primary:hover) {
     background-color: rgb(136, 129, 175);
     color: $textWhite;
     font-family: $fontText;
     padding: 0;
     margin: 15px;
+  }
+  :global(.ant-input) {
+    background-color: $secondary;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+    color: $textWhite;
+  }
+  :global(.ant-input:hover) {
+    border-bottom: 1px solid #ff38b3;
+  }
+  :global(.ant-input:active) {
+    border-bottom: 1px solid #ff38b3;
   }
 }
