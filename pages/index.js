@@ -1,35 +1,19 @@
 import Head from 'next/head';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import { request } from '../lib/datoCMS';
-import { Loader } from '../components/ loader/Loader';
-import { isMobile } from 'react-device-detect';
-import { ProductTeaser } from '../components/product/ProductTeaser';
-import { Carousel } from 'antd';
-import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
-import { Layout } from '../components/layout/Layout';
-import { ProductOverView } from '../components/product/ProductOverView';
+import {request} from '../lib/datoCMS';
+import {isMobile} from 'react-device-detect';
+import {ProductTeaser} from '../components/product/ProductTeaser';
+import {Carousel} from 'antd';
+import {LandingPageAboutUs} from '../components/landingPage/LandingPageAboutUs';
+import {Layout} from '../components/layout/Layout';
+import {ProductOverView} from '../components/product/ProductOverView';
 import styles from '../styles/Index.module.scss';
 
-export default function Index() {
-  const { i18n } = useTranslation();
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+export default function Index({ selectsData, productsData }) {
 
-  useEffect(() => {
-    setIsLoading(true);
-    request({
-      query: PRODUCT_QUERY,
-      variables: { locale: i18n.language },
-    })
-      .then((response) => {
-        setData(response);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [i18n.language]);
+    const { allProducts } = productsData || {};
 
-  return (
+
+    return (
     <div className="container">
       <Head>
         <title>Landing page Naftee</title>
@@ -40,14 +24,11 @@ export default function Index() {
           <div className={styles.mainPhoto}>
             <LandingPageAboutUs />
           </div>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
+
               {isMobile ? (
                 <section className={styles.mainMobile}>
                   <Carousel accessibility={true} arrows={true}>
-                    {data?.allProducts?.map((product) => {
+                    {allProducts?.map((product) => {
                       return (
                         <div
                           style={{
@@ -58,7 +39,12 @@ export default function Index() {
                           }}
                           key={product.id}
                         >
-                          <ProductOverView key={product.id} data={product} />
+                          <ProductOverView key={product.id} data={product} selectWeight={
+                              selectsData?.allSelectors?.[1]?.select?.selectWeight
+                          }
+                                           selectMethod={
+                                               selectsData?.allSelectors?.[0]?.select?.selectMethod
+                                           }/>
                         </div>
                       );
                     })}
@@ -66,17 +52,34 @@ export default function Index() {
                 </section>
               ) : (
                 <section className={styles.mainDesctop}>
-                  {data?.allProducts?.map((product) => (
+                  {allProducts?.map((product) => (
                     <ProductTeaser key={product.id} data={product} />
                   ))}
                 </section>
-              )}
-            </>
+
           )}
         </main>
       </Layout>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+    const {locale} = context
+    const productsData = await request({
+        query: PRODUCT_QUERY,
+        variables: { locale: locale === "cs"? 'cs_CZ': "en" },
+    });
+    const selectsData = await request({
+        query: SELECTORS_QUERY,
+        variables: {},
+    });
+    return {
+        props: {
+            productsData,
+            selectsData,
+        },
+    };
 }
 const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
   allProducts(locale: $locale) {
@@ -101,6 +104,15 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
       height
     }
     cuppingScoreRatingSca
+  
+  }
+}`;
+
+const SELECTORS_QUERY = `query SelectorsQuery{
+
+  allSelectors {
+   id
+    select
   
   }
 }`;

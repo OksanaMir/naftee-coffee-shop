@@ -8,25 +8,8 @@ import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Privacy.module.scss';
 import { useEffect, useState } from 'react';
 
-export default function Privacy() {
-  const { i18n } = useTranslation();
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+export default function Privacy({data}) {
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    request({
-      query: PRIVACY_QUERY,
-      variables: { locale: i18n.language },
-    })
-      .then((response) => {
-        setData(response);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [i18n.language]);
-  console.log(data, 'dataIndex');
 
   function createMarkup(paragrapPdp) {
     return { __html: `${paragrapPdp}` };
@@ -38,9 +21,7 @@ export default function Privacy() {
         <title>Privacy policy</title>
       </Head>
       <Layout>
-        {isLoading ? (
-          <Loader />
-        ) : (
+
           <section className={styles.privacyContainer}>
             <div className={styles.main}>
               <h1>Privacy Policy</h1>
@@ -65,10 +46,22 @@ export default function Privacy() {
               </ul>
             </div>
           </section>
-        )}
       </Layout>
     </>
   );
+}
+export async function getStaticProps(context) {
+    const {locale} = context
+    const data = await request({
+        query: PRIVACY_QUERY,
+        variables: { locale: locale === "cs"? 'cs_CZ': "en" },
+    });
+
+    return {
+        props: {
+            data
+        },
+    };
 }
 
 const PRIVACY_QUERY = `query PrivacyQuery($locale: SiteLocale) {

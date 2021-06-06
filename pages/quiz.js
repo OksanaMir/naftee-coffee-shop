@@ -9,36 +9,35 @@ import { CoffeeOutlined } from '@ant-design/icons';
 import { ProductQuiz } from '../components/product/ProductQuiz';
 import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Quiz.module.scss';
-
-export default function QuizPage() {
+import {request} from "../lib/datoCMS";
+export default function QuizPage({data}) {
   const [isFinished, setIsfinished] = useState(false);
-  const [answers, setAnswers] = useState({
-    method: '',
-    package: '',
-    coffeSort: '',
-  });
-  const { t, i18n } = useTranslation();
-  const [data, setData] = useState({});
+    const [answers, setAnswers] = useState({
+        method: '',
+        package: '',
+        coffeSort: '',
+    });
 
-  // useEffect(() => {
-  //   request({
-  //     query: PRODUCT_QUERY,
-  //     variables: { filter: { id: answers.coffeeSort.id } },
-  //   })
-  //     .then((response) => {
-  //       setData(response);
-  //     })
-  //     .catch(console.error);
-  // }, [i18n.language]);
+    // useEffect(() => {
+    //   request({
+    //     query: PRODUCT_QUERY,
+    //     variables: { filter: { id: answers.coffeeSort.id } },
+    //   })
+    //     .then((response) => {
+    //       setData(response);
+    //     })
+    //     .catch(console.error);
+    // }, [i18n.language]);
 
-  const onFinished = (ans) => {
-    setAnswers(ans);
-    setIsfinished(true);
-  };
+    const onFinished = (ans) => {
+        setAnswers(ans);
+        setIsfinished(true);
+    };
+
   const ResultBlock = () => {
     return (
       <>
-        {/* <ProductQuiz
+          {/* <ProductQuiz
           product={data.product}
           quantity={answers.package}
           method={answers.method}
@@ -74,7 +73,12 @@ export default function QuizPage() {
               <h3 className={styles.invitation}>
                 Answer the questions below to make your choice easier.
               </h3>
-              <QuizForm onFinished={onFinished} />
+              <QuizForm
+                  quiz={data?.allCoffeeQuizzes}
+                onFinished={onFinished}
+                answers={answers}
+                setAnswers={setAnswers}
+              />
             </div>
           ) : (
             <>
@@ -124,3 +128,28 @@ const PRODUCT_QUERY = `query ProductQuery($filter: ProductModelFilter){
     }
 
   }}`;
+
+export async function getStaticProps(context) {
+    const {locale} = context
+    const data = await request({
+        query: QUIZ_QUERY,
+        variables: { locale: locale === "cs"? 'cs_CZ': "en" },
+    });
+
+    return {
+        props: {
+            data
+        },
+    };
+}
+
+const QUIZ_QUERY = `query QuizQuery($locale: SiteLocale)
+{
+  allCoffeeQuizzes(locale:$locale) {
+      id
+      question
+      option
+      instruction
+      recommendation
+    } 
+}`;

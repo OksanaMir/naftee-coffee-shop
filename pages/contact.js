@@ -1,45 +1,23 @@
 import Head from 'next/head';
-import { useTranslation } from 'react-i18next';
-import { request } from '../lib/datoCMS';
+import {useTranslation} from 'react-i18next';
+import {request} from '../lib/datoCMS';
+import {ContactForm} from '../components/form/forms/ContactForm';
 
-import { useEffect, useState } from 'react';
-import { ContactForm } from '../components/form/forms/ContactForm';
-
-import { Layout } from '../components/layout/Layout';
-import { Loader } from '../components/ loader/Loader';
+import {Layout} from '../components/layout/Layout';
 import styles from '../styles/Contact.module.scss';
 
-export default function ContactFormPage() {
-  const { i18n } = useTranslation();
-  const [data, setData] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+export default function ContactFormPage({data}) {
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    setIsLoading(true);
-    request({
-      query: CONTACT_QUERY,
-      variables: { locale: i18n.language },
-    })
-      .then((response) => {
-        setData(response);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [i18n.language]);
-  function createMarkup(information) {
-    return { __html: `${information}` };
-  }
-  function createMarkup(callToAction) {
-    return { __html: `${callToAction}` };
-  }
+    function createMarkup(callToAction) {
+        return { __html: `${callToAction}` };
+    }
 
   return (
     <>
       <Head>Contact</Head>
       <Layout>
-        {isLoading ? (
-          <Loader />
-        ) : (
+
           <section className={styles.contactContainer}>
             <h1>{data?.contact?.headline}</h1>
             <span
@@ -54,11 +32,25 @@ export default function ContactFormPage() {
             />
             <ContactForm />
           </section>
-        )}
       </Layout>
     </>
   );
 }
+
+export async function getStaticProps(context) {
+    const {locale} = context
+    const data = await request({
+        query: CONTACT_QUERY,
+        variables: { locale: locale === "cs"? 'cs_CZ': "en" },
+    });
+
+    return {
+        props: {
+            data
+        },
+    };
+}
+
 const CONTACT_QUERY = `query ContactQuery($locale: SiteLocale)
 {
   contact(locale:$locale){

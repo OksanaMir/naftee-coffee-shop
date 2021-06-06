@@ -27,13 +27,11 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
 
   const { productData } = quantityWeight;
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
 
-  function handleQuantityChange(value) {
+
+  const handleQuantityChange=(value) =>
     setQuantity(value);
-  }
+
   const handleMethodChange = (value) => setMethodSelect(value);
   const handleWeightChange = (value) => setWeightSelect(value);
 
@@ -81,7 +79,6 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
           initialValues={{ amount: 1 }}
           ref={formRef}
           name={`productsSelect-${id}-detail`}
-          onFinish={onFinish}
         >
           <div
             id={`method-select-${id}-detail`}
@@ -121,7 +118,6 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
             id={`weight-select-${id}-detail`}
             className={styles.selectWrapper}
           >
-            {selectWeight && (
               <Form.Item
                 name="weight"
                 label={t('select.weight')}
@@ -133,11 +129,10 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
               >
                 <SelectComponent
                   id={`weight-select-${id}-detail`}
-                  options={productData.map((data) => data.weight)}
+                  options={productData?.map((data) => data?.weight)}
                   handleChange={handleWeightChange}
                 />
               </Form.Item>
-            )}
           </div>
         </Form>
       </div>
