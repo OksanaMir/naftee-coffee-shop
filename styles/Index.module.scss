@@ -42,7 +42,7 @@
     &:global(.slick-next) {
       &::before {
         position: relative;
-        right: 20px;
+        right: 60px;
         bottom: 230px;
         font-size: 25px;
         color: gray;
@@ -85,7 +85,6 @@
 
       &:global(.slick-prev) {
         &::before {
-          display: block;
           position: relative;
           bottom: 20px;
           right: -50px;
@@ -109,7 +108,6 @@
       }
       &:global(.slick-next) {
         &::before {
-          display: block;
           position: relative;
           right: 20px;
           bottom: 80px;

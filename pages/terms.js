@@ -1,11 +1,8 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Loader } from '../components/ loader/Loader';
 
-import { Layout } from '../components/layout/Layout';
-import { ExpandableText } from '../components/expandableText/ExpandableText';
-import { request } from '../lib/datoCMS';
+import {Layout} from '../components/layout/Layout';
+import {ExpandableText} from '../components/expandableText/ExpandableText';
+import {request} from '../lib/datoCMS';
 
 import styles from '../styles/Terms.module.scss';
 

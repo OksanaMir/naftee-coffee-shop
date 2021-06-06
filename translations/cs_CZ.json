@@ -1,8 +1,8 @@
 {
   "select": {
     "method": "Metoda",
-    "amount": "Mnozstvi",
-    "weight": "Vaha"
+    "amount": "Množství",
+    "weight": "Váha"
   },
 
   "header": {

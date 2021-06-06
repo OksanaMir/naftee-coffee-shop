@@ -9,7 +9,8 @@ import styles from '../styles/Index.module.scss';
 
 export default function Index({ selectsData, productsData }) {
 
-    const { allProducts } = productsData || {};
+    const { allProducts: [_, ...rest] } = productsData || {};
+
 
 
     return (
@@ -26,7 +27,7 @@ export default function Index({ selectsData, productsData }) {
 
                 <section className={styles.mainMobile}>
                   <Carousel accessibility={true} arrows={true}>
-                    {allProducts?.map((product) => {
+                    {rest?.map((product) => {
                       return (
                         <div
                           style={{
@@ -35,7 +36,7 @@ export default function Index({ selectsData, productsData }) {
                             alignItems: 'center',
                             justifyContent: 'center',
                           }}
-                          key={product.id}
+                          key={product?.id}
                         >
                           <ProductOverView key={product?.id} data={product}
                                            selectMethod={
@@ -47,8 +48,15 @@ export default function Index({ selectsData, productsData }) {
                   </Carousel>
                 </section>
                 <section className={styles.mainDesctop}>
-                  {allProducts?.map((product) => (
-                    <ProductTeaser key={product?.id} data={product} />
+                  {rest?.map((product) => (
+                    <ProductTeaser  selectMethod={
+                        selectsData?.allSelectors?.[0]?.select?.selectMethod ??
+                        []
+                    }
+                                    selectWeight={
+                                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
+                                        []
+                                    } key={product?.id} data={product} />
                   ))}
                 </section>
 

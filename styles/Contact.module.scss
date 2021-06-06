@@ -1,3 +1,5 @@
+@import 'variables';
+
 .contactContainer {
   display: flex;
   flex-direction: column;
@@ -14,11 +16,10 @@
     width: 70%;
     margin: 0 auto;
   }
-  // .contactcallToAction {
-  //   font-size: 30px bold;
-  // }
 
-  // :global(.contactcallToAction) {
-  //   font-size: 79px bold;
-  // }
+  .contactInformation {
+    p {
+      font-size: 25px;
+    }
+  }
 }

@@ -35,30 +35,29 @@
       color: $textWhite;
       margin: 5px;
     }
-    :global(.ant-result-extra > *:last-child) {
+    :global(.ant-result-extra, a) {
       background-color: $borderLight;
       border: $borderLight;
       color: $textBlack;
-      width: 5rem;
       font-family: $fontText;
       text-align: center;
       padding: 0;
       margin: 15px;
       width: 7rem;
-    }
-    :global(.ant-result-extra > *:last-child:hover) {
-      background-color: rgb(136, 129, 175);
-      color: $textWhite;
-      font-family: $fontText;
-      text-align: center;
-      padding: 0;
-      margin: 15px;
+
+      &:hover {
+        background-color: rgb(136, 129, 175);
+        color: $textWhite;
+        font-family: $fontText;
+        text-align: center;
+        padding: 0;
+        margin: 15px;
+      }
     }
     :global(.ant-btn-primary) {
       background-color: $borderLight;
       border: $borderLight;
       color: $textBlack;
-      width: 5rem;
       font-family: $fontText;
       padding: 0;
       margin: 15px;

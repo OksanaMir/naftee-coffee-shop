@@ -14,7 +14,6 @@ export default function ProductDetailPage({ product, selects }) {
     <ProductDetail
       product={product.product}
       selectMethod={selects?.allSelectors?.[0]?.select?.selectMethod}
-      selectWeight={selects?.allSelectors?.[1]?.select?.selectWeight}
     />
         </Layout>
       </div>

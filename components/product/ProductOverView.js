@@ -5,6 +5,7 @@ import {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SelectComponent} from '../form/select/SelectComponent';
 import styles from '../../styles/ProductOverView.module.scss';
+import Link from "next/link";
 
 export function ProductOverView({ data, selectMethod }) {
   const formRef = useRef(null);
@@ -60,7 +61,7 @@ export function ProductOverView({ data, selectMethod }) {
                 {selectMethod && (
                   <Form.Item
                     name="method"
-                    label="Method"
+                    label={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en" })}
                     rules={[
                       {
                         required: true,
@@ -95,7 +96,8 @@ export function ProductOverView({ data, selectMethod }) {
               >
                   <Form.Item
                     name="weight"
-                    label="Weight"
+                    label={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en" })}
+
                     rules={[
                       {
                         required: true,
@@ -116,8 +118,8 @@ export function ProductOverView({ data, selectMethod }) {
                 {(weightSelect === 50 && productData?.[0]?.quantity) ||
                 (weightSelect === 250 && productData?.[1]?.quantity) ||
                 (weightSelect === 1000 && productData?.[2]?.quantity)
-                    ? t('quantaty.inStock', {lng: router.locale})
-                    : t('quantaty.outOfStock', {lng: router.locale})}
+                    ? t('quantaty.inStock', {lng: router.locale  === "cs"? 'cs_CZ': "en" })
+                    : t('quantaty.outOfStock', {lng: router.locale  === "cs"? 'cs_CZ': "en" })}
             </p>
             <p className={styles.price}>
             {(weightSelect === 50
@@ -150,6 +152,9 @@ export function ProductOverView({ data, selectMethod }) {
           >
             Add to cart
           </button>
+          <Link href={`/shop/details/${id}`} locale={router.locale}>
+            <a>Detail produktu</a>
+          </Link>
         </article>
       )}</>
   );
