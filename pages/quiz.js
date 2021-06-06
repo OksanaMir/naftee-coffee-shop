@@ -10,8 +10,13 @@ import styles from '../styles/Quiz.module.scss';
 
 export default function QuizPage() {
   const [isFinished, setIsfinished] = useState(false);
-  const [answers, setAnswers] = useState([]);
-  const onFinished = () => {
+  const [answers, setAnswers] = useState({
+    method: '',
+    package: '',
+    coffeSort: '',
+  });
+  const onFinished = (ans) => {
+    setAnswers(ans);
     setIsfinished(true);
   };
   const { t, i18n } = useTranslation();
@@ -21,11 +26,11 @@ export default function QuizPage() {
         <div>
           Best choice for you:
           <br />
-          sort: {answers[1]}, {answers[3]}, {answers[4]}
+          sort: {answers.coffeSort}
           <br />
-          method: {answers[0]}
+          method: {answers.method}
           <br />
-          package: {answers[2]}
+          package: {answers.package}
         </div>
         <span>
           If you got more than one sort in quiz results we recommend you to buy
@@ -49,11 +54,7 @@ export default function QuizPage() {
               <h3 className={styles.invitation}>
                 Answer the questions below to make your choice easier.
               </h3>
-              <QuizForm
-                onFinished={onFinished}
-                answers={answers}
-                setAnswers={setAnswers}
-              />
+              <QuizForm onFinished={onFinished} />
             </div>
           ) : (
             <>
