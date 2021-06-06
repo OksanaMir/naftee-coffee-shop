@@ -80,9 +80,9 @@ export function QuizForm({ onFinished }) {
     // setChosenAnswerValue(quiz[quizItemIndex].option[0].value);
     setQuizItemIndex(quizItemIndex + 1);
   };
-  const chooseInstruction = (e) => {
-    setChosenAnswerIndex(e.target.index);
-  };
+  // const chooseInstruction = (e) => {
+  //   setChosenAnswerIndex(e.target.index);
+  // };
   const sendAnswers = () => {
     const results = [
       ...answers,
@@ -106,7 +106,7 @@ export function QuizForm({ onFinished }) {
     onFinished({
       package: results[2],
       method: results[0],
-      coffeSort: maxValue,
+      coffeSort: results[4].id,
     });
   };
 

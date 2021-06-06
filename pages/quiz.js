@@ -2,9 +2,11 @@ import Head from 'next/head';
 import { QuizForm } from '../components/form/forms/QuizForm';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { request } from '../lib/datoCMS';
+import { useState, useEffect } from 'react';
 import { Button, Result } from 'antd';
 import { CoffeeOutlined } from '@ant-design/icons';
+import { ProductQuiz } from '../components/product/ProductQuiz';
 import { Layout } from '../components/layout/Layout';
 import styles from '../styles/Quiz.module.scss';
 
@@ -15,14 +17,32 @@ export default function QuizPage() {
     package: '',
     coffeSort: '',
   });
+  const { t, i18n } = useTranslation();
+  const [data, setData] = useState({});
+
+  // useEffect(() => {
+  //   request({
+  //     query: PRODUCT_QUERY,
+  //     variables: { filter: { id: answers.coffeeSort.id } },
+  //   })
+  //     .then((response) => {
+  //       setData(response);
+  //     })
+  //     .catch(console.error);
+  // }, [i18n.language]);
+
   const onFinished = (ans) => {
     setAnswers(ans);
     setIsfinished(true);
   };
-  const { t, i18n } = useTranslation();
   const ResultBlock = () => {
     return (
       <>
+        {/* <ProductQuiz
+          product={data.product}
+          quantity={answers.package}
+          method={answers.method}
+        /> */}
         <div>
           Best choice for you:
           <br />
@@ -89,3 +109,18 @@ export default function QuizPage() {
     </>
   );
 }
+const PRODUCT_QUERY = `query ProductQuery($filter: ProductModelFilter){
+  product(filter: $filter) {
+    productName
+    id
+    quantityWeight 
+    horizontalProductView {
+      alt
+      id
+      url
+      title
+      width
+      height
+    }
+
+  }}`;
