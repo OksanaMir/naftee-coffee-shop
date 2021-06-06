@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { ResultBlock } from "../components/quiz/QuizResultBlock";
 
 export default function QuizPage({ quizData }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
   const [isFinished, setIsfinished] = useState(false);
   const [product, setProduct] = useState(null);
@@ -63,8 +63,7 @@ export default function QuizPage({ quizData }) {
               <QuizForm
                 quiz={quizData?.allCoffeeQuizzes}
                 onFinished={onFinished}
-                answers={answers}
-                setAnswers={setAnswers}
+
               />
             </div>
           ) : (
@@ -74,28 +73,17 @@ export default function QuizPage({ quizData }) {
                   <Result
                     icon={<CoffeeOutlined />}
                     title="Thank you for answering questions!"
-                    subTitle={"Test"}
+                    subTitle={ <ResultBlock product={product} answers={answers} />}
                     extra={[
                       <Button type="primary" key="home">
                         {t("quiz.back")}
                       </Button>,
                     ]}
-                    // extra={[
-                    //   <Button onClick={goBackInHistory} type="primary" key="home">
-                    //     {t('quiz.back')}
-                    //   </Button>,
-                    //   <Button
-                    //     onClick={(window.location.href = '/shop/shop-list')}
-                    //     key="buy"
-                    //   >
-                    //     {t('quiz.buy')}
-                    //   </Button>,
-                    // ]}
+
                   />
                 )}
               </div>
-              ]
-              <ResultBlock product={product} answers={answers} />
+
             </>
           )}
         </section>
