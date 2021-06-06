@@ -44,8 +44,17 @@
     max-width: unset;
   }
   :global(.ant-modal-body) {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.5715;
+    word-wrap: break-word;
+    background-color: black;
+    opacity: 70%;
+    color: white;
+
     p {
-      color: black;
+      color: $textWhite;
+      text-align: left;
     }
   }
 
@@ -83,5 +92,35 @@
   svg {
     width: 1rem;
     height: 1rem;
+  }
+
+  :global(.ant-modal-footer) {
+    background-color: black;
+    opacity: 70%;
+    border: none;
+  }
+
+  :global(.ant-btn) {
+    background-color: #d2cfe2;
+  }
+
+  :global(.ant-btn:hover) {
+    // color: #ff38b3;
+    border: 1px solid rgb(79, 71, 122);
+    color: rgb(79, 71, 122);
+  }
+
+  :global(.ant-btn.ant-btn-primary) {
+    background-color: rgb(79, 71, 122);
+  }
+
+  :global(.ant-btn.ant-btn-primary:hover) {
+    // color: #ff38b3;
+    border: 1px solid white;
+    color: white;
+  }
+
+  :global(.ant-btn-primary) {
+    border-color: #d2cfe2;
   }
 }

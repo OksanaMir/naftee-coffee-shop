@@ -6,6 +6,7 @@ export function ProductTeaser({ data }) {
   const {
     productBanner,
     //  taste,
+    quantityWeight,
     horizontalProductView,
     price,
     // cuppingScoreRatingSca,
@@ -39,7 +40,7 @@ export function ProductTeaser({ data }) {
       </div>
       <div>
         <h1>{productName}</h1>
-        <h1>{price} Kč</h1>
+        <h1>{quantityWeight?.productData?.[1]?.price} Kč</h1>
       </div>
     </div>
   );
