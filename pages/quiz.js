@@ -63,16 +63,22 @@ export default function QuizPage() {
                   title="Thank you for answering questions!"
                   subTitle={<ResultBlock />}
                   extra={[
-                    <Button onClick={goBackInHistory} type="primary" key="home">
+                    <Button type="primary" key="home">
                       {t('quiz.back')}
                     </Button>,
-                    <Button
-                      onClick={(window.location.href = '/shop/shop-list')}
-                      key="buy"
-                    >
-                      {t('quiz.buy')}
-                    </Button>,
+                    <Button key="buy">{t('quiz.buy')}</Button>,
                   ]}
+                  // extra={[
+                  //   <Button onClick={goBackInHistory} type="primary" key="home">
+                  //     {t('quiz.back')}
+                  //   </Button>,
+                  //   <Button
+                  //     onClick={(window.location.href = '/shop/shop-list')}
+                  //     key="buy"
+                  //   >
+                  //     {t('quiz.buy')}
+                  //   </Button>,
+                  // ]}
                 />
               </div>
             </>

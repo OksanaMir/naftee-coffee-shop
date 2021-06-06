@@ -34,9 +34,11 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
   const [chosenAmount, setChosenAmount] = useState(0);
   const [chosenSort, setChosenSort] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
   //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
+
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
   }, [quizItemIndex]);
   useEffect(() => {
@@ -82,8 +84,9 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
   const sendAnswers = () => {
     const results = [
       ...answers,
-      quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
+      quiz?.[quizItemIndex]?.recommendation?.chosenAnswerIndex,
     ];
+    // square brackets removed
     setAnswers(results);
     console.log('send', results);
     onFinished();
