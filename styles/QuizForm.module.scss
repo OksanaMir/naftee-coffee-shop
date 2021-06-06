@@ -1,7 +1,5 @@
 @import 'variables';
-.quest {
-  text-align: center;
-}
+
 .form {
   background-color: rgb(243, 222, 237);
   color: black;
@@ -24,10 +22,19 @@
   }
   :global(.ant-popover) {
     width: 50%;
+    background-color: #ff38b3;
+    p {
+      color: $primary;
+      font-size: $fontText;
+      text-align: left;
+    }
+    :global(.ant-popover-inner) {
+      background-color: $textWhite;
+    }
   }
-  :global(ant-popover-inner-content) {
-    color: black;
-  }
+  // :global(ant-popover-inner) {
+  //   background-color: pink;
+  // }
 
   :global(.ant-radio-checked .ant-radio-inner) {
     border-color: $borderLight;
@@ -45,11 +52,18 @@
   :global(.ant-radio:hover .ant-radio-inner) {
     border-color: $secondary;
   }
-  :global(.ant-btn.ant-btn-primary:hover) {
+  :global(.ant-btn.ant-btn-primary) {
     background-color: rgb(136, 129, 175);
     color: $textWhite;
+    width: 7rem;
   }
 
+  :global(.ant-btn.ant-btn-primary:hover) {
+    background-color: rgb(174, 168, 206);
+  }
+  :global(.ant-radio-wrapper) {
+    font-family: $fontText;
+  }
   :global(.ant-radio-wrapper:hover) {
     border-color: $secondary;
   }
