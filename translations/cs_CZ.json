@@ -24,6 +24,11 @@
     "isRequired": "požadováno!"
   },
 
+  "button": {
+    "addToCart": "do košíku",
+    "productDetail": "Detail produktu"
+  },
+
   "message": {
     "userNameIsRequired": "Zadejte, prosím, Jmeno a Přijmení",
     "emailIsRequired": "Zadejte, prosím, platný e-mail",
@@ -47,5 +52,10 @@
     "finish": "Dostat rekomendace",
     "back": "Zpátky",
     "buy": "Koupit"
+  },
+  "footer": {
+    "privacyPolicy": "Ochrany osobních údajů",
+    "termsAndConditions": "Obchodní podmínky",
+    "frequentlyAskedQuestions": "FAQ"
   }
 }

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectComponent } from '../form/select/SelectComponent';
 import styles from '../../styles/ProductTeaser.module.scss';
-import Link from "next/link";
+import Link from 'next/link';
 
 export function ProductTeaser({ data, selectMethod, selectWeight }) {
   const { t } = useTranslation();
@@ -27,8 +27,6 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
 
   const { productData } = quantityWeight || {};
 
-
-
   function handleQuantityChange(value) {
     setQuantity(value);
   }
@@ -48,19 +46,24 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
         onMouseEnter={changeContent}
         onClick={changeContent}
       >
-          {horizontalProductView && <Image
-              src={switchContent ? horizontalProductView?.url : productBanner?.url}
-              alt={'product teaser'}
-              width={
-                  switchContent ? horizontalProductView?.width : productBanner?.width
-              }
-              height={
-                  switchContent
-                      ? horizontalProductView?.height
-                      : productBanner?.height
-              }
-          />}
-
+        {horizontalProductView && (
+          <Image
+            src={
+              switchContent ? horizontalProductView?.url : productBanner?.url
+            }
+            alt={'product teaser'}
+            width={
+              switchContent
+                ? horizontalProductView?.width
+                : productBanner?.width
+            }
+            height={
+              switchContent
+                ? horizontalProductView?.height
+                : productBanner?.height
+            }
+          />
+        )}
       </div>
       <div>
         <h1>{productName}</h1>
@@ -77,7 +80,9 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
               {selectMethod && (
                 <Form.Item
                   name="method"
-                  label={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
+                  label={t('select.method', {
+                    lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                  })}
                   rules={[
                     {
                       required: true,
@@ -111,7 +116,9 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
               {selectWeight && (
                 <Form.Item
                   name="weight"
-                  label={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
+                  label={t('select.weight', {
+                    lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                  })}
                   rules={[
                     {
                       required: true,
@@ -133,8 +140,12 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
           {(weightSelect === 50 && productData?.[0]?.quantity) ||
           (weightSelect === 250 && productData?.[1]?.quantity) ||
           (weightSelect === 1000 && productData?.[2]?.quantity)
-            ? t('quantaty.inStock', {lng: router.locale  === "cs"? 'cs_CZ': "en"})
-            : t('quantaty.outOfStock', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
+            ? t('quantaty.inStock', {
+                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+              })
+            : t('quantaty.outOfStock', {
+                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+              })}
         </p>
 
         <h1 className={styles.price}>
@@ -160,16 +171,26 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
             data-item-url={router?.pathname}
             data-item-image={horizontalProductView?.url}
             data-item-name={productName}
-            data-item-custom1-name={t('select.weight', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
+            data-item-custom1-name={t('select.weight', {
+              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+            })}
             data-item-custom1-value={weightSelect}
-            data-item-custom2-name={t('select.method', {lng: router.locale  === "cs"? 'cs_CZ': "en"})}
+            data-item-custom2-name={t('select.method', {
+              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+            })}
             data-item-custom2-value={methodSelect}
             data-item-quantity={quantity}
           >
-            Add to cart
+            {t('button.addToCart', {
+              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+            })}
           </button>
           <Link href={`/shop/details/${id}`} locale={router.locale}>
-            <a>Detail produktu</a>
+            <a>
+              {t('button.productDetail', {
+                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+              })}
+            </a>
           </Link>
         </div>
       </div>

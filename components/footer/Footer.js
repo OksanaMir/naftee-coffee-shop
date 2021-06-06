@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { request } from '../../lib/datoCMS';
 import { Loader } from '../ loader/Loader';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Modal } from 'antd';
 import { useLocalStorageState } from 'ahooks';
 import styles from '../../styles/Footer.module.scss';
 
 export function Footer() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const router = useRouter();
   const [data, setData] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -61,18 +63,30 @@ export function Footer() {
 
             <li>
               <Link href="/terms">
-                <a>Terms and Conditions</a>
+                <a>
+                  {t('footer.termsAndConditions', {
+                    lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                  })}
+                </a>
               </Link>
             </li>
 
             <li>
               <Link href="/privacy">
-                <a>Privacy policy</a>
+                <a>
+                  {t('footer.privacyPolicy', {
+                    lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                  })}
+                </a>
               </Link>
             </li>
             <li>
               <Link href="/faq">
-                <a>FAQ</a>
+                <a>
+                  {t('footer.frequentlyAskedQuestions', {
+                    lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                  })}
+                </a>
               </Link>
             </li>
           </ul>

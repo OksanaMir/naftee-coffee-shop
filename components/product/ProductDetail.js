@@ -1,14 +1,14 @@
-import Image from "next/image";
-import { useRef, useState } from "react";
-import { Form, InputNumber } from "antd";
-import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
+import Image from 'next/image';
+import { useRef, useState } from 'react';
+import { Form, InputNumber } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 
-import { SelectComponent } from "../form/select/SelectComponent";
-import { ExpandableText } from "../expandableText/ExpandableText";
+import { SelectComponent } from '../form/select/SelectComponent';
+import { ExpandableText } from '../expandableText/ExpandableText';
 
-import styles from "../../styles/ProductDetail.module.scss";
-import Link from "next/link";
+import styles from '../../styles/ProductDetail.module.scss';
+import Link from 'next/link';
 
 export function ProductDetail({ product, selectMethod }) {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ export function ProductDetail({ product, selectMethod }) {
   const router = useRouter();
   const formRef = useRef(null);
   const [weightSelect, setWeightSelect] = useState(250);
-  const [methodSelect, setMethodSelect] = useState("espresso");
+  const [methodSelect, setMethodSelect] = useState('espresso');
   const [quantity, setQuantity] = useState(1);
   const {
     productName,
@@ -25,6 +25,8 @@ export function ProductDetail({ product, selectMethod }) {
     taste,
     quantityWeight,
     cuppingScoreRatingSca,
+    description,
+    characteristic,
   } = product || {};
 
   const { productData } = quantityWeight || {};
@@ -56,23 +58,21 @@ export function ProductDetail({ product, selectMethod }) {
       <span className={styles.bottomSection}>
         <ExpandableText
           id={`descriptionIconWrapper${id}`}
-          title={t("shopList.description", {
-            lng: router.locale === "cs" ? "cs_CZ" : "en",
+          title={t('shopList.description', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
           })}
           paragraph={
-            <span dangerouslySetInnerHTML={createMarkup(product.description)} />
+            <span dangerouslySetInnerHTML={createMarkup(description)} />
           }
         />
 
         <ExpandableText
-          title={t("shopList.characteristic", {
-            lng: router.locale === "cs" ? "cs_CZ" : "en",
+          title={t('shopList.characteristic', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
           })}
           id={`characteristicIconWrapper${id}`}
           paragraph={
-            <span
-              dangerouslySetInnerHTML={createMarkup(product.characteristic)}
-            />
+            <span dangerouslySetInnerHTML={createMarkup(characteristic)} />
           }
         />
       </span>
@@ -90,8 +90,8 @@ export function ProductDetail({ product, selectMethod }) {
             {selectMethod && (
               <Form.Item
                 name="method"
-                label={t("select.method", {
-                  lng: router.locale === "cs" ? "cs_CZ" : "en",
+                label={t('select.method', {
+                  lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
                 })}
                 rules={[
                   {
@@ -110,8 +110,8 @@ export function ProductDetail({ product, selectMethod }) {
 
           <Form.Item
             name="amount"
-            label={t("select.amount", {
-              lng: router.locale === "cs" ? "cs_CZ" : "en",
+            label={t('select.amount', {
+              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
             })}
             rules={[
               {
@@ -127,8 +127,8 @@ export function ProductDetail({ product, selectMethod }) {
           >
             <Form.Item
               name="weight"
-              label={t("select.weight", {
-                lng: router.locale === "cs" ? "cs_CZ" : "en",
+              label={t('select.weight', {
+                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
               })}
               rules={[
                 {
@@ -150,11 +150,11 @@ export function ProductDetail({ product, selectMethod }) {
         {(weightSelect === 50 && productData?.[0]?.quantity) ||
         (weightSelect === 250 && productData?.[1]?.quantity) ||
         (weightSelect === 1000 && productData?.[2]?.quantity)
-          ? t("quantaty.inStock", {
-              lng: router.locale === "cs" ? "cs_CZ" : "en",
+          ? t('quantaty.inStock', {
+              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
             })
-          : t("quantaty.outOfStock", {
-              lng: router.locale === "cs" ? "cs_CZ" : "en",
+          : t('quantaty.outOfStock', {
+              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
             })}
       </p>
 
@@ -163,7 +163,7 @@ export function ProductDetail({ product, selectMethod }) {
           ? productData?.[0]?.price
           : weightSelect === 250
           ? productData?.[1]?.price
-          : productData?.[2]?.price) * quantity}{" "}
+          : productData?.[2]?.price) * quantity}{' '}
         Kč
       </h1>
 
@@ -182,21 +182,28 @@ export function ProductDetail({ product, selectMethod }) {
           data-item-description={taste}
           data-item-image={horizontalProductView?.url}
           data-item-name={productName}
-          data-item-custom1-name={t("select.weight", {
-            lng: router.locale === "cs" ? "cs_CZ" : "en",
+          data-item-custom1-name={t('select.weight', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
           })}
           data-item-custom1-value={weightSelect}
-          data-item-custom2-name={t("select.method", {
-            lng: router.locale === "cs" ? "cs_CZ" : "en",
+          data-item-custom2-name={t('select.method', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
           })}
           data-item-custom2-value={methodSelect}
           data-item-quantity={quantity}
         >
-          Add to cart
+          {t('button.addToCart', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          })}
         </button>
-        {!router?.pathname.indexOf("details") > 0 && (
+        {router?.pathname.indexOf('details') !== 1 && (
           <Link href={`/shop/details/${id}`} locale={router.locale}>
-            <a>Detail produktu</a>
+            <a>
+              {' '}
+              {t('button.productDetail', {
+                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+              })}
+            </a>
           </Link>
         )}
       </div>

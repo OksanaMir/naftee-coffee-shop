@@ -24,6 +24,11 @@
     "isRequired": "is required!"
   },
 
+  "button": {
+    "addToCart": "add to cart",
+    "productDetail": "Product detail"
+  },
+
   "message": {
     "userNameIsRequired": "user name is required",
     "emailIsRequired": "email is required",
@@ -47,5 +52,11 @@
     "finish": "Find my coffee",
     "back": "Back",
     "buy": "Buy now"
+  },
+
+  "footer": {
+    "privacyPolicy": "Privacy policy",
+    "termsAndConditions": "Terms and conditions",
+    "frequentlyAskedQuestions": "FAQ"
   }
 }

@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 * {
   box-sizing: border-box;
 }
@@ -106,7 +106,6 @@ body {
 
   .ant-form-item-label > label {
     color: $textWhite;
-    padding-top: 10px;
   }
   .ant-form-item-label,
   > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
@@ -270,5 +269,11 @@ body {
     font-family: $fontText;
     padding: 9px;
     margin: 20px;
+  }
+
+  .ant-row .ant-form-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

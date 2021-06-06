@@ -1,29 +1,32 @@
-import { request } from "../../../lib/datoCMS";
-import { ProductDetail } from "../../../components/product/ProductDetail";
-import Head from "next/head";
-import {Layout} from "../../../components/layout/Layout";
+import { request } from '../../../lib/datoCMS';
+import { ProductDetail } from '../../../components/product/ProductDetail';
+import Head from 'next/head';
+import { Layout } from '../../../components/layout/Layout';
+import styles from '../../../styles/Id.module.scss';
 
 export default function ProductDetailPage({ product, selects }) {
   return (
-      <div className="container">
-        <Head>
-          <title>Product page Naftee</title>
-        </Head>
+    <>
+      <Head>
+        <title>Product page Naftee</title>
+      </Head>
 
-        <Layout>
-    <ProductDetail
-      product={product.product}
-      selectMethod={selects?.allSelectors?.[0]?.select?.selectMethod}
-    />
-        </Layout>
-      </div>
+      <Layout>
+        <div className={styles.idContainer}>
+          <ProductDetail
+            product={product.product}
+            selectMethod={selects?.allSelectors?.[0]?.select?.selectMethod}
+          />
+        </div>
+      </Layout>
+    </>
   );
 }
 
 export async function getStaticPaths({ locales }) {
   const products = await request({
     query: ALL_PRODUCTS_QUERY,
-    variables: { locale: "cs_CZ" },
+    variables: { locale: 'cs_CZ' },
   });
 
   const paths = locales.flatMap((locale) => {
@@ -48,12 +51,12 @@ export async function getStaticProps(context) {
     query: SINGLE_PRODUCT_QUERY,
     variables: {
       filter: { id: { eq: context.params.id } },
-      locale: context.locale === "cs" ? "cs_CZ" : "en",
+      locale: context.locale === 'cs' ? 'cs_CZ' : 'en',
     },
   });
   const selects = await request({
     query: SELECTORS_QUERY,
-    variables: { locale: context.locale === "cs" ? "cs_CZ" : "en" },
+    variables: { locale: context.locale === 'cs' ? 'cs_CZ' : 'en' },
   });
 
   return {
@@ -87,6 +90,8 @@ const SINGLE_PRODUCT_QUERY = `query ProductQuery($filter: ProductModelFilter, $l
       height
     }
     cuppingScoreRatingSca
+    description(markdown: true)
+    characteristic(markdown: true)
   }
   }`;
 
