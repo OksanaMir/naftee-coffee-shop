@@ -86,7 +86,7 @@ export function ProductOverView({ data }) {
                     {selectsData?.allSelectors?.[0]?.select?.selectMethod && (
                       <Form.Item
                         name="method"
-                        label="Method"
+                        label={t('select.method')}
                         rules={[
                           {
                             required: true,
@@ -122,7 +122,7 @@ export function ProductOverView({ data }) {
                     {selectsData?.allSelectors?.[1]?.select?.selectWeight && (
                       <Form.Item
                         name="weight"
-                        label="Weight"
+                        label={t('select.weight')}
                         rules={[
                           {
                             required: true,

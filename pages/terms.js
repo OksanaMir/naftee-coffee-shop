@@ -15,9 +15,8 @@ export default function Terms() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     request({
-      query: TERMS_QUERY,
+      query: PRODUCT_QUERY,
       variables: { locale: i18n.language },
     })
       .then((response) => {

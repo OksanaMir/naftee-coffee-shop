@@ -43,16 +43,17 @@ export default function ContactFormPage() {
           <section className={styles.contactContainer}>
             <h1>{data?.contact?.headline}</h1>
             <span
-              className={styles.contactInformation}
-              dangerouslySetInnerHTML={createMarkup(data?.contact?.information)}
-            />
-            <span
               className={styles.contactcallToAction}
               dangerouslySetInnerHTML={createMarkup(
                 data?.contact?.callToAction,
               )}
             />
+
             <ContactForm />
+            <span
+              className={styles.contactInformation}
+              dangerouslySetInnerHTML={createMarkup(data?.contact?.information)}
+            />
           </section>
         )}
       </Layout>
