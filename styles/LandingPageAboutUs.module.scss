@@ -20,19 +20,19 @@
     flex-direction: row;
   }
 
-  p {
+  h1 {
     line-height: 1.2;
-    text-align: center;
-
+    align-self: center;
+    width: 100%;
     color: $textWhite;
     font-family: $fontHeader;
-    font-size: 2rem;
+    font-size: 1.5rem;
     position: absolute;
-    top: 30%;
-    right: 50%;
+    top: 50px;
+    right: -50px;
 
-    // @media (min-width: 460px) {
-    //   font-size: 1rem;
-    // }
+    @media (min-width: 460px) {
+      font-size: 2rem;
+    }
   }
 }

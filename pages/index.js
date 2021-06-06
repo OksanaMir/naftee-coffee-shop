@@ -5,9 +5,24 @@ import {Carousel} from 'antd';
 import {LandingPageAboutUs} from '../components/landingPage/LandingPageAboutUs';
 import {Layout} from '../components/layout/Layout';
 import {ProductOverView} from '../components/product/ProductOverView';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { request } from '../lib/datoCMS';
+import { Loader } from '../components/ loader/Loader';
+import { isMobile } from 'react-device-detect';
+import { ProductTeaser } from '../components/product/ProductTeaser';
+import { Carousel } from 'antd';
+import { LandingPageAboutUs } from '../components/landingPage/LandingPageAboutUs';
+
+import { Layout } from '../components/layout/Layout';
+import { ProductOverView } from '../components/product/ProductOverView';
 import styles from '../styles/Index.module.scss';
 
 export default function Index({ selectsData, productsData }) {
+  const { i18n } = useTranslation();
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectsData, setSelectsData] = useState({});
 
     const { allProducts } = productsData || {};
 
@@ -48,7 +63,14 @@ export default function Index({ selectsData, productsData }) {
                 </section>
                 <section className={styles.mainDesctop}>
                   {allProducts?.map((product) => (
-                    <ProductTeaser key={product?.id} data={product} />
+                    <ProductTeaser  selectMethod={
+                        selectsData?.allSelectors?.[0]?.select?.selectMethod ??
+                        []
+                    }
+                                    selectWeight={
+                                        selectsData?.allSelectors?.[1]?.select?.selectWeight ??
+                                        []
+                                    } key={product?.id} data={product} />
                   ))}
                 </section>
 

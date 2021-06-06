@@ -5,7 +5,7 @@ import styles from '../../styles/LandingPageAboutUs.module.scss';
 export function  LandingPageAboutUs() {
   return (
     <article className={styles.landingAboutUsContainer}>
-      <p>Love can be specialty</p>
+      <h1>Love can be specialty</h1>
     </article>
   );
 }

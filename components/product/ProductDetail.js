@@ -10,7 +10,7 @@ import { ExpandableText } from '../expandableText/ExpandableText';
 import styles from '../../styles/ProductDetail.module.scss';
 
 export function ProductDetail({ product, selectMethod, selectWeight }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const router = useRouter();
   const formRef = useRef(null);
