@@ -1,7 +1,7 @@
 @import 'variables';
 
 .expandableText {
-  div {
+  .list {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,28 +9,33 @@
     padding: 0.5rem;
     border-top: 0.01px solid $borderLight;
     border-bottom: 0.01px solid $borderLight;
-    .iconBox {
-      border: none;
-    }
-    svg {
-      width: 0.7rem;
-      height: 0.7rem;
-      color: $textWhite;
-    }
-  }
-  div:hover {
-    background-color: $secondary;
-    opacity: 70%;
     h3 {
       color: $textWhite;
     }
-    div {
+    .iconBox {
+      border: none;
       svg {
+        width: 0.7rem;
+        height: 0.7rem;
         color: $textWhite;
       }
     }
   }
+  .list:hover {
+    background-color: $secondary;
+    opacity: 70%;
+  }
   p {
+    text-align: left;
+    padding: 5px 15px;
+
+    @media (min-width: 1500px) {
+      padding: 0.25rem 1.5rem;
+    }
+    @media (min-width: 2500px) {
+      padding: 0.5rem 3rem;
+    }
+
     ul {
       padding: 0;
       li {
@@ -38,7 +43,7 @@
           padding-left: 1rem;
 
           li {
-            list-style: circle;
+            list-style: circle !important;
           }
         }
       }
@@ -48,14 +53,6 @@
     .list:hover {
       background-color: $secondary;
       opacity: 70%;
-      h3 {
-        color: $textWhite;
-      }
-      div {
-        svg {
-          color: $textWhite;
-        }
-      }
     }
   }
 }

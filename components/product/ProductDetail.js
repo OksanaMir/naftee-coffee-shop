@@ -161,7 +161,7 @@ export function ProductDetail({ product, selectMethod, selectWeight }) {
 
       <div className={styles.snipcartAddItem}>
         <button
-          className="snipcart-add-item"
+          className="snipcart-add-item "
           data-item-id={id}
           data-item-price={
             weightSelect === 50

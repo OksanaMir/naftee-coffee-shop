@@ -3,9 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $borderLight;
-  button {
-    background-color: $borderLight;
+  background-color: rgb(136, 129, 175);
+  :global(button.ant-btn) {
+    background-color: rgb(136, 129, 175);
+    color: black;
+  }
+  :global(button.ant-btn:hover) {
+    background-color: rgb(174, 168, 206);
     color: black;
   }
 }

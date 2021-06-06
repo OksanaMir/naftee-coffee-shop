@@ -20,10 +20,11 @@ const tailLayout = {
     span: 16,
   },
 };
-export function QuizForm({ onFinished, answers, setAnswers }) {
+export function QuizForm({ onFinished }) {
   const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
   const [quiz, setQuiz] = useState([]);
+  const [answers, setAnswers] = useState([]);
   const [quizItemIndex, setQuizItemIndex] = useState(0);
   const [chosenAnswerValue, setChosenAnswerValue] = useState(
     quiz?.[quizItemIndex]?.option[0],
@@ -34,9 +35,11 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
   const [chosenAmount, setChosenAmount] = useState(0);
   const [chosenSort, setChosenSort] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
   //{ choice1: sort1, choice2: sort2, choice3: sort3, choice4: sort4 };
   useEffect(() => {
     setChosenAnswerValue(quiz[quizItemIndex]?.option[0]);
+
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
   }, [quizItemIndex]);
   useEffect(() => {
@@ -69,6 +72,7 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
       ...answers,
       quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
     ]);
+
     if (isLastQuizItem) {
       return;
     }
@@ -84,13 +88,32 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
       ...answers,
       quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex],
     ];
-    setAnswers(results);
-    console.log('send', results);
-    onFinished();
+
+    let counts = {};
+    let maxCount = 0;
+    let maxValue = '';
+
+    results.forEach((result) => {
+      const count = 1 + (counts[result] || 0);
+      counts[result] = count;
+      if (count >= maxCount) {
+        maxCount = count;
+        maxValue = '' + result;
+      }
+    });
+
+    console.log('send', results, counts, maxValue);
+    onFinished({
+      package: results[2],
+      method: results[0],
+      coffeSort: maxValue,
+    });
   };
+
   const FormQuestion = () => {
     return <h1>{quiz?.[quizItemIndex]?.question}</h1>;
   };
+
   // console.log(
   //   quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex],
   //   'popover',
@@ -155,7 +178,7 @@ export function QuizForm({ onFinished, answers, setAnswers }) {
             {isLastQuizItem && (
               <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit" onClick={sendAnswers}>
-                  Find my coffee
+                  {t('quiz.finish')}
                 </Button>
               </Form.Item>
             )}

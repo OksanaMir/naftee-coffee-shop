@@ -1,13 +1,13 @@
 import Head from 'next/head';
 
-import {Layout} from '../../components/layout/Layout';
+import { Layout } from '../../components/layout/Layout';
 
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-import {useState} from 'react';
-import {Loader} from '../../components/ loader/Loader';
-import {request} from '../../lib/datoCMS';
-import {ProductDetail} from '../../components/product/ProductDetail';
+import { useState } from 'react';
+import { Loader } from '../../components/ loader/Loader';
+import { request } from '../../lib/datoCMS';
+import { ProductDetail } from '../../components/product/ProductDetail';
 import styles from '../../styles/ShopList.module.scss';
 
 export default function ShopList({ selectsData, productsData }) {
@@ -103,7 +103,7 @@ export async function getStaticProps(context) {
   const productsData = await request({
     query: PRODUCT_QUERY,
     variables: { locale: 'en' },
-  })
+  });
   const selectsData = await request({
     query: SELECTORS_QUERY,
     variables: {},
@@ -111,9 +111,9 @@ export async function getStaticProps(context) {
   return {
     props: {
       productsData,
-      selectsData
-    }
-  }
+      selectsData,
+    },
+  };
 }
 
 const SELECTORS_QUERY = `query SelectorsQuery{
@@ -156,7 +156,7 @@ const PRODUCT_QUERY = `query ProductQuery($locale: SiteLocale){
       height
     }
     cuppingScoreRatingSca
-    description
-    characteristic
+    description(markdown: true)
+    characteristic(markdown: true)
   }
 }`;
