@@ -4,9 +4,6 @@
   color: aliceblue;
   height: 100%;
 
-  .content {
-    height: 100%;
-  }
   @media (min-width: 760px) {
     width: 50%;
     flex-basis: 50%;
@@ -14,13 +11,23 @@
     flex-shrink: 1;
     margin: 0;
   }
-  img {
-    max-width: 100%;
-    height: auto;
-    padding: 10px;
-  }
   @media (min-width: 1700px) {
     width: 70%;
     margin: 0 auto;
+  }
+
+  .content {
+    height: 100%;
+    .productText {
+      height: 20%;
+    }
+    .bannerText {
+      height: 20%;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      padding-top: 1.5rem !important;
+    }
   }
 }

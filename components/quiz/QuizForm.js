@@ -123,7 +123,8 @@ export function QuizForm({ onFinished, answers, setAnswers, quiz }) {
                     id={`popoverArea${index}`}
                   >
                     {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex] ? (
-                      <Popover
+                        <div className={styles.popover}>
+                        <Popover
                         placement="right"
                         title={undefined}
                         content={
@@ -146,6 +147,7 @@ export function QuizForm({ onFinished, answers, setAnswers, quiz }) {
                           {option}
                         </Radio>
                       </Popover>
+                        </div>
                     ) : (
                       <Radio key={option.id} value={option} index={index}>
                         {option}
