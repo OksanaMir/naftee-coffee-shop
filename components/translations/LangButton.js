@@ -11,7 +11,6 @@ export const LangButton = ({  language }) => {
     dynamicPathname = dynamicPathname.replace('[id]', query.id)
   }
   const locale = language  === "CZ"? 'cs': "en"
-  console.log('Pathname', pathname)
   return (
     <Link
       className={styles.langBtn}

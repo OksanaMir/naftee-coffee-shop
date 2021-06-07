@@ -17,8 +17,10 @@ export default function ShopList({ selectsData, productsData }) {
         <title>Shop list</title>
       </Head>
       <Layout>
-        <section className={styles.shopListContainer}>
+        <div className={styles.shopList}>
           <h1>Shop.</h1>
+        <>
+        <section className={styles.shopListContainer}>
 
           {[...rest, first]?.map((product) => {
             return (
@@ -32,7 +34,7 @@ export default function ShopList({ selectsData, productsData }) {
               </div>
             );
           })}
-        </section>
+        </section></></div>
       </Layout>
     </>
   );

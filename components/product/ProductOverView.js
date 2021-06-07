@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import { Form, InputNumber } from 'antd';
-import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SelectComponent } from '../form/select/SelectComponent';
-import { GoToDetailButton } from '../form/button/GoToDetailButton';
+import {Form, InputNumber} from 'antd';
+import {useRouter} from 'next/router';
+import {useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {SelectComponent} from '../form/select/SelectComponent';
+import {GoToDetailButton} from '../form/button/GoToDetailButton';
 import styles from '../../styles/ProductOverView.module.scss';
-import Link from 'next/link';
 
 export function ProductOverView({ data, selectMethod }) {
   const formRef = useRef(null);
@@ -136,8 +135,14 @@ export function ProductOverView({ data, selectMethod }) {
               ? productData?.[1]?.price
               : productData?.[2]?.price) * quantity}
           </p>
+          <div className={styles.snipcartAddItem}>
+
           <button
-            className="snipcart-add-item"
+              disabled={(weightSelect === 50 && productData?.[0]?.quantity ===0) ||
+              (weightSelect === 250 && productData?.[1]?.quantity === 0) ||
+              (weightSelect === 1000 && productData?.[2]?.quantity === 0 ) }
+
+              className="snipcart-add-item"
             data-item-id={id}
             data-item-price={
               weightSelect === 50
@@ -167,6 +172,7 @@ export function ProductOverView({ data, selectMethod }) {
             })}
           </button>
           <GoToDetailButton id={id} />
+          </div>
         </article>
       )}
     </>

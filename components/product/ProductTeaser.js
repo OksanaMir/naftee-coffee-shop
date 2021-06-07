@@ -37,6 +37,10 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
     setSwitchContent(!switchContent);
   };
 
+    console.log((weightSelect === 50 && productData?.[0]?.quantity ===0) ||
+        (weightSelect === 250 && productData?.[1]?.quantity === 0) ||
+        (weightSelect === 1000 && productData?.[2]?.quantity === 0 ), "disable", id )
+
   return (
     <div className={styles.productTeaser}>
       <div
@@ -64,7 +68,7 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
           />
         )}
       </div>
-      <div>
+      <div className={styles.infoWrapper}>
         <h1>{productName}</h1>
         <div className={styles.inputBlock}>
           <Form
@@ -132,32 +136,37 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
                 </Form.Item>
               )}
             </div>
+
+        <p>{cuppingScoreRatingSca}</p>
           </Form>
         </div>
-        <p>{cuppingScoreRatingSca}</p>
+<div className={styles.priceAmount}>
+        <h1 className={styles.price}>
+          {(weightSelect === 50
+              ? productData?.[0]?.price
+              : weightSelect === 250
+                  ? productData?.[1]?.price
+                  : productData?.[2]?.price) * quantity}
+          Kč
+        </h1>
         <p>
           {(weightSelect === 50 && productData?.[0]?.quantity) ||
           (weightSelect === 250 && productData?.[1]?.quantity) ||
           (weightSelect === 1000 && productData?.[2]?.quantity)
-            ? t('quantaty.inStock', {
+              ? t('quantaty.inStock', {
                 lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
               })
-            : t('quantaty.outOfStock', {
+              : t('quantaty.outOfStock', {
                 lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
               })}
         </p>
-
-        <h1 className={styles.price}>
-          {(weightSelect === 50
-            ? productData?.[0]?.price
-            : weightSelect === 250
-            ? productData?.[1]?.price
-            : productData?.[2]?.price) * quantity}
-          Kč
-        </h1>
+</div>
 
         <div className={styles.snipcartAddItem}>
           <button
+              disabled={(weightSelect === 50 && productData?.[0]?.quantity ===0) ||
+                  (weightSelect === 250 && productData?.[1]?.quantity === 0) ||
+                  (weightSelect === 1000 && productData?.[2]?.quantity === 0 ) }
             className="snipcart-add-item "
             data-item-id={id}
             data-item-price={

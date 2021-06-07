@@ -1,23 +1,18 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { GoToDetailButton } from '../form/button/GoToDetailButton';
+import {GoToDetailButton} from '../form/button/GoToDetailButton';
 
 export function ProductQuiz({ product, method, quantity }) {
-  const router = useRouter();
   const { productName, horizontalProductView, id, quantityWeight, taste } =
     product || {};
   const price = quantityWeight?.productData?.find(
     (it) => it?.weight === quantity,
   )?.price;
 
-  console.log('Product', product);
-  console.log(productName);
-  console.log(quantityWeight);
 
   return (
     <article>
       <>
+        <h1>{productName}</h1>
         {horizontalProductView && (
           <Image
             src={horizontalProductView?.url}

@@ -57,4 +57,10 @@
   p {
     text-align: left;
   }
+  .snipcartAddItem {
+    margin: auto;
+    button:disabled {
+      cursor: not-allowed;
+    }
+  }
 }

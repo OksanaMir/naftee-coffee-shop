@@ -1,6 +1,6 @@
 @import 'variables';
 .headerDesktop {
-  width: 70%;
+  min-width: 70%;
   font-family: $fontHeader;
   display: none;
   list-style: none;
@@ -33,6 +33,8 @@
       align-items: center;
       justify-content: center;
       color: $textWhite;
+      min-width: max-content;
+margin:0 1rem;
     }
     &:hover {
       background-color: $secondary;

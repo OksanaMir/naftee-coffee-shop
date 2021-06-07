@@ -1,33 +1,46 @@
 @import 'variables';
 
-.shopListContainer {
-  padding-top: 3rem;
+.shopList {
+
   h1 {
-    font-size: 2rem;
+    font-size: 3rem;
+
+    font-family: $fontHeader;
+    padding: 0.5rem;
+    color: white;
   }
-  .container {
-    padding: 15px;
+  .shopListContainer {
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .container {
+      padding: 15px;
+
+      @media (min-width: 640px) {
+        min-width: 50%;
+        flex: 1;
+        margin: 0;
+      }
+    }
+
+    @media (min-width: 1700px) {
+      width: 70%;
+      margin: 0 auto;
+    }
 
     @media (min-width: 640px) {
-      min-width: 50%;
-      flex: 1;
-      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      align-items: baseline;
+      align-self: center;
     }
-  }
-  @media (min-width: 1700px) {
-    width: 70%;
-    margin: 0 auto;
-  }
 
-  @media (min-width: 640px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    align-items: baseline;
-    align-self: center;
-  }
-  img {
-    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.15);
+    img {
+      box-shadow: 0 12px 14px rgba(0, 0, 0, 0.15);
+    }
   }
 }

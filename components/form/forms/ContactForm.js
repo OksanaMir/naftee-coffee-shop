@@ -1,7 +1,6 @@
-import { Form, Input, Button } from 'antd';
+import {Button, Form, Input} from 'antd';
 import 'antd/dist/antd.css';
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 import styles from '../../../styles/ContactForm.module.scss';
 import {useRouter} from "next/router";
@@ -21,12 +20,9 @@ const router = useRouter()
       message: form.getFieldsValue().message,
     });
   }
-  useEffect(() => {
-    console.log(form.getFieldsValue(), 'hdskds');
-  }, [form]);
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
+
+  const onFinish = () => {
     createRecord();
   };
 

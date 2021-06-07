@@ -59,9 +59,9 @@
       border: $borderLight;
       color: $textBlack;
       font-family: $fontText;
-      padding: 0;
       margin: 15px;
-      width: 7rem;
+      padding: 0 0.5rem;
+      width: min-content;
     }
     :global(.ant-btn-primary:hover) {
       background-color: rgb(136, 129, 175);

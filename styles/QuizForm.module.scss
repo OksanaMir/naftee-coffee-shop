@@ -55,7 +55,9 @@
   :global(.ant-btn.ant-btn-primary) {
     background-color: rgb(136, 129, 175);
     color: $textWhite;
-    width: 7rem;
+    width: min-content;
+    padding: 0 0.5rem;
+
   }
 
   :global(.ant-btn.ant-btn-primary:hover) {
