@@ -46,12 +46,20 @@
     "inStock": "In stock"
   },
   "quiz": {
+    "quiz": "Quiz.",
+    "instruction": "Not sure which sort of coffee to choose? Do the Quiz to make your choice easier.",
     "quit": "Quit quiz",
     "skip": "Skip question",
     "continue": "Continue",
     "finish": "Find my coffee",
     "back": "Back",
-    "buy": "Buy now"
+    "buy": "Buy now",
+    "headline": "Thank you for answering questions!",
+    "toShop": "Buy now",
+    "sort": "Sort: ",
+    "method": "Method: ",
+    "package": "g package",
+    "price": "CZK"
   },
 
   "footer": {

@@ -19,6 +19,7 @@
     margin: 0;
     align-self: center;
     height: 100%;
+
     @media (min-width: 760px) {
       width: 100%;
       &:nth-last-of-type(1) {
@@ -44,6 +45,7 @@ margin:0 1rem;
     display: flex;
     align-items: center;
     color: $textWhite;
+    margin-left: 10px;
 
     .btnContainer {
       display: flex;
@@ -96,5 +98,6 @@ margin:0 1rem;
   }
   .langSwitcher {
     display: none;
+    margin-left: 2px;
   }
 }

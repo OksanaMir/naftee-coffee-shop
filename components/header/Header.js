@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -16,8 +15,6 @@ import styles from '../../styles/Header.module.scss';
 
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
-
-
 
   const [itemsCount, setItemsCount] = useState(0);
 
@@ -54,7 +51,7 @@ export function Header() {
             <HeaderContent headerClassName="headerDesktop" />
             <div className={styles.langSwitcher}>
               <div className={styles.btnContainer}>
-                <LangButton  language={'CZ'} />/
+                <LangButton language={'CZ'} />/
                 <LangButton language={'EN'} />
               </div>
             </div>
