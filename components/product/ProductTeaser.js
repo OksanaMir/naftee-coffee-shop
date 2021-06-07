@@ -3,10 +3,9 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Form, InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
-
+import { GoToDetailButton } from '../form/button/GoToDetailButton';
 import { SelectComponent } from '../form/select/SelectComponent';
 import styles from '../../styles/ProductTeaser.module.scss';
-import Link from 'next/link';
 
 export function ProductTeaser({ data, selectMethod, selectWeight }) {
   const { t } = useTranslation();
@@ -185,13 +184,7 @@ export function ProductTeaser({ data, selectMethod, selectWeight }) {
               lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
             })}
           </button>
-          <Link href={`/shop/details/${id}`} locale={router.locale}>
-            <a>
-              {t('button.productDetail', {
-                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
-              })}
-            </a>
-          </Link>
+          <GoToDetailButton id={id} />
         </div>
       </div>
     </div>

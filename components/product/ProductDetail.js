@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Form, InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
+import { GoToDetailButton } from '../form/button/GoToDetailButton';
 
 import { SelectComponent } from '../form/select/SelectComponent';
 import { ExpandableText } from '../expandableText/ExpandableText';
@@ -196,15 +197,8 @@ export function ProductDetail({ product, selectMethod }) {
             lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
           })}
         </button>
-        {router?.pathname.indexOf('details') !== 1 && (
-          <Link href={`/shop/details/${id}`} locale={router.locale}>
-            <a>
-              {' '}
-              {t('button.productDetail', {
-                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
-              })}
-            </a>
-          </Link>
+        {!router?.pathname.indexOf('details') > 0 && (
+          <GoToDetailButton id={id} />
         )}
       </div>
     </article>

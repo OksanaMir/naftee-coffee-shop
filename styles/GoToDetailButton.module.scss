@@ -1,0 +1,16 @@
+@import 'variables';
+.productButton {
+  border: 1px solid $borderLight;
+  color: $textWhite;
+  width: fit-content;
+  font-family: $fontText;
+  padding: 9px;
+  margin: 15px;
+  &:visited {
+    color: $textWhite;
+  }
+  &:hover {
+    color: black;
+    background-color: $borderLight;
+  }
+}

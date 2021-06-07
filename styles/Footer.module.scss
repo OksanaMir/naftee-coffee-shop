@@ -4,12 +4,15 @@
   padding: 0.5rem 0;
   position: relative;
   padding-top: 40px;
-
+  font-size: 1.2rem;
   .contacts {
     display: none;
     @media (min-width: 450px) {
       display: flex;
       flex-direction: column;
+    }
+    li {
+      line-height: 1.5;
     }
   }
 

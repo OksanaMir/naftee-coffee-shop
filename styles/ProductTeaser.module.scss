@@ -1,7 +1,7 @@
 @import 'variables';
 
 .productTeaser {
-  color: aliceblue;
+  color: $textWhite;
   height: 100%;
 
   @media (min-width: 760px) {
@@ -29,5 +29,7 @@
       height: auto;
       padding-top: 1.5rem !important;
     }
+  }
+  a {
   }
 }
