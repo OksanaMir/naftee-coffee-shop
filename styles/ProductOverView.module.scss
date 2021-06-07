@@ -1,8 +1,7 @@
 @import 'variables';
-
 .productOverView {
   padding: 0.5rem;
-
+  font-size: 1rem;
   .productImg {
     display: flex;
     flex-direction: column;
@@ -17,6 +16,8 @@
   p {
     text-align: center;
     font-family: $fontHeader;
+    font-size: 1rem;
+    margin-top: 1.5px;
   }
   .selectWrapper {
     position: relative;
@@ -42,7 +43,6 @@
     text-align: center;
   }
 
-
   .selectWrapper {
     position: relative;
   }
@@ -57,5 +57,4 @@
   p {
     text-align: left;
   }
-
 }

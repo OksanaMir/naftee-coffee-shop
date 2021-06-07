@@ -17,10 +17,14 @@ body {
   }
 
   .snipcart-modal__container {
-    margin-top: 4.5rem;
+    margin-top: 5.5rem;
+
     @media (min-width: 760px) {
       margin-top: 3rem;
     }
+  }
+  .snipcart-cart__content {
+    overflow-y: scroll;
   }
 
   .ant-form-item-label > label {
@@ -37,7 +41,7 @@ body {
     background-color: $borderLight;
     border: $borderLight;
     color: $textBlack;
-    width: 5rem;
+    width: fit-content;
     font-family: $fontText;
     padding: 0;
     margin: 15px;

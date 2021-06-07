@@ -54,14 +54,15 @@
   background-color: $secondary;
   display: block;
   list-style: none;
-  padding: 0;
+  padding: 2rem 0 0 0;
   margin: 4.5rem 0 0 0;
   height: 100%;
   z-index: 100;
   font-family: $fontHeader;
   font-size: 35px;
   line-height: 1;
-  position: absolute;
+  position: fixed;
+  top: 0;
 
   @media (min-width: 760px) {
     display: none;

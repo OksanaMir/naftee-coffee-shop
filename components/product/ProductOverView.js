@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SelectComponent } from '../form/select/SelectComponent';
+import { GoToDetailButton } from '../form/button/GoToDetailButton';
 import styles from '../../styles/ProductOverView.module.scss';
 import Link from 'next/link';
 
@@ -165,13 +166,7 @@ export function ProductOverView({ data, selectMethod }) {
               lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
             })}
           </button>
-          <Link href={`/shop/details/${id}`} locale={router.locale}>
-            <a>
-              {t('button.productDetail', {
-                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
-              })}
-            </a>
-          </Link>
+          <GoToDetailButton id={id} />
         </article>
       )}
     </>
