@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import {useRef, useState} from 'react';
-import {Form, InputNumber} from 'antd';
-import {useTranslation} from 'react-i18next';
-import {useRouter} from 'next/router';
-import {GoToDetailButton} from '../form/button/GoToDetailButton';
+import { useRef, useState } from 'react';
+import { Form, InputNumber } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
+import { GoToDetailButton } from '../form/button/GoToDetailButton';
 
-import {SelectComponent} from '../form/select/SelectComponent';
-import {ExpandableText} from '../expandableText/ExpandableText';
+import { SelectComponent } from '../form/select/SelectComponent';
+import { ExpandableText } from '../expandableText/ExpandableText';
 
 import styles from '../../styles/ProductDetail.module.scss';
 
@@ -40,10 +40,9 @@ export function ProductDetail({ product, selectMethod }) {
     return { __html: `${paragraph}` };
   }
 
-
   return (
     <article key={id} className={styles.productDetail}>
-        <h1>{productName}</h1>
+      <h1 className={styles.productName}>{productName}</h1>
       <div className={styles.topSection}>
         {horizontalProductView && (
           <Image
@@ -55,7 +54,9 @@ export function ProductDetail({ product, selectMethod }) {
           />
         )}
       </div>
-      <p>{taste}</p>
+      <span className={styles.taste}>
+        <p>{taste}</p>
+      </span>
       <span className={styles.bottomSection}>
         <ExpandableText
           id={`descriptionIconWrapper${id}`}
@@ -170,11 +171,12 @@ export function ProductDetail({ product, selectMethod }) {
 
       <div className={styles.snipcartAddItem}>
         <button
-            disabled={(weightSelect === 50 && productData?.[0]?.quantity ===0) ||
+          disabled={
+            (weightSelect === 50 && productData?.[0]?.quantity === 0) ||
             (weightSelect === 250 && productData?.[1]?.quantity === 0) ||
-            (weightSelect === 1000 && productData?.[2]?.quantity === 0 ) }
-
-            className="snipcart-add-item "
+            (weightSelect === 1000 && productData?.[2]?.quantity === 0)
+          }
+          className="snipcart-add-item "
           data-item-id={id}
           data-item-price={
             weightSelect === 50
@@ -183,7 +185,11 @@ export function ProductDetail({ product, selectMethod }) {
               ? productData?.[1]?.price
               : productData?.[2]?.price
           }
-          data-item-url={router?.pathname.indexOf('details') > 0?router?.pathname?.replace('[id]', id):router?.pathname}
+          data-item-url={
+            router?.pathname.indexOf('details') > 0
+              ? router?.pathname?.replace('[id]', id)
+              : router?.pathname
+          }
           data-item-description={taste}
           data-item-image={horizontalProductView?.url}
           data-item-name={productName}
@@ -201,9 +207,7 @@ export function ProductDetail({ product, selectMethod }) {
             lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
           })}
         </button>
-        {!router?.pathname.includes('details')  && (
-          <GoToDetailButton id={id} />
-        )}
+        {!router?.pathname.includes('details') && <GoToDetailButton id={id} />}
       </div>
     </article>
   );

@@ -1,21 +1,30 @@
 @import 'variables';
 
 .quizContainer {
-  @media (min-width: 450px) {
+  margin: 3rem auto;
+  width: 90%;
+  @media (min-width: 760px) {
     width: 70%;
-    margin: 0 auto;
+  }
+  @media (min-width: 1500px) {
+    width: 50%;
+  }
+  .mainHeadline {
+    text-align: left;
+    color: $textWhite;
+    font-size: xx-large;
   }
   .quest {
     text-align: center;
-    .question {
-      text-align: center;
-      color: $textWhite;
-      font-size: xx-large;
-    }
+
     .invitation {
       text-align: center;
       padding: 0 5px 0 5px;
-      font-size: x-large;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      @media (min-width: 460px) {
+        font-size: 1.25rem;
+      }
     }
   }
   .result {
@@ -35,22 +44,23 @@
       color: $textWhite;
       margin: 5px;
     }
-    :global(.ant-result-extra, a) {
+    :global(.ant-result-extra a) {
       background-color: $borderLight;
       border: $borderLight;
       color: $textBlack;
       font-family: $fontText;
       text-align: center;
-      padding: 0;
+      padding: 9px;
       margin: 15px;
-      width: 7rem;
+      width: fit-content;
+      font-size: 20px;
 
       &:hover {
         background-color: rgb(136, 129, 175);
         color: $textWhite;
         font-family: $fontText;
         text-align: center;
-        padding: 0;
+        padding: 9px;
         margin: 15px;
       }
     }

@@ -1,10 +1,10 @@
-import {Button, Form, Popover, Radio} from "antd";
-import {useEffect, useRef, useState} from "react";
-import {useTranslation} from "react-i18next";
-import {QuizNavBar} from "./QuizNavBar";
-import {QuizBlockBtns} from "./QuizBlockBtns";
-import styles from "../../styles/QuizForm.module.scss";
-import {useRouter} from "next/router";
+import { Button, Form, Popover, Radio } from 'antd';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { QuizNavBar } from './QuizNavBar';
+import { QuizBlockBtns } from './QuizBlockBtns';
+import styles from '../../styles/QuizForm.module.scss';
+import { useRouter } from 'next/router';
 
 const layout = {
   labelCol: {
@@ -32,7 +32,6 @@ export function QuizForm({ onFinished, quiz }) {
 
   const isLastQuizItem = quizItemIndex === quiz.length - 1;
 
-
   useEffect(() => {
     form.setFieldsValue({ options: quiz[quizItemIndex]?.option[0] });
   }, [quizItemIndex]);
@@ -50,13 +49,12 @@ export function QuizForm({ onFinished, quiz }) {
 
   const returnCorrectAnswer = () => {
     return typeof quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex] ===
-      "string" ||
+      'string' ||
       typeof quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex] ===
-        "number"
+        'number'
       ? quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]
       : quiz?.[quizItemIndex]?.recommendation?.[chosenAnswerIndex]?.id;
   };
-
 
   const onContinue = () => {
     setSelectedAnswers([...selectedAnswers, returnCorrectAnswer()]);
@@ -89,26 +87,26 @@ export function QuizForm({ onFinished, quiz }) {
 
   return (
     <>
-        <div className={styles.form}>
-          <Form form={form} {...layout}>
-            <QuizNavBar
-              onContinue={onContinue}
-              quizItemIndex={quizItemIndex + 1}
-              length={quiz.length}
-            />
-            <FormQuestion />
-            <Form.Item shouldUpdate name="options" noStyle>
-              <Radio.Group onChange={chooseOption}>
-                {quiz?.[quizItemIndex]?.option?.map((option, index) => (
-                  <div
-                    key={option}
-                    className={styles.radioWrapper}
-                    ref={ref}
-                    id={`popoverArea${index}`}
-                  >
-                    {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex] ? (
-                        <div className={styles.popover}>
-                        <Popover
+      <div className={styles.form}>
+        <Form form={form} {...layout}>
+          <QuizNavBar
+            onContinue={onContinue}
+            quizItemIndex={quizItemIndex + 1}
+            length={quiz.length}
+          />
+          <FormQuestion />
+          <Form.Item shouldUpdate name="options" noStyle>
+            <Radio.Group onChange={chooseOption}>
+              {quiz?.[quizItemIndex]?.option?.map((option, index) => (
+                <div
+                  key={option}
+                  className={styles.radioWrapper}
+                  ref={ref}
+                  id={`popoverArea${index}`}
+                >
+                  {quiz?.[quizItemIndex]?.instruction?.[chosenAnswerIndex] ? (
+                    <div className={styles.popover}>
+                      <Popover
                         placement="right"
                         title={undefined}
                         content={
@@ -120,7 +118,7 @@ export function QuizForm({ onFinished, quiz }) {
                             }
                           </p>
                         }
-                        trigger={["click"]}
+                        trigger={['click']}
                         // visible={true}
                         getPopupContainer={() =>
                           document.getElementById(`popoverArea${index}`)
@@ -131,28 +129,28 @@ export function QuizForm({ onFinished, quiz }) {
                           {option}
                         </Radio>
                       </Popover>
-                        </div>
-                    ) : (
-                      <Radio key={option.id} value={option} index={index}>
-                        {option}
-                      </Radio>
-                    )}
-                  </div>
-                ))}
-              </Radio.Group>
+                    </div>
+                  ) : (
+                    <Radio key={option.id} value={option} index={index}>
+                      {option}
+                    </Radio>
+                  )}
+                </div>
+              ))}
+            </Radio.Group>
+          </Form.Item>
+          {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
+          {isLastQuizItem && (
+            <Form.Item {...tailLayout}>
+              <Button type="primary" htmlType="submit" onClick={sendAnswers}>
+                {t('quiz.finish', {
+                  lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                })}
+              </Button>
             </Form.Item>
-            {!isLastQuizItem && <QuizBlockBtns onContinue={onContinue} />}
-            {isLastQuizItem && (
-              <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit" onClick={sendAnswers}>
-                  {t("quiz.finish", {
-                    lng: router.locale === "cs" ? "cs_CZ" : "en",
-                  })}
-                </Button>
-              </Form.Item>
-            )}
-          </Form>
-        </div>
+          )}
+        </Form>
+      </div>
     </>
   );
 }

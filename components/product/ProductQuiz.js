@@ -1,13 +1,16 @@
 import Image from 'next/image';
-import {GoToDetailButton} from '../form/button/GoToDetailButton';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { GoToDetailButton } from '../form/button/GoToDetailButton';
 
 export function ProductQuiz({ product, method, quantity }) {
+  const router = useRouter();
+  const { t } = useTranslation();
   const { productName, horizontalProductView, id, quantityWeight, taste } =
     product || {};
   const price = quantityWeight?.productData?.find(
     (it) => it?.weight === quantity,
   )?.price;
-
 
   return (
     <article>
@@ -21,10 +24,30 @@ export function ProductQuiz({ product, method, quantity }) {
             height={horizontalProductView?.height}
           />
         )}
-        <p>chut: {taste}</p>
-        <p>metoda: {method}</p>
-        <p>{quantity}g baleni</p>
-        <p>{price} Kc</p>
+        <p>
+          {t('quiz.sort', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          })}
+          {taste}
+        </p>
+        <p>
+          {t('quiz.method', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          })}
+          {method}
+        </p>
+        <p>
+          {quantity}
+          {t('quiz.package', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          })}
+        </p>
+        <p>
+          {price}{' '}
+          {t('quiz.price', {
+            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          })}
+        </p>
         <GoToDetailButton id={id} />
       </>
     </article>

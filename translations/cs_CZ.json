@@ -25,7 +25,7 @@
   },
 
   "button": {
-    "addToCart": "do košíku",
+    "addToCart": "Do košíku",
     "productDetail": "Detail produktu"
   },
 
@@ -46,13 +46,22 @@
     "inStock": "Skladem"
   },
   "quiz": {
+    "quiz": "Kvíz.",
+    "instruction": "Nejste jisté jaký druh kávy zvolit? Vyplňte Kvíz který Vám usnadní výběr.",
     "quit": "Opustit kvíz",
     "skip": "Přeskočit otázku",
     "continue": "Pokračovat",
     "finish": "Dostat rekomendace",
     "back": "Zpátky",
-    "buy": "Koupit"
+    "buy": "Koupit",
+    "headline": "Děkujeme za Vaše odpovědi!",
+    "toShop": "Koupit",
+    "sort": "Chuť: ",
+    "method": "Metoda: ",
+    "package": "g balení",
+    "price": "Kč"
   },
+
   "footer": {
     "privacyPolicy": "Ochrany osobních údajů",
     "termsAndConditions": "Obchodní podmínky",
