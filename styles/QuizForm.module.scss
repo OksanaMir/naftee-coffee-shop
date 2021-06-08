@@ -9,6 +9,9 @@
   text-align: left;
   display: flex;
   flex-direction: column;
+  :global(.ant-form-horizontal) {
+    margin-top: 0;
+  }
   h1 {
     color: black !important;
   }

@@ -17,24 +17,23 @@ export default function ShopList({ selectsData, productsData }) {
         <title>Shop list</title>
       </Head>
       <Layout>
-        <div className={styles.shopList}>
-          <h1>Shop.</h1>
-        <>
         <section className={styles.shopListContainer}>
-
-          {[...rest, first]?.map((product) => {
-            return (
-              <div className={styles.container} key={product.id}>
-                <ProductDetail
-                  product={product}
-                  selectMethod={
-                    selectsData?.allSelectors?.[0]?.select?.selectMethod
-                  }
-                />
-              </div>
-            );
-          })}
-        </section></></div>
+          <h1>Shop.</h1>
+          <div className={styles.main}>
+            {[...rest, first]?.map((product) => {
+              return (
+                <div className={styles.container} key={product.id}>
+                  <ProductDetail
+                    product={product}
+                    selectMethod={
+                      selectsData?.allSelectors?.[0]?.select?.selectMethod
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </Layout>
     </>
   );
