@@ -5,7 +5,7 @@ export function SelectComponent({ options, handleChange, id }) {
   const { Option } = Select;
   return (
     <Select
-      style={{ width: 'max-content' }}
+      style={{ width: 'max-content', minWidth:'5rem' }}
       getPopupContainer={() => document.getElementById(id)}
       onChange={handleChange && handleChange}
       defaultValue={options?.[1]}
