@@ -1,5 +1,7 @@
- @import 'variables';
- .form {
-   width: 100%;
-
- }
+@import 'variables';
+.form {
+  width: 100%;
+  :global(.ant-btn.ant-btn-primary span) {
+    padding: 0 15px !important;
+  }
+}

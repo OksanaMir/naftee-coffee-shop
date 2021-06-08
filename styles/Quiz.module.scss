@@ -20,7 +20,11 @@
     .invitation {
       text-align: center;
       padding: 0 5px 0 5px;
-      font-size: x-large;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      @media (min-width: 460px) {
+        font-size: 1.25rem;
+      }
     }
   }
   .result {
