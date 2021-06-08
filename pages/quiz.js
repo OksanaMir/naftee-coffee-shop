@@ -139,6 +139,7 @@ const PRODUCT_QUERY = `query ProductQuery($filter: ProductModelFilter, $locale: 
   product(filter: $filter, locale:$locale) {
     productName
     id
+    taste
     quantityWeight 
     horizontalProductView {
       alt

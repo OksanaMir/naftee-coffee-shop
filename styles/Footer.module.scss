@@ -96,7 +96,9 @@
     width: 1rem;
     height: 1rem;
   }
-
+  :global(.ant-modal-close) {
+    color: $textWhite;
+  }
   :global(.ant-modal-footer) {
     background-color: black;
     opacity: 70%;
@@ -108,22 +110,23 @@
   }
 
   :global(.ant-btn:hover) {
-    // color: #ff38b3;
     border: 1px solid rgb(79, 71, 122);
-    color: rgb(79, 71, 122);
+    background-color: rgb(79, 71, 122);
+    color: $textWhite;
   }
 
   :global(.ant-btn.ant-btn-primary) {
     background-color: rgb(79, 71, 122);
+    color: $textWhite;
+    width: 5rem;
   }
 
   :global(.ant-btn.ant-btn-primary:hover) {
-    // color: #ff38b3;
     border: 1px solid white;
     color: white;
   }
 
-  :global(.ant-btn-primary) {
-    border-color: #d2cfe2;
-  }
+  // :global(.ant-btn-primary) {
+  //   border-color: #d2cfe2;
+  // }
 }

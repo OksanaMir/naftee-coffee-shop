@@ -2,36 +2,82 @@
 .productDetail {
   display: flex;
   flex-direction: column;
-  h1 {
-    font-size: 1rem;
+  .productName {
+    font-size: 1.5rem;
+    padding-left: 15px;
+  }
+  p {
+    text-align: left;
+    padding: 0 15px;
+  }
+  .taste {
+    height: 3rem;
+    // padding: 0 15px;
+    margin-bottom: 15px;
   }
   .topSection {
     margin-bottom: 15px;
+
     img {
       width: 50rem;
       box-shadow: 0 6px 7px rgba(0, 0, 0, 0.15);
     }
-
     text-align: center;
   }
+
   .selectWrapper {
     position: relative;
+
+    :global(.ant-form-item-label) {
+      flex-grow: 1;
+      max-width: fit-content;
+      @media (max-widt: 575px) {
+        max-width: 100%;
+        flex-grow: unset;
+      }
+    }
+    :global(.ant-form-item-control) {
+      flex-grow: 1;
+      max-width: fit-content;
+      @media (max-widt: 575px) {
+        max-width: 100%;
+        flex-grow: unset;
+      }
+    }
+    :global(.ant-form-item-control-input-content) {
+      flex-grow: 1;
+      max-width: 30%;
+      @media (max-widt: 575px) {
+        max-width: 100%;
+        flex-grow: unset;
+      }
+    }
+    :global(.ant-input-number) {
+      width: 60px;
+    }
   }
 
-  .bottomSection {
-    margin-top: 15px;
-  }
   .price {
     font-weight: 900;
     font-size: xx-large;
   }
-  p {
-    text-align: left;
-  }
   .snipcartAddItem {
-    margin: auto;
+    margin: 0 auto;
+    :global(.snipcart-add-item) {
+      margin: 15px;
+      padding: 8px 9px;
+      width: fit-content;
+    }
     button:disabled {
       cursor: not-allowed;
+    }
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    @media (min-width: 460px) {
+      margin-left: auto;
+      display: block;
     }
   }
 }
