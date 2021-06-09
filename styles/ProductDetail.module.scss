@@ -11,9 +11,9 @@
     padding: 0 15px;
   }
   .taste {
+    margin-bottom: 15px;
     height: 3rem;
     // padding: 0 15px;
-    margin-bottom: 15px;
   }
   .topSection {
     margin-bottom: 15px;
@@ -67,10 +67,17 @@
 
   .price {
     font-weight: 900;
-    font-size: xx-large;
+    font-size: 25px;
+    @media (min-width: 575px) {
+      margin-bottom: 0;
+      margin-bottom: auto;
+    }
   }
   .snipcartAddItem {
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
+    @media (min-width: 575px) {
+      margin: 15px auto;
+    }
     :global(.snipcart-add-item) {
       margin: 15px;
       padding: 8px 9px;
