@@ -13,7 +13,6 @@
   .taste {
     margin-bottom: 15px;
     height: 3rem;
-    // padding: 0 15px;
   }
   .topSection {
     margin-bottom: 15px;
@@ -28,41 +27,6 @@
   .selectWrapper {
     position: relative;
 
-    :global(.ant-form-item-label) {
-      flex-grow: 1;
-      max-width: fit-content;
-      @media (max-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-form-item-control) {
-      flex-grow: 1;
-      max-width: fit-content;
-      @media (max-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-form-number) {
-      flex-grow: 1;
-      max-width: 30%;
-      @media (max-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-form-item-control-input-content) {
-      flex-grow: 1;
-      max-width: 30%;
-      @media (max-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-input-number) {
-      width: 60px;
-    }
   }
 
   .price {

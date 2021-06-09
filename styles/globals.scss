@@ -338,4 +338,13 @@ body {
   .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
     color: $textWhite;
   }
+
+
+
+  @media (max-width: 575px) {
+    .ant-form .ant-form-item .ant-form-item-label, .ant-form .ant-form-item .ant-form-item-control {
+      flex: 0 0 100%;
+      max-width: fit-content;
+    }
+  }
 }

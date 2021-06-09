@@ -186,7 +186,9 @@ export function ProductDetail({ product, selectMethod }) {
               : productData?.[2]?.price
           }
           data-item-url={
-            "https://naftee-coffee-shop.vercel.app/api/api"
+            router?.pathname.includes("details")
+              ? router?.pathname?.replace("[id]", id)
+              : router?.pathname
           }
           data-item-description={taste}
           data-item-image={horizontalProductView?.url}

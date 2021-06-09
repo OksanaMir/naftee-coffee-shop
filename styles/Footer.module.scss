@@ -19,7 +19,7 @@
   :global(.ant-modal) {
     top: unset;
     padding: 0;
-    max-width: unset;
+    min-width: unset;
   }
   .wrapper {
     @media (min-width: 450px) {
@@ -44,7 +44,7 @@
   :global(.ant-modal) {
     top: unset;
     padding: 0;
-    max-width: unset;
+    min-width: unset;
   }
   :global(.ant-modal-body) {
     padding: 24px;

@@ -28,41 +28,7 @@
   }
   .selectWrapper {
     position: relative;
-    :global(.ant-form-item-label) {
-      flex-grow: 1;
-      max-width: fit-content;
-      @media (min-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-form-item-control) {
-      flex-grow: 1;
-      max-width: fit-content;
-      @media (min-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-form-number) {
-      flex-grow: 1;
-      max-width: 30%;
-      @media (min-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-form-item-control-input-content) {
-      flex-grow: 1;
-      max-width: 30%;
-      @media (min-width: 575px) {
-        max-width: 100%;
-        flex-grow: unset;
-      }
-    }
-    :global(.ant-input-number) {
-      width: 60px;
-    }
+
   }
 
   .price {

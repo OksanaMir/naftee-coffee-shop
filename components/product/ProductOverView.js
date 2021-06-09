@@ -152,9 +152,9 @@ export function ProductOverView({ data, selectMethod }) {
                 ? productData?.[1]?.price
                 : productData?.[2]?.price
             }
-            data-item-url={            "https://naftee-coffee-shop.vercel.app/api/api"
-            }
-            data-item-image={horizontalProductView?.url}
+              data-item-url={router?.pathname}
+
+              data-item-image={horizontalProductView?.url}
             data-item-name={productName}
             data-item-description={taste}
             data-item-custom1-name={t('select.weight', {
