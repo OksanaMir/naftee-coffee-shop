@@ -3,7 +3,7 @@ export default function (req, res) {
     {
       id: "38041541",
       price: 100.0,
-      url: "https://naftee-coffee-shop.vercel.app/api/products",
+      url: "https://naftee-coffee-shop.vercel.app/api/api",
       customFields: [
         {
           name: "Weight",
@@ -14,7 +14,7 @@ export default function (req, res) {
     {
       id: "38162386",
       price: 110.0,
-      url: "https://naftee-coffee-shop.vercel.app/api/products",
+      url: "https://naftee-coffee-shop.vercel.app/api/api",
       customFields: [
         {
           name: "Weight",
@@ -25,7 +25,7 @@ export default function (req, res) {
     {
       id: "38256569",
       price: 90.0,
-      url: "https://naftee-coffee-shop.vercel.app/api/products",
+      url: "https://naftee-coffee-shop.vercel.app/api/api",
       customFields: [
         {
           name: "Weight",
@@ -36,7 +36,7 @@ export default function (req, res) {
     {
       id: "38041466",
       price: 90.0,
-      url: "https://naftee-coffee-shop.vercel.app/api/products",
+      url: "https://naftee-coffee-shop.vercel.app/api/api",
       customFields: [
         {
           name: "Weight",
@@ -47,7 +47,7 @@ export default function (req, res) {
       {
           id: "41706326",
           price: 300.0,
-          url: "https://naftee-coffee-shop.vercel.app/api/products",
+          url: "https://naftee-coffee-shop.vercel.app/api/api",
           customFields: [
               {
                   name: "Weight",
