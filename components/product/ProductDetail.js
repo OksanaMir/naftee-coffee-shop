@@ -60,8 +60,8 @@ export function ProductDetail({ product, selectMethod }) {
       <span className={styles.bottomSection}>
         <ExpandableText
           id={`descriptionIconWrapper${id}`}
-          title={t('shopList.description', {
-            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          title={t("shopList.description", {
+            lng: router.locale === "cs" ? "cs_CZ" : "en",
           })}
           paragraph={
             <span dangerouslySetInnerHTML={createMarkup(description)} />
@@ -69,8 +69,8 @@ export function ProductDetail({ product, selectMethod }) {
         />
 
         <ExpandableText
-          title={t('shopList.characteristic', {
-            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          title={t("shopList.characteristic", {
+            lng: router.locale === "cs" ? "cs_CZ" : "en",
           })}
           id={`characteristicIconWrapper${id}`}
           paragraph={
@@ -92,8 +92,8 @@ export function ProductDetail({ product, selectMethod }) {
             {selectMethod && (
               <Form.Item
                 name="method"
-                label={t('select.method', {
-                  lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+                label={t("select.method", {
+                  lng: router.locale === "cs" ? "cs_CZ" : "en",
                 })}
                 rules={[
                   {
@@ -112,8 +112,8 @@ export function ProductDetail({ product, selectMethod }) {
 
           <Form.Item
             name="amount"
-            label={t('select.amount', {
-              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+            label={t("select.amount", {
+              lng: router.locale === "cs" ? "cs_CZ" : "en",
             })}
             rules={[
               {
@@ -129,8 +129,8 @@ export function ProductDetail({ product, selectMethod }) {
           >
             <Form.Item
               name="weight"
-              label={t('select.weight', {
-                lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+              label={t("select.weight", {
+                lng: router.locale === "cs" ? "cs_CZ" : "en",
               })}
               rules={[
                 {
@@ -152,11 +152,11 @@ export function ProductDetail({ product, selectMethod }) {
         {(weightSelect === 50 && productData?.[0]?.quantity) ||
         (weightSelect === 250 && productData?.[1]?.quantity) ||
         (weightSelect === 1000 && productData?.[2]?.quantity)
-          ? t('quantaty.inStock', {
-              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          ? t("quantaty.inStock", {
+              lng: router.locale === "cs" ? "cs_CZ" : "en",
             })
-          : t('quantaty.outOfStock', {
-              lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          : t("quantaty.outOfStock", {
+              lng: router.locale === "cs" ? "cs_CZ" : "en",
             })}
       </p>
 
@@ -165,7 +165,7 @@ export function ProductDetail({ product, selectMethod }) {
           ? productData?.[0]?.price
           : weightSelect === 250
           ? productData?.[1]?.price
-          : productData?.[2]?.price) * quantity}{' '}
+          : productData?.[2]?.price) * quantity}{" "}
         Kč
       </h1>
 
@@ -186,28 +186,33 @@ export function ProductDetail({ product, selectMethod }) {
               : productData?.[2]?.price
           }
           data-item-url={
-            router?.pathname.indexOf('details') > 0
-              ? router?.pathname?.replace('[id]', id)
-              : router?.pathname
+            "https://naftee-coffee-shop.vercel.app/api/api"
           }
           data-item-description={taste}
           data-item-image={horizontalProductView?.url}
           data-item-name={productName}
-          data-item-custom1-name={t('select.weight', {
-            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          data-item-custom1-name={t("select.weight", {
+            lng: router.locale === "cs" ? "cs_CZ" : "en",
           })}
           data-item-custom1-value={weightSelect}
-          data-item-custom2-name={t('select.method', {
-            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          data-item-custom2-name={t("select.method", {
+            lng: router.locale === "cs" ? "cs_CZ" : "en",
           })}
           data-item-custom2-value={methodSelect}
           data-item-quantity={quantity}
+          data-item-weight={weightSelect}
+          data-item-custom3-name={
+            t("select.method", {
+              lng: router.locale === "cs" ? "cs_CZ" : "en",
+            }) + "ijgukj"
+          }
+          data-item-custom3-options={`50[-${product?.quantityWeight?.productData?.[0]?.price}]|250[+${product?.quantityWeight?.productData?.[1]?.price}]|1000[+${product?.quantityWeight?.productData?.[2]?.price}]`}
         >
-          {t('button.addToCart', {
-            lng: router.locale === 'cs' ? 'cs_CZ' : 'en',
+          {t("button.addToCart", {
+            lng: router.locale === "cs" ? "cs_CZ" : "en",
           })}
         </button>
-        {!router?.pathname.includes('details') && <GoToDetailButton id={id} />}
+        {!router?.pathname.includes("details") && <GoToDetailButton id={id} />}
       </div>
     </article>
   );
