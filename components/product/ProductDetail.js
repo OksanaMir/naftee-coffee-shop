@@ -165,7 +165,7 @@ export function ProductDetail({ product, selectMethod }) {
           ? productData?.[0]?.price
           : weightSelect === 250
           ? productData?.[1]?.price
-          : productData?.[2]?.price) * quantity}{" "}
+          : productData?.[2]?.price) * quantity}
         Kč
       </h1>
 
@@ -200,13 +200,6 @@ export function ProductDetail({ product, selectMethod }) {
           })}
           data-item-custom2-value={methodSelect}
           data-item-quantity={quantity}
-          data-item-weight={weightSelect}
-          data-item-custom3-name={
-            t("select.method", {
-              lng: router.locale === "cs" ? "cs_CZ" : "en",
-            }) + "ijgukj"
-          }
-          data-item-custom3-options={`50[-${product?.quantityWeight?.productData?.[0]?.price}]|250[+${product?.quantityWeight?.productData?.[1]?.price}]|1000[+${product?.quantityWeight?.productData?.[2]?.price}]`}
         >
           {t("button.addToCart", {
             lng: router.locale === "cs" ? "cs_CZ" : "en",

@@ -11,9 +11,9 @@
     padding: 0 15px;
   }
   .taste {
+    margin-bottom: 15px;
     height: 3rem;
     // padding: 0 15px;
-    margin-bottom: 15px;
   }
   .topSection {
     margin-bottom: 15px;
@@ -31,7 +31,7 @@
     :global(.ant-form-item-label) {
       flex-grow: 1;
       max-width: fit-content;
-      @media (max-widt: 575px) {
+      @media (max-width: 575px) {
         max-width: 100%;
         flex-grow: unset;
       }
@@ -39,7 +39,15 @@
     :global(.ant-form-item-control) {
       flex-grow: 1;
       max-width: fit-content;
-      @media (max-widt: 575px) {
+      @media (max-width: 575px) {
+        max-width: 100%;
+        flex-grow: unset;
+      }
+    }
+    :global(.ant-form-number) {
+      flex-grow: 1;
+      max-width: 30%;
+      @media (max-width: 575px) {
         max-width: 100%;
         flex-grow: unset;
       }
@@ -47,7 +55,7 @@
     :global(.ant-form-item-control-input-content) {
       flex-grow: 1;
       max-width: 30%;
-      @media (max-widt: 575px) {
+      @media (max-width: 575px) {
         max-width: 100%;
         flex-grow: unset;
       }
@@ -59,10 +67,16 @@
 
   .price {
     font-weight: 900;
-    font-size: xx-large;
+    font-size: 25px;
+    @media (min-width: 575px) {
+      margin-bottom: auto;
+    }
   }
   .snipcartAddItem {
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
+    @media (min-width: 575px) {
+      margin: 15px auto;
+    }
     :global(.snipcart-add-item) {
       margin: 15px;
       padding: 8px 9px;
@@ -71,7 +85,6 @@
     button:disabled {
       cursor: not-allowed;
     }
-    margin-left: 0;
     display: flex;
     flex-direction: column;
     justify-content: left;
